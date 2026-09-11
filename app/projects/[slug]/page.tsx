@@ -1,6 +1,6 @@
+/* oxlint-disable next/no-img-element */
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Check, Code2, Layers3 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <main className="case-study">
       <header className="case-header">
         <Link className="wordmark" href="/" aria-label="Back to Yasser Akanni portfolio"><span>YA</span><span className="wordmark-name">Yasser Akanni</span></Link>
-        <Link className={buttonVariants({ variant: 'outline' })} href="/#work"><ArrowLeft /> All projects</Link>
+        <Link className={buttonVariants({ variant: 'outline' })} href="/#projects"><ArrowLeft /> All projects</Link>
       </header>
 
       <section className="case-hero">
@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       <figure className="case-image">
-        <Image src={project.image} alt={project.imageAlt} width={1440} height={900} priority />
+        <img src={project.image} alt={project.imageAlt} width={1440} height={900} />
       </figure>
 
       <section className="case-body">
@@ -91,7 +91,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <section className="case-next">
         <p className="section-kicker">Continue exploring</p>
         <h2>See the complete project selection.</h2>
-        <Link className={buttonVariants({ size: 'lg' })} href="/#work">Back to projects <ArrowUpRight /></Link>
+        <Link className={buttonVariants({ size: 'lg' })} href="/#projects">Back to projects <ArrowUpRight /></Link>
       </section>
     </main>
   );

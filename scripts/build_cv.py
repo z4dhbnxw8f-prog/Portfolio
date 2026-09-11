@@ -161,7 +161,7 @@ class CVDocTemplate(BaseDocTemplate):
             bottomMargin=17 * mm,
             title="Yasser Akanni CV",
             author="Yasser Akanni",
-            subject="Junior Frontend and Full-Stack Web Developer CV",
+            subject="Junior Frontend Developer CV",
         )
         frame = Frame(self.leftMargin, self.bottomMargin, self.width, self.height, id="normal")
         self.addPageTemplates(PageTemplate(id="cv", frames=[frame], onPage=draw_page))
@@ -184,7 +184,7 @@ def draw_page(canvas, doc):
 story = []
 story += [
     para("Yasser Akanni", name_style),
-    para("Junior Frontend / Full-Stack Web Developer · UI/UX Designer", title_style),
+    para("Junior Frontend Developer · React · Next.js · TypeScript", title_style),
     para(
         "Essen, Germany &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
         "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
@@ -198,7 +198,7 @@ story += [
 story += section_title("Professional Profile")
 story.append(
     para(
-        "Junior Frontend / Full-Stack Web Developer and UI/UX Designer with practical project experience building responsive web applications from concept and interface design through development and deployment. Experience with React, Next.js, TypeScript, JavaScript, Prisma, PostgreSQL, Firebase and MongoDB, including authentication, CRUD, API integration and database-backed interfaces. Currently completing a project-based IT qualification at Syntax Institut. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
+        "Junior Frontend Developer focused on React, Next.js and TypeScript, with UI/UX skills and a practical full-stack foundation. Builds responsive web applications from interface design through development and deployment, with project experience in authentication, CRUD, API integration and database-backed interfaces. Currently completing a project-based IT qualification at Syntax Institut. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
         body_style,
     )
 )
@@ -206,7 +206,7 @@ story.append(
 story += section_title("Technical Skills")
 skill_lines = [
     ("Frontend", "React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS, Vite"),
-    ("Backend", "Node.js, Express, REST APIs, Next.js Server Actions"),
+    ("Full-stack foundation", "Node.js, Express, REST APIs, Next.js Server Actions"),
     ("Databases", "PostgreSQL, Prisma, Firebase / Firestore, MongoDB"),
     ("Security", "Session-based authentication, authorization, bcrypt, HTTP-only cookies, protected routes, ownership checks, Firestore security rules"),
     ("UI/UX", "Figma, wireframes, prototypes, user flows, personas, empathy maps, sitemaps, information architecture, usability, responsive interface design"),
@@ -254,7 +254,7 @@ story.append(
 story.append(Spacer(1, 3))
 
 story += section_title("Education and IT Qualification")
-story.append(entry_header("Qualifizierung zur IT-Fachkraft", "15.09.2025 - 14.09.2026", "Syntax Institut · 2.300 UE"))
+story.append(entry_header("Qualifizierung zur IT-Fachkraft", "09/2025 - expected 09/2026", "Syntax Institut · 2.300 UE"))
 story.append(
     para(
         "Structured, project-based training covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile/Scrum workflows, debugging and technical documentation.",
@@ -297,14 +297,14 @@ story.append(
     )
 )
 
-story += section_title("Certificates")
+story += section_title("Qualifications and Certificates")
 story.append(
     KeepTogether(
         [
-            entry_header("Qualifizierung zur IT-Fachkraft", "2025 - 2026", "Syntax Institut · 2.300 UE"),
+            entry_header("Qualifizierung zur IT-Fachkraft", "IN PROGRESS", "Syntax Institut · 2.300 UE · expected 09/2026"),
             para(
-                "Completed a project-based IT qualification covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile workflows and technical documentation.",
-                body_style,
+                "Completed certificates: Digital Product Designer IHK (15.01.2026), Produktdesign & -entwicklung in der IT (08.01.2026), Einführung Software- und Webentwicklung (02.04.2026), and Vertiefung: Frontend Entwicklung (26.06.2026).",
+                small_style,
             ),
         ]
     )
@@ -312,14 +312,6 @@ story.append(
 
 story += section_title("Languages")
 story.append(para("<b>English</b> - Fluent &nbsp;&nbsp;&nbsp; <b>French</b> - Fluent &nbsp;&nbsp;&nbsp; <b>German</b> - Currently developing", body_style))
-
-story += section_title("Professional Focus")
-story.append(
-    para(
-        "Primary targets: Junior Frontend Developer, Junior Web Developer, Junior React Developer and Junior Next.js Developer. Also open to suitable junior full-stack, frontend/UI, UI/UX development, trainee and internship opportunities in Essen, the Ruhrgebiet and across NRW.",
-        body_style,
-    )
-)
 
 doc = CVDocTemplate(str(OUTPUT))
 doc.build(story)
