@@ -198,7 +198,7 @@ story += [
 story += section_title("Professional Profile")
 story.append(
     para(
-        "Junior Frontend / Full-Stack Web Developer and UI/UX Designer with practical project experience building responsive web applications from concept and interface design through development and deployment. Experience with React, Next.js, TypeScript, JavaScript, Prisma, PostgreSQL, Firebase and MongoDB, including authentication, CRUD, API integration and database-backed interfaces. Currently completing a project-based IT qualification at Syntax Institut. Brings reliability, organization and process awareness from an earlier career in operations, procurement and logistics.",
+        "Junior Frontend / Full-Stack Web Developer and UI/UX Designer with practical project experience building responsive web applications from concept and interface design through development and deployment. Experience with React, Next.js, TypeScript, JavaScript, Prisma, PostgreSQL, Firebase and MongoDB, including authentication, CRUD, API integration and database-backed interfaces. Currently completing a project-based IT qualification at Syntax Institut. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
         body_style,
     )
 )
@@ -210,7 +210,7 @@ skill_lines = [
     ("Databases", "PostgreSQL, Prisma ORM, Firebase Firestore, MongoDB, MongoDB Atlas"),
     ("Security", "Firebase Authentication, session-based authentication, bcrypt, HTTP-only cookies, protected routes, authorization, ownership checks, Firestore security rules"),
     ("UI/UX", "Figma, wireframes, prototypes, user flows, personas, empathy maps, sitemaps, information architecture, usability, responsive interface design"),
-    ("Tools & practice", "Git, GitHub, VS Code, npm, Docker, Vercel, ngrok, CRUD, API integration, debugging, database design, Scrum, technical documentation"),
+    ("Tools & practice", "Git, GitHub, VS Code, npm, Docker, Vercel, ngrok, CRUD, API integration, debugging, database design, requirements analysis, Scrum, Agile development, technical documentation"),
 ]
 for label, items in skill_lines:
     story.append(para(f"<b>{label}:</b> {items}", small_style))
@@ -273,8 +273,8 @@ story += section_title("Professional Experience")
 story.append(
     KeepTogether(
         [
-            entry_header("Preymesser", "2023 - 2025", "Logistics operations"),
-            para("Loading and offloading, warehouse and transport-related tasks, and operational support. Worked reliably within practical processes and team-based operations.", body_style),
+            entry_header("Preymesser", "2023 - 2025", "Logistics Operations Associate"),
+            para("Supported warehouse and transport operations through loading, offloading and material handling. Worked closely with operational teams to maintain safe, reliable workflows and consistent day-to-day execution.", body_style),
         ]
     )
 )
@@ -282,8 +282,8 @@ story.append(Spacer(1, 4))
 story.append(
     KeepTogether(
         [
-            entry_header("Haeger & Schmidt", "2022 - 2023", "Industrial operations"),
-            para("Blade cutting, truck loading, crane operations, cleanup, and ship loading and offloading. Contributed to safe, coordinated work under operational pressure.", body_style),
+            entry_header("Haeger & Schmidt", "2022 - 2023", "Industrial Logistics Operator"),
+            para("Performed truck and vessel loading and offloading, crane-assisted material handling, blade cutting and work-area maintenance within a safety-focused industrial environment.", body_style),
         ]
     )
 )
@@ -291,8 +291,8 @@ story.append(Spacer(1, 4))
 story.append(
     KeepTogether(
         [
-            entry_header("SIB Enterprises", "2007 - 2021", "Operations, procurement and supervision"),
-            para("Tire loading, import and export activities, purchasing, supplier-related coordination, company supervision and operational organization. Developed a strong foundation in responsibility, coordination, practical problem solving and process awareness.", body_style),
+            entry_header("SIB Enterprises", "2007 - 2021", "Purchasing Manager - International Procurement & SAP"),
+            para("Managed purchasing and procurement operations, including international travel for supplier sourcing and business coordination. Used SAP to manage purchasing workflows, orders, supplier records and procurement administration, while coordinating import and export activities. Developed strong organization, responsibility, negotiation and cross-cultural communication skills.", body_style),
         ]
     )
 )
