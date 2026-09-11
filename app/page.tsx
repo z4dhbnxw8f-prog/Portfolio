@@ -24,10 +24,10 @@ import { buttonVariants } from '@/components/ui/button';
 import { projects } from '@/lib/projects';
 
 const skillGroups = [
-  { title: 'Frontend', icon: PanelsTopLeft, skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Flexbox', 'CSS Grid', 'Responsive Design', 'Tailwind CSS', 'Vite'] },
-  { title: 'Backend', icon: ServerCog, skills: ['Node.js', 'Express', 'REST APIs', 'Server Actions', 'API Route Handlers'] },
-  { title: 'Databases', icon: Database, skills: ['PostgreSQL', 'Prisma ORM', 'Firebase', 'Firestore', 'MongoDB', 'MongoDB Atlas'] },
-  { title: 'Authentication & Security', icon: ShieldCheck, skills: ['Authentication', 'Authorization', 'Session Management', 'bcrypt', 'HTTP-only Cookies', 'Protected Routes', 'Ownership Checks', 'Firestore Security Rules'] },
+  { title: 'Frontend', icon: PanelsTopLeft, skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Vite'] },
+  { title: 'Backend', icon: ServerCog, skills: ['Node.js', 'Express', 'REST APIs', 'Next.js Server Actions'] },
+  { title: 'Databases', icon: Database, skills: ['PostgreSQL', 'Prisma', 'Firebase / Firestore', 'MongoDB'] },
+  { title: 'Authentication & Security', icon: ShieldCheck, skills: ['Session-based Authentication', 'Authorization', 'bcrypt', 'HTTP-only Cookies', 'Protected Routes', 'Ownership Checks', 'Firestore Security Rules'] },
   { title: 'UI/UX', icon: PencilRuler, skills: ['Figma', 'UI Design', 'UX Design', 'Wireframes', 'Prototypes', 'User Flows', 'Personas', 'Empathy Maps', 'Sitemaps', 'Information Architecture', 'Responsive Interface Design'] },
   { title: 'Tools', icon: Wrench, skills: ['Git', 'GitHub', 'VS Code', 'npm', 'Docker', 'Vercel', 'ngrok'] },
   { title: 'Development Practices', icon: Terminal, skills: ['CRUD', 'API Integration', 'Database Design', 'Debugging', 'Requirements Analysis', 'Technical Documentation', 'Scrum', 'Agile Development'] },
@@ -39,6 +39,8 @@ const processSteps = [
   ['03', 'Develop', 'Frontend, data & authentication'],
   ['04', 'Deliver', 'Testing, iteration & deployment'],
 ];
+
+const contactEmail = 'ressay93@outlook.com';
 
 export default function Home() {
   return (
@@ -56,7 +58,7 @@ export default function Home() {
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a className="availability" href="mailto:ressay93@outlook.com">
+        <a className="availability" href={`mailto:${contactEmail}`}>
           <span aria-hidden="true" /> Open to junior roles
         </a>
       </header>
@@ -70,12 +72,17 @@ export default function Home() {
             I build responsive web applications with React and Next.js, combining frontend development, UI/UX thinking and practical full-stack experience.
           </p>
           <div className="hero-actions">
-            <a className={buttonVariants({ size: 'lg' })} href="#work">View projects <ArrowDownRight /></a>
+            <a className={buttonVariants({ size: 'lg' })} href="#work" style={{ color: 'var(--primary-foreground)' }}>View projects <ArrowDownRight /></a>
             <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href="/Yasser-Akanni-CV.pdf" download>Download CV <Download /></a>
+          </div>
+          <div className="hero-availability">
+            <p className="section-kicker">Currently looking for</p>
+            <p>Junior Frontend Developer · React Developer · Next.js Developer · Junior Web Developer</p>
+            <p>Essen · Duisburg · Düsseldorf · Dortmund · NRW</p>
           </div>
           <div className="social-links">
             <a href="https://github.com/z4dhbnxw8f-prog" target="_blank" rel="noreferrer"><Code2 /> GitHub</a>
-            <a href="https://linkedin.com/in/YasserAkanni" target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn</a>
+            <a href="https://www.linkedin.com/in/yasser-akanni-4b15333b3/" target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn</a>
             <a href="/Yasser-Akanni-CV.pdf" download><Download /> Download CV</a>
           </div>
         </div>
@@ -95,7 +102,7 @@ export default function Home() {
         <div className="section-heading">
           <p className="section-kicker">Selected work</p>
           <h2>Full-stack thinking.<br />Frontend craft.</h2>
-          <p>Three focused projects showing full-stack depth, real-time React development and a real-world business experience.</p>
+          <p>Three focused projects demonstrating frontend development, full-stack application architecture, real-time data and practical business-focused web development.</p>
         </div>
 
         <div className="project-list">
@@ -110,7 +117,7 @@ export default function Home() {
                   {project.technologies.slice(0, 6).map((tech) => <li key={tech}>{tech}</li>)}
                 </ul>
                 <div className="project-links">
-                  <Link className={buttonVariants({ variant: 'outline' })} href={`/projects/${project.slug}`}>View case study <ArrowRight /></Link>
+                  <Link className={buttonVariants({ variant: 'default' })} href={`/projects/${project.slug}`} style={{ color: 'var(--primary-foreground)' }}>View case study <ArrowRight /></Link>
                   {project.links.slice(0, 2).map((link) => (
                     <a className="text-link" href={link.url} target="_blank" rel="noreferrer" key={link.label}>{link.label} <ArrowUpRight /></a>
                   ))}
@@ -165,7 +172,7 @@ export default function Home() {
         <div className="timeline">
           <article className="timeline-item featured">
             <div className="timeline-date">15.09.2025 - 14.09.2026</div>
-            <div><p className="timeline-kind">IT qualification · 2,300 UE</p><h3>Qualifizierung zur IT-Fachkraft</h3><p className="timeline-org">Syntax Institut</p><p>Project-based training in product design, UI/UX, software and web development, frontend development, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile work and technical documentation.</p>
+            <div><p className="timeline-kind">IT-Qualifizierung · 2.300 UE</p><h3>Qualifizierung zur IT-Fachkraft</h3><p className="timeline-org">Syntax Institut</p><p>Project-based training in product design, UI/UX, software and web development, frontend development, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile work and technical documentation.</p>
               <ul className="module-list"><li><span>700 UE</span> Product design & IT product development</li><li><span>600 UE</span> Software & web development introduction</li><li><span>500 UE</span> Frontend development focus</li><li><span>500 UE</span> Specialization & career preparation</li></ul>
             </div>
           </article>
@@ -186,7 +193,7 @@ export default function Home() {
           <h2>Let&apos;s build something useful.</h2>
           <p>I&apos;m open to junior frontend, React, Next.js and web-development opportunities in Essen, the Ruhrgebiet and across NRW.</p>
           <address>
-            <a href="mailto:ressay93@outlook.com"><Mail /> ressay93@outlook.com</a>
+            <a href={`mailto:${contactEmail}`}><Mail /> {contactEmail}</a>
             <a href="tel:+4917612854755"><Phone /> +49 176 12854755</a>
             <span><MapPin /> Essen, Germany</span>
           </address>
@@ -196,7 +203,7 @@ export default function Home() {
 
       <footer>
         <div><strong>Yasser Akanni</strong><span>Junior Frontend / Full-Stack Web Developer</span></div>
-        <div className="footer-links"><a href="https://github.com/z4dhbnxw8f-prog" target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a><a href="https://linkedin.com/in/YasserAkanni" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a><a href="#top">Back to top <ArrowUpRight /></a></div>
+        <div className="footer-links"><a href="https://github.com/z4dhbnxw8f-prog" target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a><a href="https://www.linkedin.com/in/yasser-akanni-4b15333b3/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a><a href="#top">Back to top <ArrowUpRight /></a></div>
       </footer>
     </main>
   );

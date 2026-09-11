@@ -189,7 +189,7 @@ story += [
         "Essen, Germany &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
         "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
         "<link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<link href='https://linkedin.com/in/YasserAkanni' color='#565D58'>linkedin.com/in/YasserAkanni</link>",
+        "<link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>",
         contact_style,
     ),
     Spacer(1, 5),
@@ -205,10 +205,10 @@ story.append(
 
 story += section_title("Technical Skills")
 skill_lines = [
-    ("Frontend", "React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Flexbox, CSS Grid, Responsive Design, Tailwind CSS, Vite"),
-    ("Backend", "Node.js, Express, REST APIs, Next.js Server Actions, API Route Handlers"),
-    ("Databases", "PostgreSQL, Prisma ORM, Firebase Firestore, MongoDB, MongoDB Atlas"),
-    ("Security", "Firebase Authentication, session-based authentication, bcrypt, HTTP-only cookies, protected routes, authorization, ownership checks, Firestore security rules"),
+    ("Frontend", "React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS, Vite"),
+    ("Backend", "Node.js, Express, REST APIs, Next.js Server Actions"),
+    ("Databases", "PostgreSQL, Prisma, Firebase / Firestore, MongoDB"),
+    ("Security", "Session-based authentication, authorization, bcrypt, HTTP-only cookies, protected routes, ownership checks, Firestore security rules"),
     ("UI/UX", "Figma, wireframes, prototypes, user flows, personas, empathy maps, sitemaps, information architecture, usability, responsive interface design"),
     ("Tools & practice", "Git, GitHub, VS Code, npm, Docker, Vercel, ngrok, CRUD, API integration, debugging, database design, requirements analysis, Scrum, Agile development, technical documentation"),
 ]
@@ -254,7 +254,7 @@ story.append(
 story.append(Spacer(1, 3))
 
 story += section_title("Education and IT Qualification")
-story.append(entry_header("Qualifizierung zur IT-Fachkraft", "15.09.2025 - 14.09.2026", "Syntax Institut · 2,300 Unterrichtseinheiten"))
+story.append(entry_header("Qualifizierung zur IT-Fachkraft", "15.09.2025 - 14.09.2026", "Syntax Institut · 2.300 UE"))
 story.append(
     para(
         "Structured, project-based training covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile/Scrum workflows, debugging and technical documentation.",
@@ -293,6 +293,19 @@ story.append(
         [
             entry_header("SIB Enterprises", "2007 - 2021", "Purchasing Manager - International Procurement & SAP"),
             para("Managed purchasing and procurement operations, including international travel for supplier sourcing and business coordination. Used SAP to manage purchasing workflows, orders, supplier records and procurement administration, while coordinating import and export activities. Developed strong organization, responsibility, negotiation and cross-cultural communication skills.", body_style),
+        ]
+    )
+)
+
+story += section_title("Certificates")
+story.append(
+    KeepTogether(
+        [
+            entry_header("Qualifizierung zur IT-Fachkraft", "2025 - 2026", "Syntax Institut · 2.300 UE"),
+            para(
+                "Completed a project-based IT qualification covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile workflows and technical documentation.",
+                body_style,
+            ),
         ]
     )
 )
