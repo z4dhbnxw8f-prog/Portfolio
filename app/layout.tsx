@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yasser-akanni-portfolio.pastel-peony-5642.chatgpt.site'),
+  metadataBase: new URL('https://yasser-akanni-portfolio.yazzieboiihome.chatgpt.site'),
   title: 'Yasser Akanni | Junior Frontend and Full-Stack Developer',
   description: 'Portfolio of Yasser Akanni, a junior frontend and full-stack web developer with UI/UX design skills based in Essen, Germany.',
   openGraph: {
