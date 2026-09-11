@@ -24,12 +24,13 @@ import { buttonVariants } from '@/components/ui/button';
 import { projects } from '@/lib/projects';
 
 const skillGroups = [
-  { title: 'Frontend', icon: PanelsTopLeft, skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Vite'] },
+  { title: 'Frontend', icon: PanelsTopLeft, skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Flexbox', 'CSS Grid', 'Responsive Design', 'Tailwind CSS', 'Vite'] },
   { title: 'Backend', icon: ServerCog, skills: ['Node.js', 'Express', 'REST APIs', 'Server Actions', 'API Route Handlers'] },
   { title: 'Databases', icon: Database, skills: ['PostgreSQL', 'Prisma ORM', 'Firebase', 'Firestore', 'MongoDB', 'MongoDB Atlas'] },
-  { title: 'UI/UX', icon: PencilRuler, skills: ['Figma', 'Wireframes', 'Prototypes', 'User Flows', 'Personas', 'Information Architecture', 'Responsive Design'] },
+  { title: 'Authentication & Security', icon: ShieldCheck, skills: ['Authentication', 'Authorization', 'Session Management', 'bcrypt', 'HTTP-only Cookies', 'Protected Routes', 'Ownership Checks', 'Firestore Security Rules'] },
+  { title: 'UI/UX', icon: PencilRuler, skills: ['Figma', 'UI Design', 'UX Design', 'Wireframes', 'Prototypes', 'User Flows', 'Personas', 'Empathy Maps', 'Sitemaps', 'Information Architecture', 'Responsive Interface Design'] },
   { title: 'Tools', icon: Wrench, skills: ['Git', 'GitHub', 'VS Code', 'npm', 'Docker', 'Vercel', 'ngrok'] },
-  { title: 'Development', icon: Terminal, skills: ['Authentication', 'Authorization', 'CRUD', 'API Integration', 'Database Design', 'Debugging', 'Scrum'] },
+  { title: 'Development Practices', icon: Terminal, skills: ['CRUD', 'API Integration', 'Database Design', 'Debugging', 'Requirements Analysis', 'Technical Documentation', 'Scrum', 'Agile Development'] },
 ];
 
 const processSteps = [
@@ -129,7 +130,7 @@ export default function Home() {
           <h2>A career change,<br /><em>not a blank slate.</em></h2>
         </div>
         <div className="about-copy">
-          <p className="about-lead">Before moving into technology, I worked across operations, procurement and logistics. That experience still shapes how I work today.</p>
+          <p className="about-lead">Before moving into technology, I worked in purchasing management, international procurement and logistics operations. That experience still shapes how I work today.</p>
           <p>I understand responsibility, coordination and the practical side of business processes. I am used to working with different people, solving problems under pressure and following work through reliably.</p>
           <p>At Syntax Institut, I turned a long-standing interest in technology and digital design into structured, project-based training. My focus is frontend development, supported by UI/UX, backend fundamentals, databases, authentication and deployment.</p>
           <div className="about-principle"><ShieldCheck /><p><strong>My perspective</strong><br />Understand the user problem, shape the interface, build the solution and connect it to the systems behind it.</p></div>
@@ -168,9 +169,9 @@ export default function Home() {
               <ul className="module-list"><li><span>700 UE</span> Product design & IT product development</li><li><span>600 UE</span> Software & web development introduction</li><li><span>500 UE</span> Frontend development focus</li><li><span>500 UE</span> Specialization & career preparation</li></ul>
             </div>
           </article>
-          <article className="timeline-item"><div className="timeline-date">2023 - 2025</div><div><p className="timeline-kind">Logistics operations</p><h3>Preymesser</h3><p>Loading and offloading, warehouse and transport-related tasks, and operational support.</p></div></article>
-          <article className="timeline-item"><div className="timeline-date">2022 - 2023</div><div><p className="timeline-kind">Industrial operations</p><h3>Haeger &amp; Schmidt</h3><p>Blade cutting, truck loading, crane operations, cleanup, and ship loading and offloading.</p></div></article>
-          <article className="timeline-item"><div className="timeline-date">2007 - 2021</div><div><p className="timeline-kind">Operations & procurement</p><h3>SIB Enterprises</h3><p>Tire loading, import and export activities, purchasing, supplier coordination, company supervision and operational organization.</p></div></article>
+          <article className="timeline-item"><div className="timeline-date">2023 - 2025</div><div><p className="timeline-kind">Logistics Operations Associate</p><h3>Preymesser</h3><p>Supported warehouse and transport operations through loading, offloading and material handling, working closely with operational teams to maintain safe and reliable workflows.</p></div></article>
+          <article className="timeline-item"><div className="timeline-date">2022 - 2023</div><div><p className="timeline-kind">Industrial Logistics Operator</p><h3>Haeger &amp; Schmidt</h3><p>Performed truck and vessel loading and offloading, crane-assisted material handling, blade cutting and work-area maintenance within a safety-focused industrial environment.</p></div></article>
+          <article className="timeline-item"><div className="timeline-date">2007 - 2021</div><div><p className="timeline-kind">Purchasing Manager · International Procurement & SAP</p><h3>SIB Enterprises</h3><p>Managed purchasing and procurement operations, including international travel for supplier sourcing and business coordination. Used SAP to manage purchasing workflows, orders, supplier records and procurement administration, while coordinating import and export activities.</p></div></article>
         </div>
       </section>
 
