@@ -8,7 +8,6 @@ import {
   Download,
   Mail,
   MapPin,
-  Menu,
   PanelsTopLeft,
   Phone,
   ServerCog,
@@ -60,18 +59,6 @@ export default function Home() {
         <a className="availability" href="mailto:ressay93@outlook.com">
           <span aria-hidden="true" /> Open to junior roles
         </a>
-        <details className="mobile-nav">
-          <summary aria-label="Open navigation"><Menu aria-hidden="true" /> Menu</summary>
-          <nav className="mobile-nav-panel" aria-label="Mobile navigation">
-            <a href="#top">Home</a>
-            <a href="#about">About</a>
-            <a href="#work">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
-            <a className="mobile-availability" href="mailto:ressay93@outlook.com"><span aria-hidden="true" /> Open to junior roles</a>
-          </nav>
-        </details>
       </header>
 
       <section className="hero" id="top">
