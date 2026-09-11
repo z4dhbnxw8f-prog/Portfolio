@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vite build",
+    "build": "vite build && node scripts/fix-nitro-rsc-output.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint app components/contact-form.tsx components/ui/button.tsx components/ui/input.tsx components/ui/textarea.tsx lib",
     "format": "oxfmt"
