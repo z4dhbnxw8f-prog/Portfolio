@@ -72,6 +72,16 @@ button, input, textarea { font: inherit; }
 .site-header nav a:hover, .social-links a:hover, .footer-links a:hover, .text-link:hover { opacity: .55; }
 .availability { justify-self: end; display: inline-flex; align-items: center; gap: 8px; }
 .availability span { width: 7px; height: 7px; border-radius: 50%; background: #35a66f; box-shadow: 0 0 0 4px rgba(53,166,111,.12); }
+.mobile-nav { display: none; position: relative; justify-self: end; }
+.mobile-nav summary { min-height: 38px; display: inline-flex; align-items: center; gap: 7px; padding: 0 12px; border: 1px solid var(--border); border-radius: 2px; cursor: pointer; font-weight: 650; list-style: none; }
+.mobile-nav summary::-webkit-details-marker { display: none; }
+.mobile-nav summary svg { width: 17px; height: 17px; }
+.mobile-nav summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--ring) 35%, transparent); outline-offset: 2px; }
+.mobile-nav-panel { position: absolute; top: calc(100% + 12px); right: 0; width: min(280px, calc(100vw - 36px)); display: grid; gap: 0; padding: 8px; background: var(--background); border: 1px solid var(--foreground); box-shadow: 0 18px 45px rgba(20, 23, 20, .14); }
+.mobile-nav-panel a { padding: 13px 12px; border-bottom: 1px solid var(--border); font-size: .9rem; font-weight: 610; }
+.mobile-nav-panel a:hover, .mobile-nav-panel a:focus-visible { background: var(--muted); }
+.mobile-nav-panel .mobile-availability { display: flex; align-items: center; gap: 9px; margin-top: 5px; border-bottom: 0; color: var(--primary); font-size: .78rem; }
+.mobile-availability span { width: 7px; height: 7px; border-radius: 50%; background: #35a66f; box-shadow: 0 0 0 4px rgba(53,166,111,.12); }
 
 .hero {
   width: min(1400px, calc(100% - 64px));
@@ -227,7 +237,9 @@ footer span { color: #6c7069; font-size: .75rem; }
 
 @media (max-width: 1050px) {
   .site-header { grid-template-columns: 1fr auto; }
-  .site-header nav { display: none; }
+  .site-header > nav, .availability { display: none; }
+  .mobile-nav { display: block; }
+  .site-header .mobile-nav-panel { display: grid; gap: 0; }
   .project-card { grid-template-columns: 48px 1fr; }
   .project-preview { grid-column: 2; min-height: 300px; }
   .experience-section { grid-template-columns: 1fr; }
@@ -253,7 +265,7 @@ footer span { color: #6c7069; font-size: .75rem; }
 }
 
 @media (max-width: 620px) {
-  .wordmark-name, .availability { display: none; }
+  .wordmark-name { display: none; }
   .site-header, .case-header { min-height: 70px; }
   .hero { min-height: auto; padding-top: 54px; gap: 52px; }
   h1 { max-width: 100%; font-size: clamp(2.85rem, 13vw, 3.25rem); overflow-wrap: anywhere; }
