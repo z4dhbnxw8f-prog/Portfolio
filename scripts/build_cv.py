@@ -17,9 +17,22 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+from reportlab.platypus import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output" / "pdf" / "Yasser-Akanni-CV.pdf"
+PROFILE_IMAGE = next(
+    (
+        ROOT / "public" / filename
+        for filename in (
+            "yasser-akanni-profile.jpg",
+            "yasser-akanni-profile.jpeg",
+            "yasser-akanni-profile.png",
+        )
+        if (ROOT / "public" / filename).exists()
+    ),
+    None,
+)
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
 PAGE_W, PAGE_H = A4
@@ -150,6 +163,14 @@ def bullet(text):
     return para(f"• {text}", bullet_style)
 
 
+def profile_image():
+    if PROFILE_IMAGE is None:
+        return Spacer(1, 1)
+    image = Image(str(PROFILE_IMAGE), width=27 * mm, height=34 * mm)
+    image.hAlign = "RIGHT"
+    return image
+
+
 class CVDocTemplate(BaseDocTemplate):
     def __init__(self, filename):
         super().__init__(
@@ -183,14 +204,22 @@ def draw_page(canvas, doc):
 
 story = []
 story += [
-    para("Yasser Akanni", name_style),
-    para("Junior Frontend Developer · React · Next.js · TypeScript", title_style),
-    para(
-        "Essen, Germany &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
-        "<link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>",
-        contact_style,
+    Table(
+        [[
+            [
+                para("Yasser Akanni", name_style),
+                para("Junior Frontend Developer · React · Next.js · TypeScript", title_style),
+                para(
+                    "Essen, Germany · NRW &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
+                    "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
+                    "<link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; "
+                    "<link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>",
+                    contact_style,
+                ),
+            ],
+            profile_image(),
+        ]],
+        colWidths=[140 * mm, 30 * mm],
     ),
     Spacer(1, 5),
 ]
@@ -219,7 +248,7 @@ story += section_title("Selected Projects")
 story.append(
     KeepTogether(
         [
-            entry_header("Penee", "FLAGSHIP PROJECT", "Multi-account, multi-currency personal finance application"),
+            entry_header("Penee", "FEATURED PROJECT", "Multi-account, multi-currency personal finance application"),
             bullet("Built with Next.js, React, TypeScript, PostgreSQL, Prisma, Server Actions, API route handlers and Vercel."),
             bullet("Implemented registration, login, logout, sessions, ownership checks, accounts, transactions, income, expenses, budgets, currencies, exchange rates, a dashboard, ledger and statements."),
             bullet("Used Decimal for money and correction transactions for completed history; preserved original transaction currency and conversion information when recalculating current totals."),

@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -43,8 +44,19 @@ const linkedInUrl = 'https://www.linkedin.com/in/yasser-akanni-4b15333b3/';
 const skillIcons = [PanelsTopLeft, ServerCog, Database, ShieldCheck, PencilRuler, Wrench, Terminal];
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>('de');
+  const [language, setLanguage] = useState<Language>(() => (
+    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'de'
+  ));
+  const [isScrolled, setIsScrolled] = useState(false);
   const copy = portfolioCopy[language];
+  const cvHref = language === 'de' ? '/Yasser-Akanni-CV-German.pdf' : '/Yasser-Akanni-CV-English.pdf';
+  const cvDownloadLabel = language === 'de' ? copy.cvGermanShort : copy.cvLabel;
+  const changeLanguage = (nextLanguage: Language) => {
+    setLanguage(nextLanguage);
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', nextLanguage);
+    window.history.replaceState(null, '', url);
+  };
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -60,9 +72,16 @@ export default function Home() {
     );
   }, [language]);
 
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 18);
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
+
   return (
     <main>
-      <header className="site-header">
+      <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
         <a className="wordmark" href="#top" aria-label={copy.homeLabel}>
           <span>YA</span>
           <span className="wordmark-name">Yasser Akanni</span>
@@ -73,14 +92,12 @@ export default function Home() {
           ))}
         </nav>
         <div className="header-tools">
-          <a className="availability" href={`mailto:${contactEmail}`}>
-            <span aria-hidden="true" /> {copy.openRoles}
-          </a>
+          <a className="header-cv" href={cvHref} download aria-label={cvDownloadLabel}><Download size={14} /> {language === 'de' ? 'Lebenslauf' : 'CV'}</a>
           <fieldset className="language-switcher">
             <legend className="sr-only">{language === 'de' ? 'Sprache wählen' : 'Choose language'}</legend>
-            <button type="button" aria-pressed={language === 'de'} onClick={() => setLanguage('de')}>DE</button>
+            <button type="button" aria-pressed={language === 'de'} onClick={() => changeLanguage('de')}>DE</button>
             <span aria-hidden="true">/</span>
-            <button type="button" aria-pressed={language === 'en'} onClick={() => setLanguage('en')}>EN</button>
+            <button type="button" aria-pressed={language === 'en'} onClick={() => changeLanguage('en')}>EN</button>
           </fieldset>
         </div>
       </header>
@@ -93,8 +110,10 @@ export default function Home() {
           <h1>{copy.headline[0]}<br /><em>{copy.headline[1]}</em></h1>
           <p className="hero-lead">{copy.hero}</p>
           <div className="hero-actions">
-            <a className={buttonVariants({ size: 'lg' })} href="#projects">{copy.viewWork} <ArrowDownRight /></a>
-            <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href="/Yasser-Akanni-CV-English.pdf" download>{copy.downloadCv} <Download /></a>
+            <a className={buttonVariants({ size: 'lg' })} href="#projects" style={{ color: 'white' }}>{copy.viewWork} <ArrowDownRight /></a>
+            <a className="hero-github" href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub <ArrowUpRight /></a>
+            <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href={cvHref} download>{copy.downloadCv} <Download /></a>
+            <a className="hero-contact-link" href="#contact"><Mail /> {copy.contactKicker} <ArrowDownRight /></a>
           </div>
           <div className="hero-availability">
             <p className="section-kicker">{copy.lookingFor}</p>
@@ -104,11 +123,15 @@ export default function Home() {
           <div className="social-links">
             <a href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub</a>
             <a href={linkedInUrl} target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn</a>
-            <a href="/Yasser-Akanni-CV-English.pdf" download><Download /> {copy.cvLabel}</a>
+            <a href={cvHref} download><Download /> {cvDownloadLabel}</a>
           </div>
         </div>
 
-        <aside className="practice-map" aria-label={copy.processTitle}>
+        <aside className="hero-aside">
+          <figure className="profile-photo">
+            <img src="/yasser-akanni-profile.png" alt="Yasser Akanni" width={1462} height={1436} />
+          </figure>
+          <div className="practice-map" aria-label={copy.processTitle}>
           <div className="map-header"><span>{copy.processTitle}</span><span>01–04</span></div>
           <ol>
             {processSteps[language].map(([number, title, detail]) => (
@@ -116,10 +139,11 @@ export default function Home() {
             ))}
           </ol>
           <div className="map-footer"><span>{copy.primaryFocus}</span><strong>{copy.frontendDevelopment}</strong></div>
+          </div>
         </aside>
       </section>
 
-      <section className="section projects-section" id="projects">
+      <section className="section projects-section" id="projects" data-section="01">
         <div className="section-heading">
           <p className="section-kicker">{copy.projectsKicker}</p>
           <h2>{copy.projectsTitle[0]}<br />{copy.projectsTitle[1]}</h2>
@@ -130,41 +154,41 @@ export default function Home() {
           {projects.map((project) => {
             const content = projectCopy[project.slug][language];
             return (
-              <article className="project-card" id={`project-${project.slug}`} key={project.slug}>
+              <article className={`project-card${project.slug === 'penee' ? ' featured-project' : ''}`} id={`project-${project.slug}`} key={project.slug}>
                 <div className="project-number">{content.label.slice(0, 2)}</div>
                 <div className="project-copy">
-                  <div className="project-meta"><span>{content.label}</span><span>{project.status}</span></div>
+                  <div className="project-meta"><span>{project.status}{project.status === 'Live' && <i className="live-dot" aria-label="Online" />}</span></div>
                   <h3>{project.name}</h3>
                   <p>{content.summary}</p>
+                  <div className="outcome-badges" aria-label={language === 'de' ? 'Projektergebnisse' : 'Project outcomes'}>
+                    {content.outcomes.map((outcome) => <span key={outcome}>{outcome}</span>)}
+                  </div>
+                  <ul className="project-highlights" aria-label={`${project.name} ${language === 'de' ? 'Highlights' : 'highlights'}`}>
+                    {content.features.slice(0, 3).map((feature) => <li key={feature}>{feature}</li>)}
+                  </ul>
                   <ul className="tech-list" aria-label={`${project.name} ${language === 'de' ? 'Technologien' : 'technologies'}`}>
                     {project.technologies.slice(0, 6).map((tech) => <li key={tech}>{tech}</li>)}
                   </ul>
-                  <details className="project-case">
-                    <summary>{copy.caseStudy}</summary>
-                    <div className="case-grid">
-                      <div><h4>{copy.problem}</h4><p>{content.problem}</p></div>
-                      <div><h4>{copy.contribution}</h4><p>{content.contribution}</p></div>
-                      <div className="decision-card"><h4>{copy.decision}</h4><p>{content.decision}</p></div>
-                      <div><h4>{copy.implemented}</h4><ul>{content.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></div>
-                      <div className="architecture-line"><h4>{copy.architecture}</h4><p>{content.architecture}</p></div>
-                    </div>
-                  </details>
                   <div className="project-links">
                     {project.links.map((link) => (
                       <a
                         className={link.label === 'Live demo' ? buttonVariants({ variant: 'default' }) : 'text-link'}
+                        style={link.label === 'Live demo' ? { color: 'white' } : undefined}
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
                         key={link.label}
                       >
-                        {link.label === 'Live demo' ? copy.liveDemo : copy.sourceCode} <ArrowUpRight />
+                        {link.label === 'Live demo' ? copy.liveDemo : copy.sourceCode}{link.label === 'Live demo' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight />
                       </a>
                     ))}
+                    <a className="text-link case-study-link" href={`/projects/${project.slug}?lang=${language}`}>
+                      {copy.caseStudy} <ArrowUpRight />
+                    </a>
                   </div>
                 </div>
                 <figure className="project-preview">
-                  <img src={project.image} alt={content.imageAlt} width={1440} height={900} />
+                  <img src={project.image} alt={content.imageAlt} width={1440} height={900} loading={project.slug === 'penee' ? 'eager' : 'lazy'} />
                 </figure>
               </article>
             );
@@ -172,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section skills-section" id="skills">
+      <section className="section skills-section" id="skills" data-section="02">
         <div className="section-heading compact">
           <p className="section-kicker">{copy.skillsKicker}</p>
           <h2>{copy.skillsTitle}</h2>
@@ -192,7 +216,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section about-section" id="about">
+      <section className="section about-section" id="about" data-section="03">
         <div className="about-title">
           <p className="section-kicker">{copy.aboutKicker}</p>
           <h2>{copy.aboutTitle[0]}<br /><em>{copy.aboutTitle[1]}</em></h2>
@@ -208,7 +232,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section experience-section" id="experience">
+      <section className="section experience-section" id="experience" data-section="04">
         <div className="experience-heading">
           <p className="section-kicker">{copy.experienceKicker}</p>
           <h2>{copy.experienceTitle[0]}<br /><em>{copy.experienceTitle[1]}</em></h2>
@@ -234,7 +258,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section certificates-section" id="qualifications">
+      <section className="section certificates-section" id="qualifications" data-section="05">
         <div className="section-heading compact">
           <p className="section-kicker">{copy.qualificationsKicker}</p>
           <h2>{copy.qualificationsTitle}</h2>
@@ -255,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section application-section" aria-labelledby="application-title">
+      <section className="section application-section" aria-labelledby="application-title" data-section="06">
         <div>
           <p className="section-kicker">{copy.applicationKicker}</p>
           <h2 id="application-title">{copy.applicationTitle}</h2>
@@ -275,8 +299,12 @@ export default function Home() {
           <address>
             <a href={`mailto:${contactEmail}`}><Mail /> {contactEmail}</a>
             <a href="tel:+4917612854755"><Phone /> {contactPhone}</a>
-            <span><MapPin /> Essen · Ruhrgebiet · NRW</span>
+            <span><MapPin /> Essen · NRW</span>
           </address>
+          <div className="availability-card">
+            <span>{language === 'de' ? 'Verfügbarkeit' : 'Availability'}</span>
+            <strong>{language === 'de' ? 'Voraussichtlich ab Oktober 2026' : 'Expected from October 2026'}</strong>
+          </div>
         </div>
         <ContactForm language={language} privacyText={copy.privacy} />
       </section>
@@ -286,9 +314,9 @@ export default function Home() {
         <div className="footer-links">
           <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
           <a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
-          <a href="/Yasser-Akanni-CV-English.pdf" download>{copy.cvLabel} <Download /></a>
+          <a href={cvHref} download>{cvDownloadLabel} <Download /></a>
           <a href={`mailto:${contactEmail}`}>Email <Mail /></a>
-          <a href="#contact">{language === 'de' ? 'Datenschutz' : 'Privacy'} <ShieldCheck /></a>
+          <Link href="/datenschutz">{language === 'de' ? 'Datenschutz' : 'Privacy'} <ShieldCheck /></Link>
           <a href="#top">{copy.backToTop} <ArrowUpRight /></a>
         </div>
       </footer>

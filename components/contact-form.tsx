@@ -1,7 +1,8 @@
 'use client';
 
-import type { SyntheticEvent } from 'react';
+import Link from 'next/link';
 import { Send } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,27 +14,13 @@ type ContactFormProps = {
 };
 
 export function ContactForm({ language, privacyText }: ContactFormProps) {
+  const [state, handleSubmit] = useForm('xaeykgjq');
   const labels = language === 'de'
-    ? { name: 'Name', email: 'E-Mail', message: 'Nachricht', submit: 'E-Mail vorbereiten', subject: 'Portfolio-Anfrage von' }
-    : { name: 'Name', email: 'Email', message: 'Message', submit: 'Prepare email', subject: 'Portfolio enquiry from' };
-
-  function prepareEmail(event: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const readField = (key: string) => {
-      const value = data.get(key);
-      return typeof value === 'string' ? value.trim() : '';
-    };
-    const name = readField('name');
-    const email = readField('email');
-    const message = readField('message');
-    const subject = encodeURIComponent(`${labels.subject} ${name}`);
-    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
-    window.location.href = `mailto:ressay93@outlook.com?subject=${subject}&body=${body}`;
-  }
+    ? { name: 'Name', email: 'E-Mail', message: 'Nachricht', submit: 'Nachricht senden', sending: 'Wird gesendet …', success: 'Danke! Ihre Nachricht wurde gesendet.', error: 'Das Senden hat nicht funktioniert. Bitte versuchen Sie es später erneut.', privacy: 'Datenschutzerklärung' }
+    : { name: 'Name', email: 'Email', message: 'Message', submit: 'Send message', sending: 'Sending …', success: 'Thank you! Your message has been sent.', error: 'Your message could not be sent. Please try again later.', privacy: 'Privacy policy' };
 
   return (
-    <form className="contact-form" onSubmit={prepareEmail}>
+    <form className="contact-form" onSubmit={handleSubmit}>
       <div className="field-row">
         <div className="field">
           <label htmlFor="name">{labels.name}</label>
@@ -42,16 +29,21 @@ export function ContactForm({ language, privacyText }: ContactFormProps) {
         <div className="field">
           <label htmlFor="email">{labels.email}</label>
           <Input id="email" name="email" type="email" autoComplete="email" required />
+          <ValidationError prefix={labels.email} field="email" errors={state.errors} />
         </div>
       </div>
       <div className="field">
         <label htmlFor="message">{labels.message}</label>
         <Textarea id="message" name="message" rows={5} required />
+        <ValidationError prefix={labels.message} field="message" errors={state.errors} />
       </div>
+      <input className="honeypot" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="form-submit">
-        <Button type="submit" size="lg">{labels.submit} <Send /></Button>
-        <small>{privacyText}</small>
+        <Button type="submit" size="lg" disabled={state.submitting}>{state.submitting ? labels.sending : labels.submit} <Send /></Button>
+        <small>{privacyText} <Link href="/datenschutz">{labels.privacy}</Link></small>
       </div>
+      {state.succeeded && <output className="form-status is-success">{labels.success}</output>}
+      {state.errors && <ValidationError className="form-status is-error" errors={state.errors} />}
     </form>
   );
 }
