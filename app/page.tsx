@@ -2,7 +2,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -11,6 +10,8 @@ import {
   Code2,
   Database,
   Download,
+  FolderKanban,
+  House,
   Mail,
   MapPin,
   PanelsTopLeft,
@@ -18,6 +19,7 @@ import {
   ServerCog,
   ShieldCheck,
   Terminal,
+  UserRound,
   PencilRuler,
   Wrench,
 } from 'lucide-react';
@@ -42,13 +44,14 @@ const contactPhone = '+49 176 12854755';
 const githubUrl = 'https://github.com/z4dhbnxw8f-prog';
 const linkedInUrl = 'https://www.linkedin.com/in/yasser-akanni-4b15333b3/';
 const skillIcons = [PanelsTopLeft, ServerCog, Database, ShieldCheck, PencilRuler, Wrench, Terminal];
+const navIcons = [House, FolderKanban, Code2, UserRound, BriefcaseBusiness, Award, Mail];
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>(() => (
-    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'de'
-  ));
+  const [language, setLanguage] = useState<Language>('en');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('top');
   const copy = portfolioCopy[language];
+  const introduction = language === 'de' ? 'Hi, ich bin Yasser — Webentwickler aus Essen.' : 'Hi, I’m Yasser — a web developer based in Essen.';
   const cvHref = language === 'de' ? '/Yasser-Akanni-CV-German.pdf' : '/Yasser-Akanni-CV-English.pdf';
   const cvDownloadLabel = language === 'de' ? copy.cvGermanShort : copy.cvLabel;
   const changeLanguage = (nextLanguage: Language) => {
@@ -57,6 +60,10 @@ export default function Home() {
     url.searchParams.set('lang', nextLanguage);
     window.history.replaceState(null, '', url);
   };
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('lang') === 'de') setLanguage('de');
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -79,6 +86,24 @@ export default function Home() {
     return () => window.removeEventListener('scroll', updateScrollState);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visibleSection) setActiveSection(visibleSection.target.id);
+      },
+      { rootMargin: '-18% 0px -68% 0px', threshold: 0 },
+    );
+
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main>
       <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
@@ -87,9 +112,11 @@ export default function Home() {
           <span className="wordmark-name">Yasser Akanni</span>
         </a>
         <nav aria-label={copy.navLabel}>
-          {copy.nav.map((label, index) => (
-            <a href={`#${sectionIds[index]}`} key={sectionIds[index]}>{label}</a>
-          ))}
+          {copy.nav.map((label, index) => {
+            const Icon = navIcons[index];
+            const sectionId = sectionIds[index];
+            return <a className={activeSection === sectionId ? 'is-active' : undefined} href={`#${sectionId}`} key={sectionId} aria-current={activeSection === sectionId ? 'location' : undefined} onClick={() => setActiveSection(sectionId)}><Icon aria-hidden="true" />{label}</a>;
+          })}
         </nav>
         <div className="header-tools">
           <a className="header-cv" href={cvHref} download aria-label={cvDownloadLabel}><Download size={14} /> {language === 'de' ? 'Lebenslauf' : 'CV'}</a>
@@ -113,7 +140,6 @@ export default function Home() {
             <a className={buttonVariants({ size: 'lg' })} href="#projects" style={{ color: 'white' }}>{copy.viewWork} <ArrowDownRight /></a>
             <a className="hero-github" href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub <ArrowUpRight /></a>
             <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href={cvHref} download>{copy.downloadCv} <Download /></a>
-            <a className="hero-contact-link" href="#contact"><Mail /> {copy.contactKicker} <ArrowDownRight /></a>
           </div>
           <div className="hero-availability">
             <p className="section-kicker">{copy.lookingFor}</p>
@@ -130,12 +156,13 @@ export default function Home() {
         <aside className="hero-aside">
           <figure className="profile-photo">
             <img src="/yasser-akanni-profile.png" alt="Yasser Akanni" width={1462} height={1436} />
+            <figcaption className="speech-bubble"><span>{introduction}</span></figcaption>
           </figure>
           <div className="practice-map" aria-label={copy.processTitle}>
-          <div className="map-header"><span>{copy.processTitle}</span><span>01–04</span></div>
+          <div className="map-header"><span>{copy.processTitle}</span></div>
           <ol>
-            {processSteps[language].map(([number, title, detail]) => (
-              <li key={number}><span>{number}</span><div><strong>{title}</strong><small>{detail}</small></div></li>
+            {processSteps[language].map(([number, title, detail], index) => (
+              <li className={index === processSteps[language].length - 1 ? 'is-complete' : undefined} key={number}><span className="step-progress" aria-hidden="true"><i /></span><div><strong>{title}</strong><small>{detail}</small></div></li>
             ))}
           </ol>
           <div className="map-footer"><span>{copy.primaryFocus}</span><strong>{copy.frontendDevelopment}</strong></div>
@@ -157,7 +184,10 @@ export default function Home() {
               <article className={`project-card${project.slug === 'penee' ? ' featured-project' : ''}`} id={`project-${project.slug}`} key={project.slug}>
                 <div className="project-number">{content.label.slice(0, 2)}</div>
                 <div className="project-copy">
-                  <div className="project-meta"><span>{project.status}{project.status === 'Live' && <i className="live-dot" aria-label="Online" />}</span></div>
+                  <div className="project-meta">
+                    <span>{project.status}{project.status === 'Live' && <i className="live-dot" aria-label="Online" />}</span>
+                    {project.slug === 'cosmic-styles' && <span>{content.label.replace(/^03 · /, '')}</span>}
+                  </div>
                   <h3>{project.name}</h3>
                   <p>{content.summary}</p>
                   <div className="outcome-badges" aria-label={language === 'de' ? 'Projektergebnisse' : 'Project outcomes'}>
@@ -301,25 +331,11 @@ export default function Home() {
             <a href="tel:+4917612854755"><Phone /> {contactPhone}</a>
             <span><MapPin /> Essen · NRW</span>
           </address>
-          <div className="availability-card">
-            <span>{language === 'de' ? 'Verfügbarkeit' : 'Availability'}</span>
-            <strong>{language === 'de' ? 'Voraussichtlich ab Oktober 2026' : 'Expected from October 2026'}</strong>
-          </div>
+          <p className="work-status"><i aria-hidden="true" />{language === 'de' ? 'Bereit für neue Aufgaben' : 'Ready to work'}</p>
         </div>
         <ContactForm language={language} privacyText={copy.privacy} />
       </section>
 
-      <footer>
-        <div><strong>Yasser Akanni</strong><span>Junior Frontend Developer · React · Next.js · TypeScript</span></div>
-        <div className="footer-links">
-          <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
-          <a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
-          <a href={cvHref} download>{cvDownloadLabel} <Download /></a>
-          <a href={`mailto:${contactEmail}`}>Email <Mail /></a>
-          <Link href="/datenschutz">{language === 'de' ? 'Datenschutz' : 'Privacy'} <ShieldCheck /></Link>
-          <a href="#top">{copy.backToTop} <ArrowUpRight /></a>
-        </div>
-      </footer>
     </main>
   );
 }

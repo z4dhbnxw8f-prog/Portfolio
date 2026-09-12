@@ -61,7 +61,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     ? ({
       penee: 'Full-Stack-Finanzanwendung',
       itemvault: 'React-/Firebase-Webanwendung',
-      'cosmic-styles': 'Webanwendung für ein reales Unternehmen',
+      'cosmic-styles': 'Freelance-Kundenprojekt',
     }[slug] ?? project.type)
     : project.type;
   const localizedAlt = language === 'de'

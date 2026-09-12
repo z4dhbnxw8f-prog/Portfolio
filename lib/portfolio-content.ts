@@ -217,10 +217,10 @@ export const projectCopy: Record<string, Record<Language, {
   },
   'cosmic-styles': {
     de: {
-      label: '03 · Geschäftsorientierte Anwendung',
-      summary: 'Responsive Barbershop-Website, die Leistungen, Preise und Öffnungszeiten in eine dreistufige Terminanfrage mit WhatsApp-Übergabe überführt.',
+      label: '03 · Freelance-Kundenprojekt',
+      summary: 'Als Freelance-Kundenprojekt für Cosmic Styles LLC entwickelte responsive Barbershop-Website, die Leistungen, Preise und Öffnungszeiten in eine dreistufige Terminanfrage mit WhatsApp-Übergabe überführt.',
       problem: 'Ein lokaler Barbershop muss Leistungen, Preise, Standort und Verfügbarkeit klar zeigen und einen einfachen Weg zur Terminanfrage anbieten.',
-      contribution: 'Konzeption und Entwicklung des responsiven Interfaces und der mehrstufigen Buchungsanfrage sowie Anbindung an WhatsApp und einen optionalen E-Mail-Benachrichtigungsweg.',
+      contribution: 'Als Freelance-Projekt für Cosmic Styles LLC: Konzeption und Entwicklung des responsiven Interfaces und der mehrstufigen Buchungsanfrage sowie Anbindung an WhatsApp und einen optionalen E-Mail-Benachrichtigungsweg.',
       decision: 'Die Buchung führt schrittweise von der Leistung über Datum und Uhrzeit zu den Kundendaten. Die Anfrage wird als vorausgefüllte WhatsApp-Nachricht übergeben; eine automatische Bestätigung oder Speicherung wird nicht behauptet.',
       outcomes: ['Klarer Drei-Schritte-Flow', 'Echte Leistungen & Preise', 'WhatsApp-Übergabe'],
       features: ['Leistungen und Preise', 'Standort und Buchungszeiten', 'Responsive Galerie und Navigation', 'Auswahl von Leistung, Datum und Uhrzeit', 'Erfassung der Kundendaten', 'WhatsApp-Übergabe und optionale E-Mail-Benachrichtigung'],
@@ -228,10 +228,10 @@ export const projectCopy: Record<string, Record<Language, {
       imageAlt: 'Responsive Website von Cosmic Styles LLC mit schwarzem und goldenem Design',
     },
     en: {
-      label: '03 · Business-Focused Application',
-      summary: 'A responsive barbershop website that turns services, prices, and opening hours into a three-step appointment request with WhatsApp handoff.',
+      label: '03 · Freelance Client Project',
+      summary: 'A responsive barbershop website designed and built as a freelance project for Cosmic Styles LLC, turning services, prices, and opening hours into a three-step appointment request with WhatsApp handoff.',
       problem: 'A local barbershop needs to communicate its services, pricing, location, and availability while giving customers a clear path to request an appointment.',
-      contribution: 'I designed and built the responsive interface and multi-step appointment request, connecting it to WhatsApp and an optional email-notification path.',
+      contribution: 'For this freelance client project with Cosmic Styles LLC, I designed and built the responsive interface and multi-step appointment request, connecting it to WhatsApp and an optional email-notification path.',
       decision: 'The flow progresses from service to date and time to customer details. It hands off a prefilled WhatsApp request; no database persistence or automatic confirmation is claimed.',
       outcomes: ['Clear three-step flow', 'Real services and prices', 'WhatsApp handoff'],
       features: ['Services and pricing', 'Location and booking hours', 'Responsive gallery and navigation', 'Service, date, and time selection', 'Customer-detail collection', 'WhatsApp handoff and optional email notification'],

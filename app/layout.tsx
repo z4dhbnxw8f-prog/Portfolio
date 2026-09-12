@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { SiteFooter } from '@/components/site-footer';
 import './globals.css';
 
 const geistSans = Geist({
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yasser-akanni-portfolio.yazzieboiihome.chatgpt.site'),
-  title: 'Yasser Akanni | Junior Frontend-Entwickler in Essen',
-  description: 'Portfolio von Yasser Akanni, Junior Frontend-Entwickler für React, Next.js und TypeScript in Essen, NRW. Deutsch und Englisch verfügbar.',
+  title: 'Yasser Akanni | Junior Frontend Developer in Essen',
+  description: 'Portfolio of Yasser Akanni, a junior frontend developer for React, Next.js, and TypeScript in Essen, Germany. Available in English and German.',
   authors: [{ name: 'Yasser Akanni' }],
   keywords: [
     'Junior Frontend-Entwickler',
@@ -49,11 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
