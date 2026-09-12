@@ -1,5 +1,5 @@
 export type ProjectLink = {
-  label: string;
+  kind: 'live' | 'source';
   url: string;
 };
 
@@ -48,8 +48,8 @@ export const projects: Project[] = [
     learnings: 'Penee strengthened my ability to connect interface decisions with server-side logic, relational data, authentication, authorization and deployment.',
     result: 'A deployed full-stack finance application that demonstrates the complete flow from responsive UI to financial business rules, session-based security and data-integrity safeguards.',
     links: [
-      { label: 'Live demo', url: 'https://xpense-trvcker.vercel.app' },
-      { label: 'GitHub', url: 'https://github.com/z4dhbnxw8f-prog/expense-tracker' },
+      { kind: 'live', url: 'https://xpense-trvcker.vercel.app' },
+      { kind: 'source', url: 'https://github.com/z4dhbnxw8f-prog/expense-tracker' },
     ],
   },
   {
@@ -73,8 +73,8 @@ export const projects: Project[] = [
     learnings: 'ItemVault improved my practical understanding of client-side application structure, Firebase authentication, live cloud data and responsive interface decisions.',
     result: 'A deployed inventory application that presents a distinct React and Firebase skill set alongside the full-stack depth of Penee.',
     links: [
-      { label: 'Live demo', url: 'https://item-vault.vercel.app' },
-      { label: 'GitHub', url: 'https://github.com/z4dhbnxw8f-prog/Itemvault' },
+      { kind: 'live', url: 'https://item-vault.vercel.app' },
+      { kind: 'source', url: 'https://github.com/z4dhbnxw8f-prog/Itemvault' },
     ],
   },
   {
@@ -98,8 +98,8 @@ export const projects: Project[] = [
     learnings: 'Cosmic Styles strengthened my ability to translate real business information into a branded interface, responsive user journey and practical contact workflow.',
     result: 'A deployed business website that lets visitors understand the service offering and prepare an appointment request without claiming persistence or automatic confirmation.',
     links: [
-      { label: 'Live demo', url: 'https://cosmic-styles-llc.vercel.app' },
-      { label: 'GitHub', url: 'https://github.com/z4dhbnxw8f-prog/cosmos-barbershop' },
+      { kind: 'live', url: 'https://cosmic-styles-llc.vercel.app' },
+      { kind: 'source', url: 'https://github.com/z4dhbnxw8f-prog/cosmos-barbershop' },
     ],
   },
 ];

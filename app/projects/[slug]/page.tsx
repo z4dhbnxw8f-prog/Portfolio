@@ -108,8 +108,8 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
           <p>{localized?.summary ?? project.summary}</p>
           <div className="case-links">
             {project.links.map((link) => {
-              const linkLabel = language === 'de' && link.label === 'Live demo' ? 'Live-Demo' : link.label;
-              return <a className={buttonVariants({ variant: link.label === 'Live demo' ? 'default' : 'outline' })} key={link.label} href={link.url} target="_blank" rel="noreferrer" style={link.label === 'Live demo' ? { color: 'white' } : undefined}>{linkLabel}{link.label === 'Live demo' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight /></a>;
+              const linkLabel = link.kind === 'live' ? siteCopy.liveDemo : siteCopy.sourceCode;
+              return <a className={buttonVariants({ variant: link.kind === 'live' ? 'default' : 'outline' })} key={link.kind} href={link.url} target="_blank" rel="noreferrer" style={link.kind === 'live' ? { color: 'white' } : undefined}>{linkLabel}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight /></a>;
             })}
           </div>
         </div>

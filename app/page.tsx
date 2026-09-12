@@ -202,14 +202,14 @@ export default function Home() {
                   <div className="project-links">
                     {project.links.map((link) => (
                       <a
-                        className={link.label === 'Live demo' ? buttonVariants({ variant: 'default' }) : 'text-link'}
-                        style={link.label === 'Live demo' ? { color: 'white' } : undefined}
+                        className={link.kind === 'live' ? buttonVariants({ variant: 'default' }) : 'text-link'}
+                        style={link.kind === 'live' ? { color: 'white' } : undefined}
                         href={link.url}
                         target="_blank"
                         rel="noreferrer"
-                        key={link.label}
+                        key={link.kind}
                       >
-                        {link.label === 'Live demo' ? copy.liveDemo : copy.sourceCode}{link.label === 'Live demo' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight />
+                        {link.kind === 'live' ? copy.liveDemo : copy.sourceCode}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight />
                       </a>
                     ))}
                     <a className="text-link case-study-link" href={`/projects/${project.slug}?lang=${language}`}>
