@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yasser-akanni-portfolio.yazzieboiihome.chatgpt.site'),
-  title: 'Yasser Akanni | Junior Frontend Developer in Essen',
-  description: 'Portfolio of Yasser Akanni, a junior frontend developer for React, Next.js, and TypeScript in Essen, Germany. Available in English and German.',
+  metadataBase: new URL('https://my-jbo-cv-portfolio.vercel.app'),
+  title: 'Yasser Akanni | Qualified Junior Frontend Developer in Essen',
+  description: 'Portfolio of Yasser Akanni, a qualified junior frontend developer for React, Next.js, and TypeScript in Essen, Germany. Available in English and German.',
   authors: [{ name: 'Yasser Akanni' }],
   keywords: [
     'Junior Frontend-Entwickler',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     'NRW',
   ],
   openGraph: {
-    title: 'Yasser Akanni | Junior Frontend-Entwickler',
+    title: 'Yasser Akanni | Qualifizierter Junior Frontend-Entwickler',
     description: 'React, Next.js und TypeScript – ergänzt durch UI/UX-Kompetenz und praktische Full-Stack-Grundlagen.',
     url: '/',
     siteName: 'Yasser Akanni Portfolio',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Yasser Akanni | Junior Frontend-Entwickler',
+    title: 'Yasser Akanni | Qualifizierter Junior Frontend-Entwickler',
     description: 'React, Next.js und TypeScript – ergänzt durch UI/UX-Kompetenz und praktische Full-Stack-Grundlagen.',
     images: ['/og.png'],
   },

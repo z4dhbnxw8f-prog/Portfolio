@@ -109,7 +109,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
           <div className="case-links">
             {project.links.map((link) => {
               const linkLabel = link.kind === 'live' ? siteCopy.liveDemo : siteCopy.sourceCode;
-              return <a className={buttonVariants({ variant: link.kind === 'live' ? 'default' : 'outline' })} key={link.kind} href={link.url} target="_blank" rel="noreferrer" style={link.kind === 'live' ? { color: 'white' } : undefined}>{linkLabel}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight /></a>;
+              return <a className={link.kind === 'live' ? `primary-action ${buttonVariants({ variant: 'default' })}` : buttonVariants({ variant: 'outline' })} key={link.kind} href={link.url} target="_blank" rel="noreferrer">{linkLabel}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight /></a>;
             })}
           </div>
         </div>
@@ -128,7 +128,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
           {narrative.map(([title, copy]) => <article key={title}><p className="section-kicker">{title}</p><p>{copy}</p></article>)}
         </div>
         <aside className="case-sidebar">
-          <div className="case-panel"><Code2 /><p className="section-kicker">{labels.technologies}</p><ul>{project.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul></div>
+          <div className="case-panel"><Code2 /><p className="section-kicker">{labels.technologies}</p><ul>{project.technologies.map((tech) => <li key={tech}>{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}</ul></div>
           <div className="case-panel"><Layers3 /><p className="section-kicker">{labels.coreFeatures}</p><ul className="feature-list">{(localized?.features ?? project.features).map((feature) => <li key={feature}><Check />{feature}</li>)}</ul></div>
         </aside>
       </section>

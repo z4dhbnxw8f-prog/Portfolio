@@ -1,0 +1,89 @@
+Attached Element Context from Integrated Browser
+
+Element: p.hero-lead
+
+URL: http://localhost:3000/?lang=en#projects
+
+HTML Path: section#top.hero > div.hero-copy > p.hero-lead
+
+Outer HTML:
+```html
+<p class="hero-lead">I am a qualified junior frontend developer based in Essen, Germany. I successfully completed a comprehensive 2,300-unit IT qualification focused on product design, UI/UX, frontend development, backend fundamentals, databases, authentication, APIs, testing and deployment. I build responsive, accessible and secure web applications using React, Next.js, TypeScript and modern web technologies.</p>
+```
+
+Dimensions:
+- top: 236px
+- left: 32px
+- width: 562px
+- height: 196px
+
+CSS:
+```css
+*, ::after, ::before, ::backdrop, ::file-selector-button { box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid; }
+* { box-sizing: border-box;
+  border-color: var(--border); }
+h1, h2, h3, h4, p { text-wrap: pretty; }
+p { font-weight: 450; }
+.hero-lead { max-width: 720px;
+  margin: 34px 0 0;
+  color: #4f534d;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.68; }
+.hero-lead, .section-heading > p:last-child, .experience-heading > p:last-child, .about-copy > p, .timeline-item p { letter-spacing: -.008em; }
+.hero-lead { max-width: 650px;
+  font-size: clamp(1.05rem, 1.45vw, 1.28rem); }
+.hero-lead, .section-heading > p:last-child, .experience-heading > p:last-child, .project-copy > p, .about-copy > p, .timeline-item p, .certificate-card p, .case-grid p, .case-grid li { color: #adb7ad; }
+.hero-lead { color: #6e6e73;
+  font-size: clamp(1.08rem, 1.45vw, 1.32rem);
+  line-height: 1.55; }
+.eyebrow, .role-line, .hero-lead, .hero-availability, .social-links a { color: #a7aca4; }
+.hero-copy > * { animation: none; }
+.hero-copy > h1, .hero-copy > .hero-lead, .hero-copy > .hero-actions, .profile-photo { animation: portfolio-enter 360ms cubic-bezier(.22,1,.36,1) backwards; }
+.hero-copy > .hero-lead { animation-delay: 45ms; }
+
+/* Pseudo-elements */
+::selection { background: var(--accent);
+  color: var(--foreground); }
+
+/* Inherited */
+body { color: var(--foreground); font-family: var(--font-geist-sans), Arial, sans-serif }
+body { color: var(--foreground) }
+body { color: #1d1d1f; letter-spacing: -.01em }
+html, :host { line-height: 1.5; tab-size: 4; font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"); font-feature-settings: var(--default-font-feature-settings, normal) }
+html { font-size: 16px }
+
+/* Resolved values */
+margin: 34px 0px 0px;
+padding: 0px;
+border: 0px solid rgba(255, 255, 255, 0.12);
+animation: portfolio-enter 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.045s backwards;
+box-sizing: border-box;
+color: rgb(167, 172, 164);
+display: block;
+font-family: Geist, "Geist Fallback", Arial, sans-serif;
+font-feature-settings: normal;
+font-size: 17.4145px;
+font-weight: 450;
+height: 161.906px;
+letter-spacing: -0.139316px;
+line-height: 26.9925px;
+margin-block-end: 0px /*UA*/;
+margin-block-start: 34px /*UA*/;
+margin-inline-end: 0px /*UA*/;
+margin-inline-start: 0px /*UA*/;
+max-width: 650px;
+tab-size: 4;
+text-wrap-mode: wrap;
+text-wrap-style: pretty;
+unicode-bidi: isolate /*UA*/;
+width: 562.094px;
+
+/* CSS variables */
+--border: rgba(255, 255, 255, .12);
+--accent: #c8f55a;
+--font-geist-sans: 'Geist', 'Geist Fallback';
+--foreground: #f4f6f1;
+```

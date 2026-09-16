@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Download } from 'lucide-react';
+import { ArrowLeft, Download, Menu, X } from 'lucide-react';
 
 import { portfolioCopy, type Language } from '@/lib/portfolio-content';
 
@@ -22,30 +23,46 @@ const privacyCopy = {
 } as const;
 
 export function PrivacyPage() {
-  const [language, setLanguage] = useState<Language>('en');
+  const language: Language = useSearchParams().get('lang') === 'de' ? 'de' : 'en';
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const siteCopy = portfolioCopy[language];
   const copy = privacyCopy[language];
   const cvHref = language === 'de' ? '/Yasser-Akanni-CV-German.pdf' : '/Yasser-Akanni-CV-English.pdf';
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('lang') === 'de') setLanguage('de');
-  }, []);
-  const changeLanguage = (nextLanguage: Language) => { setLanguage(nextLanguage); const url = new URL(window.location.href); url.searchParams.set('lang', nextLanguage); window.history.replaceState(null, '', url); };
+    document.title = `${copy.title} | Yasser Akanni`;
+    document.documentElement.lang = language;
+  }, [copy.title, language]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setMenuOpen(false); menuButton.current?.focus(); }
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [menuOpen]);
+  const changeLanguage = (nextLanguage: Language) => { const url = new URL(window.location.href); url.searchParams.set('lang', nextLanguage); router.replace(`${url.pathname}${url.search}${url.hash}`, { scroll: false }); };
 
   return <>
-    <header className="site-header legal-site-header">
-      <Link className="wordmark" href={`/?lang=${language}#top`}><span>YA</span><span className="wordmark-name">Yasser Akanni</span></Link>
-      <nav aria-label={siteCopy.navLabel}>{siteCopy.nav.map((label, index) => <Link href={`/?lang=${language}#${sectionIds[index]}`} key={sectionIds[index]}>{label}</Link>)}</nav>
+    <header className={`site-header legal-site-header${menuOpen ? ' menu-open' : ''}`}>
+      <a className="wordmark" href={`/?lang=${language}`} aria-label={language === 'de' ? 'Zur Startseite' : 'Back to home'}><span>YA</span><span className="wordmark-name">Yasser Akanni</span></a>
+      <button ref={menuButton} className="nav-toggle" type="button" aria-expanded={menuOpen} aria-controls="privacy-navigation" onClick={() => setMenuOpen((open) => !open)}>
+        <span className="sr-only">{language === 'de' ? 'Menü' : 'Menu'}</span>{menuOpen ? <X /> : <Menu />}
+      </button>
+      <nav id="privacy-navigation" aria-label={siteCopy.navLabel}>{siteCopy.nav.map((label, index) => <a href={`/?lang=${language}#${sectionIds[index]}`} key={sectionIds[index]} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>
       <div className="header-tools">
         <Link className="header-cv" href={cvHref} download><Download size={14} /> {copy.cv}</Link>
         <fieldset className="language-switcher"><legend className="sr-only">{copy.language}</legend><button type="button" aria-pressed={language === 'de'} onClick={() => changeLanguage('de')}>DE</button><span aria-hidden="true">/</span><button type="button" aria-pressed={language === 'en'} onClick={() => changeLanguage('en')}>EN</button></fieldset>
       </div>
     </header>
-    <main className="legal-page"><article>
+    <main className="legal-page" lang={language}><article>
+      <a className="legal-back-link" href={`/?lang=${language}`}><ArrowLeft size={18} aria-hidden="true" />{language === 'de' ? 'Zurück zur Startseite' : 'Back to home'}</a>
       <p className="section-kicker">{copy.kicker}</p><h1>{copy.title}</h1><p>{copy.intro}</p>
       <h2>{copy.formTitle}</h2><p>{copy.formOne}</p><p>{copy.formTwo}<a href="mailto:ressay93@outlook.com">ressay93@outlook.com</a>{copy.formThree} <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noreferrer">{copy.formspree}</a>.</p>
       <h2>{copy.hostingTitle}</h2><p>{copy.hosting} <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noreferrer">{copy.vercel}</a>.</p>
       <h2>{copy.rightsTitle}</h2><p>{copy.rights}</p>
-      <h2>{copy.controllerTitle}</h2><p>Yasser Akanni<br />Essen, Deutschland<br /><a href="mailto:ressay93@outlook.com">ressay93@outlook.com</a></p><p className="legal-updated">{copy.updated}</p>
+      <h2>{copy.controllerTitle}</h2><p>Yasser Akanni<br />Essen, {language === 'de' ? 'Deutschland' : 'Germany'}<br /><a href="mailto:ressay93@outlook.com">ressay93@outlook.com</a></p><p className="legal-updated">{copy.updated}</p>
     </article></main>
   </>;
 }

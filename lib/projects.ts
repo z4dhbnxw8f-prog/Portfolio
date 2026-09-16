@@ -30,8 +30,8 @@ export const projects: Project[] = [
   {
     slug: 'penee',
     name: 'Penee',
-    kicker: 'Flagship project',
-    type: 'Full-Stack Web Application',
+    kicker: 'Final Course Project',
+    type: 'Full-Stack Expense Tracker',
     status: 'Live',
     image: '/projects/penee-demo.png',
     imageAlt: 'Penee personal finance application secure login screen',

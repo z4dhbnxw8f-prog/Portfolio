@@ -1,0 +1,252 @@
+[
+  {
+    "title": {
+      "en": "Frontend",
+      "de": "Frontend"
+    },
+    "skills": {
+      "en": [
+        "HTML5",
+        "CSS3",
+        "JavaScript ES6+",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Vue.js",
+        "Angular fundamentals",
+        "Vite",
+        "Tailwind CSS",
+        "Styled Components",
+        "Responsive and mobile-first design"
+      ],
+      "de": [
+        "HTML5",
+        "CSS3",
+        "JavaScript ES6+",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Vue.js",
+        "Angular-Grundlagen",
+        "Vite",
+        "Tailwind CSS",
+        "Styled Components",
+        "Responsives und Mobile-First-Design"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Backend and APIs",
+      "de": "Backend und APIs"
+    },
+    "skills": {
+      "en": [
+        "Node.js",
+        "Express",
+        "Middleware",
+        "REST APIs",
+        "GraphQL",
+        "Axios",
+        "Next.js Server Actions",
+        "Serverless functions"
+      ],
+      "de": [
+        "Node.js",
+        "Express",
+        "Middleware",
+        "REST APIs",
+        "GraphQL",
+        "Axios",
+        "Next.js Server Actions",
+        "Serverless functions"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Databases",
+      "de": "Datenbanken"
+    },
+    "skills": {
+      "en": [
+        "PostgreSQL",
+        "Prisma ORM",
+        "Firebase",
+        "Firestore",
+        "MongoDB fundamentals"
+      ],
+      "de": [
+        "PostgreSQL",
+        "Prisma ORM",
+        "Firebase",
+        "Firestore",
+        "MongoDB-Grundlagen"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Authentication and security",
+      "de": "Authentifizierung und Sicherheit"
+    },
+    "skills": {
+      "en": [
+        "Session-based authentication",
+        "bcrypt password hashing",
+        "HTTP-only cookies",
+        "JSON Web Tokens",
+        "Protected routes",
+        "Authorization and ownership checks",
+        "Firestore Security Rules",
+        "CORS, CSRF and XSS awareness"
+      ],
+      "de": [
+        "Sitzungsbasierte Authentifizierung",
+        "Passwort-Hashing mit bcrypt",
+        "HTTP-only cookies",
+        "JSON Web Tokens",
+        "Geschützte Routen",
+        "Autorisierung und Prüfung der Datenzugehörigkeit",
+        "Firestore Security Rules",
+        "Bewusstsein für CORS, CSRF und XSS"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Testing and quality",
+      "de": "Testing und Qualität"
+    },
+    "skills": {
+      "en": [
+        "Jest",
+        "Cypress",
+        "Browser debugging",
+        "Lighthouse",
+        "Accessibility and A11Y",
+        "Performance optimisation",
+        "Lazy loading",
+        "Code splitting",
+        "Semantic HTML"
+      ],
+      "de": [
+        "Jest",
+        "Cypress",
+        "Browser debugging",
+        "Lighthouse",
+        "Barrierefreiheit und A11Y",
+        "Performance-Optimierung",
+        "Lazy loading",
+        "Code splitting",
+        "Semantic HTML"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "UI/UX and product design",
+      "de": "UI/UX und Produktdesign"
+    },
+    "skills": {
+      "en": [
+        "Figma",
+        "UI design",
+        "UX design",
+        "Wireframes",
+        "Prototypes",
+        "Design systems",
+        "Auto Layout",
+        "User personas",
+        "User flows",
+        "User research",
+        "Empathy maps",
+        "Information architecture",
+        "Developer handoff"
+      ],
+      "de": [
+        "Figma",
+        "UI design",
+        "UX design",
+        "Wireframes",
+        "Prototypen",
+        "Design systems",
+        "Auto Layout",
+        "User personas",
+        "User flows",
+        "Nutzerforschung",
+        "Empathy maps",
+        "Informationsarchitektur",
+        "Developer handoff"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Tools and deployment",
+      "de": "Werkzeuge und Deployment"
+    },
+    "skills": {
+      "en": [
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "VS Code",
+        "npm",
+        "Docker fundamentals",
+        "Vercel",
+        "Firebase",
+        "Contentful",
+        "Strapi",
+        "ngrok"
+      ],
+      "de": [
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "VS Code",
+        "npm",
+        "Docker-Grundlagen",
+        "Vercel",
+        "Firebase",
+        "Contentful",
+        "Strapi",
+        "ngrok"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Development practices",
+      "de": "Entwicklungspraxis"
+    },
+    "skills": {
+      "en": [
+        "CRUD",
+        "Database design",
+        "API integration",
+        "Requirements analysis",
+        "Technical documentation",
+        "Scrum",
+        "Kanban",
+        "Agile development",
+        "Responsive design",
+        "Deployment and iteration"
+      ],
+      "de": [
+        "CRUD",
+        "Datenbankdesign",
+        "API-Integration",
+        "Anforderungsanalyse",
+        "Technische Dokumentation",
+        "Scrum",
+        "Kanban",
+        "Agile Entwicklung",
+        "Responsives Design",
+        "Deployment und Iteration"
+      ]
+    }
+  }
+]

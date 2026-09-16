@@ -10,27 +10,27 @@ export const portfolioCopy = {
     openRoles: 'Offen für Junior-Positionen',
     hireMe: 'Kontakt aufnehmen',
     location: 'Essen, Deutschland · NRW',
-    role: 'Junior Frontend-Entwickler',
+    role: "Qualifizierter Junior Frontend-Entwickler",
     stack: 'React · Next.js · TypeScript',
     headline: ['Durchdachte Interfaces.', 'Systeme, die funktionieren.'],
-    hero: 'Ich entwickle responsive Webanwendungen mit React, Next.js und TypeScript und verbinde moderne Frontend-Entwicklung mit UI/UX-Denken und praktischer Full-Stack-Erfahrung.',
+    hero: "Ich bin ein qualifizierter Junior Frontend-Entwickler mit Sitz in Essen, Deutschland. Ich habe eine umfassende IT-Weiterbildung mit 2.300 Unterrichtseinheiten erfolgreich abgeschlossen, die Produktdesign, UI/UX, Frontend-Entwicklung, Backend-Grundlagen, Datenbanken, Authentifizierung, APIs, Testing und Deployment abdeckte. Ich entwickle responsive, barrierefreie und sichere Webanwendungen mit React, Next.js, TypeScript und modernen Webtechnologien.",
     viewWork: 'Projekte ansehen',
     downloadCv: 'Lebenslauf herunterladen',
-    cvEnglish: 'CV Englisch',
-    cvGerman: 'CV Deutsch',
+    cvEnglish: 'Lebenslauf (Englisch)',
+    cvGerman: 'Lebenslauf (Deutsch)',
     cvGermanShort: 'Lebenslauf (Deutsch)',
     lookingFor: 'Gesuchte Positionen',
     roles: 'Junior Frontend-Entwickler · React-Entwickler · Next.js-Entwickler · Webentwickler',
-    preferred: 'Voraussichtlich verfügbar ab Oktober 2026 · Essen · Duisburg · Düsseldorf · Dortmund · NRW',
+    preferred: "Ab sofort verfügbar für Junior-Positionen in den Bereichen Frontend-, React-, Next.js- und Webentwicklung.",
     processTitle: 'So arbeite ich',
     primaryFocus: 'Primärer Fokus',
     frontendDevelopment: 'Frontend-Entwicklung',
     projectsKicker: 'Ausgewählte Projekte',
     projectsTitle: ['Frontend im Fokus.', 'Full-Stack mitgedacht.'],
     projectsIntro: 'Drei Projekte: sichere Finanzdaten, private Echtzeit-Inventare und ein klarer Buchungsablauf.',
-    liveDemo: 'Live-Projekt',
+    liveDemo: "Live-Demo",
     sourceCode: 'GitHub',
-    caseStudy: 'Kompakte Fallstudie',
+    caseStudy: "Fallstudie",
     problem: 'Problem',
     contribution: 'Mein Beitrag',
     decision: 'Technische Entscheidung',
@@ -42,9 +42,9 @@ export const portfolioCopy = {
     evidence: 'Projektnachweis',
     aboutKicker: 'Über mich',
     aboutTitle: ['Ein Karrierewechsel,', 'aber kein Neuanfang bei null.'],
-    aboutLead: 'Vor meinem Wechsel in die IT war ich im Einkaufsmanagement, in der internationalen Beschaffung und in der Logistik tätig. Diese Erfahrung prägt meine Arbeit bis heute.',
-    aboutBody: 'Beschaffung, SAP und Logistik schärften meinen Blick für strukturierte Daten, klare Kommunikation und verlässliche Abläufe.',
-    aboutTraining: 'Am Syntax Institut verbinde ich diese Erfahrung mit projektbasierter Praxis in Frontend, UI/UX, Datenbanken und Deployment.',
+    aboutLead: "Mein Einstieg in die Webentwicklung ist ein Karrierewechsel, aber kein kompletter Neuanfang. Vor meinem Einstieg in die IT sammelte ich umfangreiche Erfahrung im Einkaufsmanagement, in der internationalen Beschaffung, mit SAP und in der Logistik.",
+    aboutBody: "Dadurch entwickelte ich wirtschaftliches Verständnis, strukturiertes Denken, Kommunikationsfähigkeit und Verantwortungsbewusstsein.",
+    aboutTraining: "Heute verbinde ich diese Berufserfahrung mit praktischen Kenntnissen in Frontend-Entwicklung, UI/UX und Full-Stack-Entwicklung.",
     perspective: 'Meine Arbeitsweise',
     perspectiveBody: 'Nutzerproblem verstehen, Ablauf gestalten, Interface entwickeln und die Systeme dahinter sauber anbinden.',
     experienceKicker: 'Berufserfahrung & Qualifizierung',
@@ -62,7 +62,7 @@ export const portfolioCopy = {
       'Essen · NRW',
       'Essen · Duisburg · Düsseldorf · Dortmund · NRW',
       'Junior Frontend-Entwickler · React-Entwickler · Next.js-Entwickler · Webentwickler',
-      'Englisch – fließend · Französisch – fließend · Deutsch – B1 (CEFR)',
+      'Englisch – fließend · Französisch – fließend · Deutsch – B1 (GER)',
     ],
     contactKicker: 'Kontakt',
     contactTitle: 'Lassen Sie uns etwas Nützliches entwickeln.',
@@ -78,10 +78,10 @@ export const portfolioCopy = {
     openRoles: 'Open to junior roles',
     hireMe: 'Get in touch',
     location: 'Essen, Germany · NRW',
-    role: 'Junior Frontend Developer',
+    role: "Qualified Junior Frontend Developer",
     stack: 'React · Next.js · TypeScript',
     headline: ['Interfaces with intent.', 'Systems that work.'],
-    hero: 'I build responsive web applications with React, Next.js, and TypeScript, combining frontend engineering with UI/UX thinking and practical full-stack experience.',
+    hero: "I am a qualified Junior Frontend Developer based in Essen, Germany. I successfully completed a comprehensive 2,300-unit IT qualification covering product design, UI/UX, frontend development, backend fundamentals, databases, authentication, APIs, testing, and deployment. I build responsive, accessible, and secure web applications using React, Next.js, TypeScript, and modern web technologies.",
     viewWork: 'View my work',
     downloadCv: 'Download CV',
     cvEnglish: 'CV English',
@@ -89,16 +89,16 @@ export const portfolioCopy = {
     cvGermanShort: 'CV (German)',
     lookingFor: 'Currently looking for',
     roles: 'Junior Frontend Developer · React Developer · Next.js Developer · Web Developer',
-    preferred: 'Expected availability from October 2026 · Essen · Duisburg · Düsseldorf · Dortmund · NRW',
+    preferred: "Available immediately for junior frontend, React, Next.js and web-development opportunities.",
     processTitle: 'How I build',
     primaryFocus: 'Primary focus',
     frontendDevelopment: 'Frontend development',
     projectsKicker: 'Selected work',
     projectsTitle: ['Frontend craft.', 'Full-stack thinking.'],
     projectsIntro: 'Three projects: secure financial records, private real-time inventories, and a focused booking flow.',
-    liveDemo: 'Live project',
+    liveDemo: "Live Demo",
     sourceCode: 'GitHub',
-    caseStudy: 'Compact case study',
+    caseStudy: "Case Study",
     problem: 'Problem',
     contribution: 'My contribution',
     decision: 'A technical decision',
@@ -110,9 +110,9 @@ export const portfolioCopy = {
     evidence: 'Project evidence',
     aboutKicker: 'About',
     aboutTitle: ['A career change,', 'not a blank slate.'],
-    aboutLead: 'Before moving into technology, I worked in purchasing management, international procurement, and logistics operations. That experience still shapes how I work today.',
-    aboutBody: 'Procurement, SAP, and logistics sharpened my focus on structured data, clear communication, and dependable processes.',
-    aboutTraining: 'At Syntax Institut, I combine that experience with project-based frontend, UI/UX, database, and deployment practice.',
+    aboutLead: "My move into web development is a career change, not a blank slate. Before entering technology, I gained extensive experience in purchasing management, international procurement, SAP and logistics operations.",
+    aboutBody: "This background strengthened my business awareness, structured thinking, communication and sense of responsibility.",
+    aboutTraining: "I now combine that professional experience with practical frontend, UI/UX and full-stack development skills.",
     perspective: 'My perspective',
     perspectiveBody: 'Understand the user problem, shape the flow, build the interface, and connect it cleanly to the systems behind it.',
     experienceKicker: 'Experience & training',
@@ -144,7 +144,7 @@ export const portfolioCopy = {
 export const processSteps: Record<Language, [string, string, string][]> = {
   de: [
     ['01', 'Verstehen', 'Anforderungen, Nutzer und Geschäftsproblem'],
-    ['02', 'Gestalten', 'User Flows, Wireframes und responsive Interfaces'],
+    ['02', 'Gestalten', 'Nutzerabläufe, Wireframes und responsive Benutzeroberflächen'],
     ['03', 'Entwickeln', 'Komponenten, APIs, Daten und Authentifizierung'],
     ['04', 'Liefern', 'Testen, Debugging, Deployment und Iteration'],
   ],
@@ -169,24 +169,24 @@ export const projectCopy: Record<string, Record<Language, {
 }>> = {
   penee: {
     de: {
-      label: '01 · Ausgewähltes Projekt',
+      label: '01 · Abschlussprojekt · Full-Stack-Ausgabentracker',
       summary: 'Full-Stack-Finanzanwendung mit Next.js, PostgreSQL und Prisma: historische Beträge und Wechselkurse bleiben bei Änderungen nachvollziehbar und geschützt.',
       problem: 'Finanzanwendungen müssen Konten, Budgets, Währungen und historische Buchungen verwalten, ohne bereits erfasste Finanzdaten unbeabsichtigt zu verändern.',
       contribution: 'Responsives Interface, Serverlogik, Prisma-Datenmodell, Authentifizierung und Deployment selbst konzipiert und umgesetzt.',
       decision: 'Eine Änderung der Basiswährung verändert keine historischen Finanzdaten. Transaktionen behalten ursprünglichen Betrag und Währung; aktuelle Dashboard-Summen können mit aktuellen Wechselkursen neu berechnet werden.',
       outcomes: ['Historische Finanzdaten geschützt', 'Mehrwährungs-Logik', 'Sichere Nutzerbereiche'],
-      features: ['Sitzungsbasierte Authentifizierung und geschützte Routen', 'Konten sowie Einnahmen- und Ausgabentransaktionen', 'Korrekturtransaktionen', 'Budgets und mehrere Währungen', 'Wechselkurse und Dashboard-Zusammenfassungen', 'Ledger, Kontoauszüge und Funktionen zum Zurücksetzen von Daten'],
+      features: ['Sichere sitzungsbasierte Authentifizierung, Passwort-Hashing mit bcrypt, geschützte Routen und nutzereigene Daten', 'Konten sowie Einnahmen- und Ausgabentransaktionen', 'PostgreSQL Decimal und Korrekturtransaktionen schützen die Finanzhistorie', 'Historische Wechselkurse bleiben erhalten', 'Responsives Design, live auf Vercel', 'Android-Version mit Capacitor', 'Budgets und mehrere Währungen', 'Wechselkurse und Dashboard-Zusammenfassungen', 'Buchungsjournal, Kontoauszüge und Funktionen zum Zurücksetzen von Daten'],
       architecture: 'Nutzer → Next.js / React → Server Actions und API Routes → Prisma → PostgreSQL',
       imageAlt: 'Anmeldeseite der persönlichen Finanzanwendung Penee',
     },
     en: {
-      label: '01 · Featured Project',
+      label: '01 · Final Course Project · Full-Stack Expense Tracker',
       summary: 'A Next.js, PostgreSQL, and Prisma finance app that keeps historical amounts and exchange rates traceable and protected when preferences change.',
       problem: 'Personal-finance applications must manage accounts, transactions, budgets, currencies, and historical records without unintentionally changing previously recorded financial information.',
       contribution: 'I designed and developed the responsive interface, server-side operations, database layer, authentication flow, and deployment.',
       decision: 'Changing a user’s base-currency preference does not mutate historical financial data. Transactions retain their original amount and currency, while dashboard totals can be recalculated in the selected base currency using current exchange rates.',
       outcomes: ['Protected financial history', 'Multi-currency logic', 'Secure user areas'],
-      features: ['Session-based authentication and protected routes', 'Accounts plus income and expense transactions', 'Correction transactions', 'Budgets and multi-currency support', 'Exchange rates and dashboard summaries', 'Ledger, statements, and data-reset functionality'],
+      features: ['Secure session-based authentication, bcrypt password hashing, protected routes and user-owned data', 'Accounts plus income and expense transactions', 'PostgreSQL Decimal fields and correction transactions preserve financial history', 'Historical exchange-rate preservation', 'Responsive design, live on Vercel', 'Android version built with Capacitor', 'Budgets and multi-currency support', 'Exchange rates and dashboard summaries', 'Ledger, statements, and data-reset functionality'],
       architecture: 'User → Next.js / React → Server Actions and API Routes → Prisma → PostgreSQL',
       imageAlt: 'Penee personal finance application secure login screen',
     },
@@ -241,14 +241,257 @@ export const projectCopy: Record<string, Record<Language, {
   },
 };
 
-export const skillGroups: Array<{ title: Bilingual; skills: string[]; evidence?: Bilingual }> = [
-  { title: { de: 'Frontend', en: 'Frontend' }, skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Vite'], evidence: { de: 'React: Penee & ItemVault · Next.js: Penee · HTML/CSS/JavaScript: Cosmic Styles', en: 'React: Penee & ItemVault · Next.js: Penee · HTML/CSS/JavaScript: Cosmic Styles' } },
-  { title: { de: 'Full-Stack', en: 'Full-stack' }, skills: ['Node.js', 'Express', 'REST APIs', 'Next.js Server Actions'] },
-  { title: { de: 'Datenbanken', en: 'Databases' }, skills: ['PostgreSQL', 'Prisma', 'Firebase / Firestore', 'MongoDB'], evidence: { de: 'PostgreSQL & Prisma: Penee · Firebase & Firestore: ItemVault', en: 'PostgreSQL & Prisma: Penee · Firebase & Firestore: ItemVault' } },
-  { title: { de: 'Authentifizierung & Sicherheit', en: 'Authentication & security' }, skills: ['Session-based Authentication', 'Authorization', 'bcrypt', 'HTTP-only Cookies', 'Protected Routes', 'Ownership Checks', 'Firestore Security Rules'] },
-  { title: { de: 'UI/UX', en: 'UI/UX' }, skills: ['Figma', 'UI Design', 'UX Design', 'Wireframes', 'Prototypes', 'User Flows', 'Personas', 'Empathy Maps', 'Sitemaps', 'Information Architecture', 'Responsive Interface Design'] },
-  { title: { de: 'Werkzeuge', en: 'Tools' }, skills: ['Git', 'GitHub', 'VS Code', 'npm', 'Docker', 'Vercel', 'ngrok'] },
-  { title: { de: 'Entwicklungspraxis', en: 'Development practices' }, skills: ['CRUD', 'API Integration', 'Database Design', 'Debugging', 'Requirements Analysis', 'Technical Documentation', 'Scrum', 'Agile Development'] },
+export const skillGroups: Array<{ title: Bilingual; skills: Record<Language, string[]>; evidence?: Bilingual }> = [
+  {
+    "title": {
+      "en": "Frontend",
+      "de": "Frontend"
+    },
+    "skills": {
+      "en": [
+        "HTML5",
+        "CSS3",
+        "JavaScript ES6+",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Vue.js",
+        "Angular fundamentals",
+        "Vite",
+        "Tailwind CSS",
+        "Styled Components",
+        "Responsive and mobile-first design"
+      ],
+      "de": [
+        "HTML5",
+        "CSS3",
+        "JavaScript ES6+",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Vue.js",
+        "Angular-Grundlagen",
+        "Vite",
+        "Tailwind CSS",
+        "Styled Components",
+        "Responsives und Mobile-First-Design"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Backend and APIs",
+      "de": "Backend und APIs"
+    },
+    "skills": {
+      "en": [
+        "Node.js",
+        "Express",
+        "Middleware",
+        "REST APIs",
+        "GraphQL",
+        "Axios",
+        "Next.js Server Actions",
+        "Serverless functions"
+      ],
+      "de": [
+        "Node.js",
+        "Express",
+        "Middleware",
+        "REST-APIs",
+        "GraphQL",
+        "Axios",
+        "Next.js Server Actions",
+        "Serverless-Funktionen"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Databases",
+      "de": "Datenbanken"
+    },
+    "skills": {
+      "en": [
+        "PostgreSQL",
+        "Prisma ORM",
+        "Firebase",
+        "Firestore",
+        "MongoDB fundamentals"
+      ],
+      "de": [
+        "PostgreSQL",
+        "Prisma ORM",
+        "Firebase",
+        "Firestore",
+        "MongoDB-Grundlagen"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Authentication and security",
+      "de": "Authentifizierung und Sicherheit"
+    },
+    "skills": {
+      "en": [
+        "Session-based authentication",
+        "bcrypt password hashing",
+        "HTTP-only cookies",
+        "JSON Web Tokens",
+        "Protected routes",
+        "Authorization and ownership checks",
+        "Firestore Security Rules",
+        "CORS, CSRF and XSS awareness"
+      ],
+      "de": [
+        "Sitzungsbasierte Authentifizierung",
+        "Passwort-Hashing mit bcrypt",
+        "HttpOnly-Cookies",
+        "JSON Web Tokens",
+        "Geschützte Routen",
+        "Autorisierung und Prüfung der Datenzugehörigkeit",
+        "Firestore Security Rules",
+        "Bewusstsein für CORS, CSRF und XSS"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Testing and quality",
+      "de": "Testing und Qualität"
+    },
+    "skills": {
+      "en": [
+        "Jest",
+        "Cypress",
+        "Browser debugging",
+        "Lighthouse",
+        "Accessibility and A11Y",
+        "Performance optimisation",
+        "Lazy loading",
+        "Code splitting",
+        "Semantic HTML"
+      ],
+      "de": [
+        "Jest",
+        "Cypress",
+        "Browser-Debugging",
+        "Lighthouse",
+        "Barrierefreiheit und A11Y",
+        "Performance-Optimierung",
+        "Lazy Loading",
+        "Code Splitting",
+        "Semantisches HTML"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "UI/UX and product design",
+      "de": "UI/UX und Produktdesign"
+    },
+    "skills": {
+      "en": [
+        "Figma",
+        "UI design",
+        "UX design",
+        "Wireframes",
+        "Prototypes",
+        "Design systems",
+        "Auto Layout",
+        "User personas",
+        "User flows",
+        "User research",
+        "Empathy maps",
+        "Information architecture",
+        "Developer handoff"
+      ],
+      "de": [
+        "Figma",
+        "UI-Design",
+        "UX-Design",
+        "Wireframes",
+        "Prototypen",
+        "Designsysteme",
+        "Auto Layout",
+        "Nutzerpersonas",
+        "Nutzerabläufe",
+        "Nutzerforschung",
+        "Empathiekarten",
+        "Informationsarchitektur",
+        "Übergabe an die Entwicklung"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Tools and deployment",
+      "de": "Werkzeuge und Deployment"
+    },
+    "skills": {
+      "en": [
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "VS Code",
+        "npm",
+        "Docker fundamentals",
+        "Vercel",
+        "Firebase",
+        "Contentful",
+        "Strapi",
+        "ngrok"
+      ],
+      "de": [
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "VS Code",
+        "npm",
+        "Docker-Grundlagen",
+        "Vercel",
+        "Firebase",
+        "Contentful",
+        "Strapi",
+        "ngrok"
+      ]
+    }
+  },
+  {
+    "title": {
+      "en": "Development practices",
+      "de": "Entwicklungspraxis"
+    },
+    "skills": {
+      "en": [
+        "CRUD",
+        "Database design",
+        "API integration",
+        "Requirements analysis",
+        "Technical documentation",
+        "Scrum",
+        "Kanban",
+        "Agile development",
+        "Responsive design",
+        "Deployment and iteration"
+      ],
+      "de": [
+        "CRUD",
+        "Datenbankdesign",
+        "API-Integration",
+        "Anforderungsanalyse",
+        "Technische Dokumentation",
+        "Scrum",
+        "Kanban",
+        "Agile Entwicklung",
+        "Responsives Design",
+        "Deployment und Iteration"
+      ]
+    }
+  }
 ];
 
 export const strengths: Record<Language, string[]> = {
@@ -256,17 +499,17 @@ export const strengths: Record<Language, string[]> = {
   en: ['Problem solving', 'Business awareness', 'Calm communication', 'Dependable delivery', 'Team collaboration', 'Structured thinking', 'Ownership', 'Willingness to learn'],
 };
 
-export const experience: Array<{ date: Bilingual; kind: Bilingual; title: string; org?: string; body: Bilingual; modules?: Array<[string, Bilingual]> }> = [
+export const experience: Array<{ date: Bilingual; kind: Bilingual; title: string | Bilingual; org?: string; body: Bilingual; modules?: Array<[string, Bilingual]> }> = [
   {
-    date: { de: '09/2025 – voraussichtlich 09/2026', en: '09/2025 – expected 09/2026' },
-    kind: { de: 'IT-Qualifizierung · 2.300 UE', en: 'IT qualification · 2,300 units' },
-    title: 'Qualifizierung zur IT-Fachkraft',
+    date: { de: 'September 2025 – September 2026', en: 'September 2025 – September 2026' },
+    kind: { de: 'Erfolgreich abgeschlossen · 2.300 Unterrichtseinheiten · 46 Wochen', en: 'Successfully completed · 2,300 teaching units · 46 weeks' },
+    title: { de: 'Qualifizierung zur IT-Fachkraft – Webentwicklung', en: 'Completed IT Specialist Qualification – Web Development' },
     org: 'Syntax Institut',
-    body: { de: 'Projektbasierte Weiterbildung in Produktdesign, UI/UX, Software- und Webentwicklung, Frontend-Entwicklung, Backend-Grundlagen, Datenbanken, Authentifizierung, APIs, Git/GitHub, Deployment, agilem Arbeiten und technischer Dokumentation.', en: 'Project-based training in product design, UI/UX, software and web development, frontend development, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile work, and technical documentation.' },
+    body: { de: 'Erfolgreich abgeschlossene Weiterbildung nach §81 ff. SGB III in Produktdesign, UI/UX, Software- und Webentwicklung, Frontend-Entwicklung, Backend-Grundlagen, Datenbanken, Authentifizierung, APIs, Git/GitHub, Deployment, agilem Arbeiten und technischer Dokumentation.', en: 'Successfully completed qualification under §81 ff. SGB III in product design, UI/UX, software and web development, frontend development, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile work, and technical documentation.' },
     modules: [
       ['700 UE', { de: 'Produktdesign & -entwicklung in der IT', en: 'Product design & IT product development' }],
-      ['600 UE', { de: 'Einführung Software- und Webentwicklung', en: 'Introduction to software & web development' }],
-      ['500 UE', { de: 'Vertiefung Frontend Entwicklung', en: 'Advanced frontend development' }],
+      ['600 UE', { de: 'Einführung in die Software- und Webentwicklung', en: 'Introduction to software & web development' }],
+      ['500 UE', { de: 'Vertiefung der Frontend-Entwicklung', en: 'Advanced frontend development' }],
       ['500 UE', { de: 'Spezialisierung & Arbeitsmarktvorbereitung', en: 'Specialization & career preparation' }],
     ],
   },
@@ -275,9 +518,13 @@ export const experience: Array<{ date: Bilingual; kind: Bilingual; title: string
   { date: { de: '2007 – 2021', en: '2007 – 2021' }, kind: { de: 'Einkaufsmanager · Internationale Beschaffung & SAP', en: 'Purchasing Manager · International Procurement & SAP' }, title: 'SIB Enterprises', body: { de: 'Verantwortung für Einkauf und Beschaffung einschließlich internationaler Lieferantensuche und Geschäftskommunikation. Nutzung von SAP für Einkaufsabläufe, Bestellungen, Lieferantendaten und Administration sowie Koordination von Import und Export.', en: 'Managed purchasing and procurement, including international supplier sourcing and business coordination. Used SAP for purchasing workflows, orders, supplier records, and procurement administration while coordinating import and export activities.' } },
 ];
 
-export const qualifications = [
-  { title: 'Produktdesign & -entwicklung in der IT', institution: 'Syntax Institut', date: '08.01.2026', subject: { de: '700 UE · Designprinzipien, Informationsarchitektur, Personas, User Flows, Wireframes, Prototyping, Scrum, Figma und Framer', en: '700 units · Design principles, information architecture, personas, user flows, wireframes, prototyping, Scrum, Figma, and Framer' }, href: '/certificates/produktdesign-it-web.pdf' },
+export const qualifications: Array<{ title: string; titleDe?: string; titleEn?: string; institution: string; date: string; status?: 'final' | 'pending'; module?: 1 | 2 | 3 | 4; subject: Bilingual; href?: string }> = [
+{"title": "Web Development – Qualification for IT and AI-Supported Professions", "titleDe": "Webentwicklung – Qualifizierung für IT- und KI-gestützte Berufe", "institution": "Syntax Institut", "date": "11.09.2026", "status": "final", "subject": {"en": "Successfully completed on 11 September 2026 · 2,300 teaching units · 46 weeks · Four completed modules · Qualification under §81 ff. SGB III.", "de": "Erfolgreich abgeschlossen am 11. September 2026 · 2.300 Unterrichtseinheiten · 46 Wochen · Vier abgeschlossene Module · Weiterbildung nach §81 ff. SGB III."}, "href": "/certificates/webentwicklung-abschluss-web.pdf"},
+{"title": "Produktdesign & -entwicklung in der IT", "titleEn": "Product Design & Development in IT", "module": 1, "institution": "Syntax Institut", "date": "09.01.2026", "subject": {"en": "700 teaching units · Product design and analysis of web products; UI design with Figma; Typography and colour theory; Components and Auto Layout; Design systems; Low- and high-fidelity designs; UX principles; User personas and user flows; User research and interviews; Accessible design and A11Y principles; Lighthouse testing; Scrum, Kanban and developer handoff", "de": "700 Unterrichtseinheiten · Produktdesign und Analyse von Webprodukten; UI-Design mit Figma; Typografie und Farbtheorie; Komponenten und Auto Layout; Designsysteme; Low- und High-Fidelity-Designs; UX-Prinzipien; Personas und User Flows; Nutzerforschung und Interviews; barrierefreies Design und A11Y; Lighthouse-Testing; Scrum, Kanban und Developer Handoff"}, "href": "/certificates/produktdesign-it-web.pdf"},
+{"title": "Einführung in die Software- und Webentwicklung", "titleEn": "Introduction to Software and Web Development", "module": 2, "institution": "Syntax Institut", "date": "02.04.2026", "subject": {"en": "600 teaching units · HTTP, DNS and client-server architecture; Hosting and server configuration; Semantic HTML; CSS, Flexbox and Grid; CSS animations; Mobile-first responsive design; Media queries and breakpoints; JavaScript and DOM manipulation; Events and ES6+; Async/Await and Fetch API; Git and GitHub; Branching, merging and pull requests", "de": "600 Unterrichtseinheiten · HTTP, DNS und Client-Server-Architektur; Hosting und Serverkonfiguration; semantisches HTML; CSS, Flexbox und Grid; CSS-Animationen; Mobile-First-Design; Media Queries und Breakpoints; JavaScript und DOM-Manipulation; Events und ES6+; Async/Await und Fetch API; Git und GitHub; Branching, Merging und Pull Requests"}, "href": "/certificates/software-webentwicklung-web.pdf"},
+{"title": "Vertiefung: Frontend-Entwicklung", "titleEn": "Advanced Frontend Development", "module": 3, "institution": "Syntax Institut", "date": "26.06.2026", "subject": {"en": "500 teaching units · React and Vue; Components, props and state; State management; Client-side routing and dynamic routes; Tailwind CSS; CSS-in-JS and Styled Components; Unit testing with Jest; End-to-end testing with Cypress; Browser debugging; Lazy loading and code splitting; Asset and performance optimisation; Lighthouse analysis", "de": "500 Unterrichtseinheiten · React und Vue; Komponenten, Props und State; State-Management; clientseitiges Routing und dynamische Routen; Tailwind CSS; CSS-in-JS und Styled Components; Unit-Tests mit Jest; End-to-End-Tests mit Cypress; Browser-Debugging; Lazy Loading und Code Splitting; Asset- und Performance-Optimierung; Lighthouse-Analyse"}, "href": "/certificates/frontend-entwicklung-web.pdf"},
+{"title": "Spezialisierung & Arbeitsmarktvorbereitung", "titleEn": "Specialization & Career Preparation", "module": 4, "institution": "Syntax Institut", "date": "11.09.2026", "subject": {"en": "500 teaching units · Vue.js and Angular compared with React; REST APIs and GraphQL; Axios; Node.js and Express; Middleware; JSON Web Tokens; CORS, CSRF and XSS protection; Contentful and Strapi; Server-side rendering; Serverless architecture; Firebase; CI/CD with GitHub Actions; GitHub portfolio preparation; Technical interviews and job applications", "de": "500 Unterrichtseinheiten · Vue.js und Angular im Vergleich zu React; REST APIs und GraphQL; Axios; Node.js und Express; Middleware; JSON Web Tokens; Schutz vor CORS-, CSRF- und XSS-Problemen; Contentful und Strapi; serverseitiges Rendering; Serverless-Architektur; Firebase; CI/CD mit GitHub Actions; GitHub-Portfolio; technische Interviews und Bewerbungen"}, "href": "/certificates/spezialisierung-arbeitsmarktvorbereitung-web.pdf"},
   { title: 'Digital Product Designer IHK', institution: 'IHK Akademie München und Oberbayern gGmbH', date: '15.01.2026', subject: { de: '250 Unterrichtsstunden · UI/UX-Grundlagen, Wireframing, Prototyping, User Research und Scrum', en: '250 hours · UI/UX fundamentals, wireframing, prototyping, user research, and Scrum' }, href: '/certificates/digital-product-designer-ihk-web.pdf' },
-  { title: 'Einführung Software- und Webentwicklung', institution: 'Syntax Institut', date: '02.04.2026', subject: { de: '600 UE · HTML, CSS, Bootstrap, JavaScript, Responsive Design, APIs, Code-Editoren und Git', en: '600 units · HTML, CSS, Bootstrap, JavaScript, responsive design, APIs, code editors, and Git' }, href: '/certificates/software-webentwicklung-web.pdf' },
-  { title: 'Vertiefung: Frontend Entwicklung', institution: 'Syntax Institut', date: '26.06.2026', subject: { de: '500 UE · React, Vite, Tailwind CSS, TypeScript, Firebase, Firestore, Strapi und Vercel', en: '500 units · React, Vite, Tailwind CSS, TypeScript, Firebase, Firestore, Strapi, and Vercel' }, href: '/certificates/frontend-entwicklung-web.pdf' },
+{"title": "Junior WEB-Developer (IHK)", "institution": "IHK", "date": "", "status": "pending", "subject": {"en": "Successfully completed – official certificate pending.", "de": "Erfolgreich abgeschlossen – offizielles Zertifikat wird noch ausgestellt."}},
+{"title": "Web Development Specialist (IHK)", "institution": "IHK", "date": "", "status": "pending", "subject": {"en": "Successfully completed – official certificate pending.", "de": "Erfolgreich abgeschlossen – offizielles Zertifikat wird noch ausgestellt."}}
 ];

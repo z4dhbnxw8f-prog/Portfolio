@@ -1,4 +1,6 @@
 from pathlib import Path
+import json
+import shutil
 
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT
@@ -197,7 +199,7 @@ def draw_page(canvas, doc):
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(MUTED)
     canvas.drawString(20 * mm, 9 * mm, "YASSER AKANNI")
-    page_text = f"PAGE {doc.page} / 2"
+    page_text = f"PAGE {doc.page} / 3"
     canvas.drawString(PAGE_W - 20 * mm - stringWidth(page_text, "Helvetica", 7.5), 9 * mm, page_text)
     canvas.restoreState()
 
@@ -208,7 +210,7 @@ story += [
         [[
             [
                 para("Yasser Akanni", name_style),
-                para("Junior Frontend Developer · React · Next.js · TypeScript", title_style),
+                para("Qualified Junior Frontend Developer · React · Next.js · TypeScript", title_style),
                 para(
                     "Essen, Germany · NRW &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
                     "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
@@ -227,30 +229,24 @@ story += [
 story += section_title("Professional Profile")
 story.append(
     para(
-        "Junior Frontend Developer focused on React, Next.js and TypeScript, with UI/UX skills and a practical full-stack foundation. Builds responsive web applications from interface design through development and deployment, with project experience in authentication, CRUD, API integration and database-backed interfaces. Currently completing a project-based IT qualification at Syntax Institut. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
+        "Junior Frontend Developer focused on React, Next.js and TypeScript, with UI/UX skills and a practical full-stack foundation. Builds responsive web applications from interface design through development and deployment, with project experience in authentication, CRUD, API integration and database-backed interfaces. Successfully completed the 2,300-unit, 46-week web-development qualification at Syntax Institut in September 2026. Available immediately for junior frontend, React, Next.js and web-development opportunities. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
         body_style,
     )
 )
 
 story += section_title("Technical Skills")
-skill_lines = [
-    ("Frontend", "React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS, Vite"),
-    ("Full-stack foundation", "Node.js, Express, REST APIs, Next.js Server Actions"),
-    ("Databases", "PostgreSQL, Prisma, Firebase / Firestore, MongoDB"),
-    ("Security", "Session-based authentication, authorization, bcrypt, HTTP-only cookies, protected routes, ownership checks, Firestore security rules"),
-    ("UI/UX", "Figma, wireframes, prototypes, user flows, personas, empathy maps, sitemaps, information architecture, usability, responsive interface design"),
-    ("Tools & practice", "Git, GitHub, VS Code, npm, Docker, Vercel, ngrok, CRUD, API integration, debugging, database design, requirements analysis, Scrum, Agile development, technical documentation"),
-]
+skill_lines = [(g["title"]["en"], ", ".join(g["skills"]["en"])) for g in json.loads((ROOT / "scripts/cv_skills.json").read_text())]
 for label, items in skill_lines:
     story.append(para(f"<b>{label}:</b> {items}", small_style))
 
+story.append(PageBreak())
 story += section_title("Selected Projects")
 story.append(
     KeepTogether(
         [
-            entry_header("Penee", "FEATURED PROJECT", "Multi-account, multi-currency personal finance application"),
+            entry_header("Penee", "FINAL PROJECT", "Final Course Project · Full-Stack Expense Tracker"),
             bullet("Built with Next.js, React, TypeScript, PostgreSQL, Prisma, Server Actions, API route handlers and Vercel."),
-            bullet("Implemented registration, login, logout, sessions, ownership checks, accounts, transactions, income, expenses, budgets, currencies, exchange rates, a dashboard, ledger and statements."),
+            bullet("Implemented secure sessions, bcrypt password hashing, protected routes and user-owned accounts, income and expense transactions, budgets and multiple currencies. Responsive web app deployed on Vercel; Android version built with Capacitor."),
             bullet("Used Decimal for money and correction transactions for completed history; preserved original transaction currency and conversion information when recalculating current totals."),
             para("<link href='https://xpense-trvcker.vercel.app' color='#173F35'><b>xpense-trvcker.vercel.app</b></link>", small_style),
         ]
@@ -268,7 +264,6 @@ story.append(
     )
 )
 story.append(Spacer(1, 3))
-story.append(PageBreak())
 story += section_title("Selected Projects Continued")
 story.append(
     KeepTogether(
@@ -282,19 +277,20 @@ story.append(
 )
 story.append(Spacer(1, 3))
 
+story.append(PageBreak())
 story += section_title("Education and IT Qualification")
-story.append(entry_header("Qualifizierung zur IT-Fachkraft", "09/2025 - expected 09/2026", "Syntax Institut · 2.300 UE"))
+story.append(entry_header("Qualifizierung zur IT-Fachkraft", "09/2025 - 09/2026", "Syntax Institut · Successfully completed · 2,300 teaching units · 46 weeks"))
 story.append(
     para(
-        "Structured, project-based training covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile/Scrum workflows, debugging and technical documentation.",
+        "Successfully completed on 11 September 2026 under §81 ff. SGB III. Project-based training covering product and UI/UX design, software and web development, frontend specialization, backend fundamentals, databases, authentication, APIs, Git/GitHub, deployment, agile/Scrum workflows, debugging and technical documentation.",
         body_style,
     )
 )
 for module in [
-    "Produktdesign & -entwicklung in der IT - 700 UE",
-    "Einführung Software- und Webentwicklung - 600 UE",
-    "Vertiefung Frontend Entwicklung - 500 UE",
-    "Spezialisierung & Arbeitsmarktvorbereitung - 500 UE",
+    "Produktdesign & -entwicklung in der IT - 09.01.2026 - 700 units",
+    "Einführung Software- und Webentwicklung - 02.04.2026 - 600 units",
+    "Vertiefung: Frontend Entwicklung - 26.06.2026 - 500 units",
+    "Spezialisierung & Arbeitsmarktvorbereitung - 11.09.2026 - 500 units",
 ]:
     story.append(bullet(module))
 
@@ -330,9 +326,9 @@ story += section_title("Qualifications and Certificates")
 story.append(
     KeepTogether(
         [
-            entry_header("Qualifizierung zur IT-Fachkraft", "IN PROGRESS", "Syntax Institut · 2.300 UE · expected 09/2026"),
+            entry_header("Qualifizierung zur IT-Fachkraft", "COMPLETED", "Syntax Institut · Final certificate · 11.09.2026"),
             para(
-                "Completed certificates: Digital Product Designer IHK (15.01.2026), Produktdesign & -entwicklung in der IT (08.01.2026), Einführung Software- und Webentwicklung (02.04.2026), and Vertiefung: Frontend Entwicklung (26.06.2026).",
+                "Final certificate: Web Development - Qualification for IT and AI-Supported Professions. Digital Product Designer IHK (issued 15.01.2026). Junior WEB-Developer (IHK) and Web Development Specialist (IHK): successfully completed - official certificates pending.",
                 small_style,
             ),
         ]
@@ -340,8 +336,11 @@ story.append(
 )
 
 story += section_title("Languages")
-story.append(para("<b>English</b> - Fluent &nbsp;&nbsp;&nbsp; <b>French</b> - Fluent &nbsp;&nbsp;&nbsp; <b>German</b> - Currently developing", body_style))
+story.append(para("<b>English</b> - Fluent &nbsp;&nbsp;&nbsp; <b>French</b> - Fluent &nbsp;&nbsp;&nbsp; <b>German</b> - B1 (CEFR)", body_style))
 
 doc = CVDocTemplate(str(OUTPUT))
 doc.build(story)
 print(OUTPUT)
+
+shutil.copy2(OUTPUT, ROOT / "public/Yasser-Akanni-CV-English.pdf")
+shutil.copy2(OUTPUT, ROOT / "public/Yasser-Akanni-CV.pdf")
