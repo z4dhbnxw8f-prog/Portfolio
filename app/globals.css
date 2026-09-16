@@ -411,6 +411,8 @@ h3 { font-weight: 620; }
 .skill-title h3, .timeline-item h3, .certificate-card h3 { letter-spacing: -.035em; }
 .skill-group p, .case-grid p, .case-grid li, .timeline-item p, .certificate-card p { font-size: .9rem; line-height: 1.72; }
 .tech-list li, .strengths span, .case-panel li { font-family: var(--font-geist-mono); font-size: .62rem; letter-spacing: .01em; }
+.tech-list li, .case-panel li { display: inline-flex; align-items: center; gap: 6px; }
+.technology-icon { width: 17px; height: 17px; flex: 0 0 auto; opacity: 1; }
 .social-links a, .footer-links a, .text-link { font-size: .74rem; letter-spacing: .01em; }
 .button, [data-slot='button'] { font-weight: 620; letter-spacing: -.01em; }
 @media (max-width: 620px) {
@@ -568,7 +570,7 @@ main, footer { position: relative; z-index: 1; }
 .case-header-actions { gap: 18px; }
 .case-header-tools { gap: 18px; }
 .site-header.case-header { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; justify-content: normal; }
-.case-home-link { color: var(--foreground); font-size: .72rem; font-weight: 700; letter-spacing: .04em; transition: color .2s ease, transform .2s ease; }
+.case-home-link { display: inline-flex; align-items: center; gap: 6px; color: var(--foreground); font-size: .72rem; font-weight: 700; letter-spacing: .04em; transition: color .2s ease, transform .2s ease; }
 .case-home-link:hover { color: var(--cool-blue); transform: translateY(-1px); }
 .case-language { padding: 9px 11px; border: 1px solid rgba(49,95,196,.25); border-radius: 999px; background: var(--cool-blue-soft); transition: transform .2s ease, background .2s ease; }
 .case-language:hover { transform: translateY(-1px); background: rgba(49,95,196,.18); }
@@ -600,6 +602,10 @@ main, footer { position: relative; z-index: 1; }
 .case-next { padding-block: clamp(80px, 9vw, 118px); border-top-color: var(--cool-blue); }
 .case-next h2 { max-width: 760px; }
 .case-next a { justify-self: end; }
+.case-next-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%; gap: 18px; }
+.case-next-actions .case-back-link { justify-self: auto; }
+.case-previous-link { margin-right: auto; }
+.case-next-link { margin-left: auto; }
 @media (max-width: 900px) {
   .site-header { padding-inline: 18px; }
   .project-card { padding: 24px; border-radius: 20px; }
@@ -628,6 +634,7 @@ main, footer { position: relative; z-index: 1; }
   .case-image { border-radius: 16px; }
   .case-narrative article { padding-block: 28px; }
   .case-next a { justify-self: start; }
+  .case-next-actions { justify-content: space-between; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -840,22 +847,12 @@ h1 em, h2 em { color: var(--primary); }
 @media (prefers-reduced-motion: reduce) {
   .hero::before, .hero::after { display: none; }
 }
-.case-study .case-next::after {
-  content: 'NEXT';
-  position: absolute;
-  right: 0;
-  top: 32px;
-  color: rgba(49, 95, 196, .25);
-  font: 650 clamp(2.6rem, 5vw, 4.8rem) / 1 var(--font-geist-mono);
-  letter-spacing: -.1em;
-}
 .case-study .case-next a { position: relative; z-index: 1; border-color: var(--cool-blue); background: var(--cool-blue); color: white; }
 .case-study .case-next a:hover { background: var(--primary); border-color: var(--primary); }
 .project-preview, .project-card.featured-project .project-preview, .case-image { aspect-ratio: 3 / 2; }
 @media (max-width: 620px) {
   .case-study .case-narrative article { padding: 22px; }
   .case-study .case-hero h1::after { margin-top: 16px; }
-  .case-study .case-next::after { right: 0; top: 24px; font-size: 2.3rem; }
 }
 
 /* Completed qualification retains the existing certificate layout. */
@@ -1248,6 +1245,56 @@ footer span { color: #858a83; }
   border-color: var(--accent);
   background: rgba(200,245,90,.08);
   color: var(--accent);
+}
+
+/* Case-study frames follow the homepage card treatment. */
+.case-study .case-spec,
+.case-study .case-narrative article,
+.case-study .case-panel {
+  border: 1px solid rgba(255,255,255,.1);
+  background: #141614;
+  box-shadow: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.case-study .case-spec:is(:hover, :focus-within),
+.case-study .case-narrative article:is(:hover, :focus-within),
+.case-study .case-panel:is(:hover, :focus-within) {
+  transform: translateY(-2px);
+  border-color: rgba(200,245,90,.45);
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+}
+.case-study .case-links a,
+.case-study .case-back-link {
+  border-radius: 999px !important;
+}
+
+/* Case-study navigation uses the full header width, like the homepage. */
+.site-header.case-header {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(18px, 4vw, 64px);
+}
+
+/* Keep case-study descriptions fully legible on the dark surface. */
+.case-study .case-hero > div:first-child > p:not(.section-kicker),
+.case-study .case-narrative article > p:last-child,
+.case-study .case-panel li {
+  color: #f4f6f1;
+}
+
+/* Use one corner treatment for every interactive action. */
+.header-cv,
+.hero-actions a,
+.hero-actions .cv-downloads a,
+.project-links > a[data-slot='button'],
+.case-links a,
+.case-next a,
+.case-back-link,
+.certificate-link,
+.form-submit button,
+.contact-links a {
+  border-radius: 999px !important;
 }
 @media (max-width: 700px) {
   .legal-site-header { column-gap: 12px; }

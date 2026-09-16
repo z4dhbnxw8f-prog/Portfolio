@@ -12,6 +12,7 @@ export async function generateMetadata({ searchParams }: {
   return { title, description, openGraph: { title, description, url: `/datenschutz?lang=${isGerman ? 'de' : 'en'}` }, twitter: { title, description } };
 }
 
-export default function PrivacyRoute() {
-  return <PrivacyPage />;
+export default async function PrivacyRoute({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
+  const language = (await searchParams).lang === 'de' ? 'de' : 'en';
+  return <PrivacyPage language={language} />;
 }

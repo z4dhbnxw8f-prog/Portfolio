@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 
 import { ContactForm } from '@/components/contact-form';
+import { TechnologyIcon } from '@/components/technology-icon';
 import { buttonVariants } from '@/components/ui/button';
 import {
   experience,
@@ -139,7 +140,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main id="top">
       <header ref={headerRef} className={`site-header${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
         <a className="wordmark" href="#top" aria-label={copy.homeLabel}>
           <span>YA</span>
@@ -234,7 +235,7 @@ export default function Home() {
                     {content.features.slice(0, 3).map((feature) => <li key={feature}>{feature}</li>)}
                   </ul>
                   <ul className="tech-list" aria-label={`${project.name} ${language === 'de' ? 'Technologien' : 'technologies'}`}>
-                    {project.technologies.slice(0, 6).map((tech) => <li key={tech}>{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}
+                    {project.technologies.slice(0, 6).map((tech) => <li key={tech}><TechnologyIcon name={tech} />{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}
                   </ul>
                   <div className="project-links">
                     {project.links.map((link) => (

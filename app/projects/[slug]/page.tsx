@@ -1,10 +1,12 @@
 /* oxlint-disable next/no-img-element */
 import type { Metadata } from 'next';
-import { ArrowUpRight, Check, Code2, Download, Layers3 } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Check, Code2, Layers3 } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { buttonVariants } from '@/components/ui/button';
+import { CaseStudyHeader } from '@/components/case-study-header';
+import { TechnologyIcon } from '@/components/technology-icon';
 import { getProject, projects } from '@/lib/projects';
 import { portfolioCopy, projectCopy, type Language } from '@/lib/portfolio-content';
 
@@ -51,12 +53,15 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const projectOrder = ['penee', 'itemvault', 'cosmic-styles'];
+  const orderedProjects = projectOrder.map((projectSlug) => getProject(projectSlug)).filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const projectIndex = orderedProjects.findIndex((item) => item.slug === slug);
+  const previousProject = projectIndex > 0 ? orderedProjects[projectIndex - 1] : undefined;
+  const nextProject = projectIndex < orderedProjects.length - 1 ? orderedProjects[projectIndex + 1] : undefined;
   const query = searchParams ? await searchParams : undefined;
   const language: Language = query?.lang === 'de' ? 'de' : 'en';
   const localized = projectCopy[slug]?.[language];
   const siteCopy = portfolioCopy[language];
-  const sectionIds = ['top', 'projects', 'skills', 'about', 'experience', 'qualifications', 'contact'];
-  const cvHref = language === 'de' ? '/Yasser-Akanni-CV-German.pdf' : '/Yasser-Akanni-CV-English.pdf';
   const localizedType = language === 'de'
     ? ({
       penee: 'Full-Stack-Finanzanwendung',
@@ -72,8 +77,8 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     }[slug] ?? project.imageAlt)
     : project.imageAlt;
   const labels = language === 'de'
-    ? { overview: 'Überblick', problem: 'Problem', contribution: 'Mein Beitrag', decision: 'Technische Entscheidung', features: 'Umgesetzte Funktionen', architecture: 'Architektur', technologies: 'Technologien', coreFeatures: 'Kernfunktionen', projectType: 'Projekttyp', technology: 'Technologie', home: 'Startseite', allProjects: 'Alle Projekte', switchLanguage: 'English', continue: 'Weiter entdecken', selection: 'Die vollständige Projektauswahl ansehen', back: 'Zurück zu Projekten' }
-    : { overview: 'Overview', problem: 'Problem', contribution: 'My contribution', decision: 'Technical decision', features: 'Implemented functionality', architecture: 'Architecture', technologies: 'Technologies', coreFeatures: 'Core features', projectType: 'Project type', technology: 'Technology', home: 'Home', allProjects: 'All projects', switchLanguage: 'Deutsch', continue: 'Continue exploring', selection: 'See the complete project selection.', back: 'Back to projects' };
+    ? { overview: 'Überblick', problem: 'Problem', contribution: 'Mein Beitrag', decision: 'Technische Entscheidung', features: 'Umgesetzte Funktionen', architecture: 'Architektur', technologies: 'Technologien', coreFeatures: 'Kernfunktionen', projectType: 'Projekttyp', technology: 'Technologie', allProjects: 'Alle Projekte', switchLanguage: 'English', nextProject: 'Nächstes Projekt', previousProject: 'Vorheriges Projekt', exploreProjects: 'Projekte entdecken' }
+    : { overview: 'Overview', problem: 'Problem', contribution: 'My contribution', decision: 'Technical decision', features: 'Implemented functionality', architecture: 'Architecture', technologies: 'Technologies', coreFeatures: 'Core features', projectType: 'Project type', technology: 'Technology', allProjects: 'All projects', switchLanguage: 'Deutsch', nextProject: 'Next project', previousProject: 'Previous project', exploreProjects: 'Explore projects' };
 
   const narrative = [
     [labels.overview, localized?.summary ?? project.summary],
@@ -86,20 +91,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
 
   return (
     <main className="case-study">
-      <header className="site-header case-header">
-        <Link className="wordmark" href={`/?lang=${language}#top`} aria-label={language === 'de' ? 'Zurück zum Portfolio von Yasser Akanni' : 'Back to Yasser Akanni portfolio'}><span>YA</span><span className="wordmark-name">Yasser Akanni</span></Link>
-        <nav aria-label={siteCopy.navLabel}>
-          {siteCopy.nav.map((label, index) => <Link href={`/?lang=${language}#${sectionIds[index]}`} key={sectionIds[index]}>{label}</Link>)}
-        </nav>
-        <div className="header-tools case-header-tools">
-          <Link className="header-cv" href={cvHref} download><Download size={14} /> {language === 'de' ? 'Lebenslauf' : 'CV'}</Link>
-          <div className="language-switcher" aria-label={language === 'de' ? 'Sprache wählen' : 'Choose language'}>
-            <Link aria-current={language === 'de' ? 'page' : undefined} href={`/projects/${slug}?lang=de`}>DE</Link>
-            <span aria-hidden="true">/</span>
-            <Link aria-current={language === 'en' ? 'page' : undefined} href={`/projects/${slug}?lang=en`}>EN</Link>
-          </div>
-        </div>
-      </header>
+      <CaseStudyHeader language={language} slug={slug} />
 
       <section className="case-hero">
         <div>
@@ -128,15 +120,18 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
           {narrative.map(([title, copy]) => <article key={title}><p className="section-kicker">{title}</p><p>{copy}</p></article>)}
         </div>
         <aside className="case-sidebar">
-          <div className="case-panel"><Code2 /><p className="section-kicker">{labels.technologies}</p><ul>{project.technologies.map((tech) => <li key={tech}>{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}</ul></div>
+          <div className="case-panel"><Code2 /><p className="section-kicker">{labels.technologies}</p><ul>{project.technologies.map((tech) => <li key={tech}><TechnologyIcon name={tech} />{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}</ul></div>
           <div className="case-panel"><Layers3 /><p className="section-kicker">{labels.coreFeatures}</p><ul className="feature-list">{(localized?.features ?? project.features).map((feature) => <li key={feature}><Check />{feature}</li>)}</ul></div>
         </aside>
       </section>
 
       <section className="case-next">
-        <p className="section-kicker">{labels.continue}</p>
-        <h2>{labels.selection}</h2>
-        <Link className={`case-back-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/?lang=${language}#projects`}>{labels.back} <ArrowUpRight /></Link>
+        <p className="section-kicker">{previousProject && nextProject ? labels.exploreProjects : nextProject ? labels.nextProject : labels.previousProject}</p>
+        <h2>{previousProject && nextProject ? labels.exploreProjects : (nextProject ?? previousProject)?.name}</h2>
+        <div className="case-next-actions">
+          {previousProject && <Link className={`case-back-link case-previous-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${previousProject.slug}?lang=${language}`}><ArrowLeft /> {labels.previousProject}: {previousProject.name}</Link>}
+          {nextProject && <Link className={`case-back-link case-next-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${nextProject.slug}?lang=${language}`}>{labels.nextProject}: {nextProject.name} <ArrowUpRight /></Link>}
+        </div>
       </section>
     </main>
   );

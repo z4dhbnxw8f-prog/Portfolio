@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Download, Menu, X } from 'lucide-react';
 
@@ -22,8 +22,7 @@ const privacyCopy = {
   },
 } as const;
 
-export function PrivacyPage() {
-  const language: Language = useSearchParams().get('lang') === 'de' ? 'de' : 'en';
+export function PrivacyPage({ language }: { language: Language }) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
