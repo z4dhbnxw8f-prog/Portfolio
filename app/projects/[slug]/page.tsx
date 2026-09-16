@@ -1,7 +1,6 @@
 /* oxlint-disable next/no-img-element */
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowUpRight, Check, Code2, Layers3 } from 'lucide-react';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { buttonVariants } from '@/components/ui/button';
@@ -129,8 +128,8 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
         <p className="section-kicker">{previousProject && nextProject ? labels.exploreProjects : nextProject ? labels.nextProject : labels.previousProject}</p>
         <h2>{previousProject && nextProject ? labels.exploreProjects : (nextProject ?? previousProject)?.name}</h2>
         <div className="case-next-actions">
-          {previousProject && <Link className={`case-back-link case-previous-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${previousProject.slug}?lang=${language}`}><ArrowLeft /> {labels.previousProject}: {previousProject.name}</Link>}
-          {nextProject && <Link className={`case-back-link case-next-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${nextProject.slug}?lang=${language}`}>{labels.nextProject}: {nextProject.name} <ArrowUpRight /></Link>}
+          {previousProject && <a className={`case-back-link case-previous-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${previousProject.slug}?lang=${language}`}><ArrowLeft /> {labels.previousProject}: {previousProject.name}</a>}
+          {nextProject && <a className={`case-back-link case-next-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${nextProject.slug}?lang=${language}`}>{labels.nextProject}: {nextProject.name} <ArrowUpRight /></a>}
         </div>
       </section>
     </main>
