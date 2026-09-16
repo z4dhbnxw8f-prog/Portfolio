@@ -1221,6 +1221,34 @@ footer span { color: #858a83; }
 .legal-page .section-kicker, .legal-page article a { color: var(--accent); }
 .legal-page article a { overflow-wrap: anywhere; }
 .legal-page .legal-updated { color: #a7aca4; }
+
+/* Keep case-study actions consistent with the main portfolio. */
+.case-header .wordmark > span:first-child {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+.case-study .case-links .primary-action {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground) !important;
+}
+.case-study .case-links .primary-action:hover {
+  border-color: #d8ff7f;
+  background: #d8ff7f;
+  color: #0a0b0a !important;
+}
+.case-study .case-links a:not(.primary-action),
+.case-study .case-next .case-back-link {
+  border-color: rgba(255,255,255,.2);
+  background: transparent;
+  color: var(--foreground);
+}
+.case-study .case-links a:not(.primary-action):hover,
+.case-study .case-next .case-back-link:hover {
+  border-color: var(--accent);
+  background: rgba(200,245,90,.08);
+  color: var(--accent);
+}
 @media (max-width: 700px) {
   .legal-site-header { column-gap: 12px; }
   .legal-site-header.menu-open > nav { max-height: calc(100dvh - 68px); overflow-y: auto; }

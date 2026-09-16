@@ -136,7 +136,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       <section className="case-next">
         <p className="section-kicker">{labels.continue}</p>
         <h2>{labels.selection}</h2>
-        <Link className={`case-back-link ${buttonVariants({ size: 'lg' })}`} href={`/?lang=${language}#projects`}>{labels.back} <ArrowUpRight /></Link>
+        <Link className={`case-back-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/?lang=${language}#projects`}>{labels.back} <ArrowUpRight /></Link>
       </section>
     </main>
   );
