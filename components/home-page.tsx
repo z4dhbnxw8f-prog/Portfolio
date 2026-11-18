@@ -29,6 +29,7 @@ import { ThemeToggle, HeroStickers, RandomStuff, PlayfulCursor } from '@/compone
 import { buttonVariants } from '@/components/ui/button';
 import {
   experience,
+  qualifications,
   portfolioCopy,
   processSteps,
   skillGroups,
@@ -237,7 +238,7 @@ export default function Home() {
       <section className="section career-section" id="experience">
         <div className="section-heading"><p className="section-kicker">{copy.experienceKicker}</p><h2>{copy.experienceTitle.join(' ')}</h2><p>{copy.experienceIntro}</p></div>
         <div className="career-list">{experience.map((item) => <details className="career-detail" key={item.date.en}><summary><span>{item.date[language]}</span><strong>{typeof item.title === 'string' ? item.title : item.title[language]}</strong><span aria-hidden="true">↗</span></summary><p>{item.kind[language]}{item.org ? ` · ${item.org}` : ''}</p><p>{item.body[language]}</p>{item.modules && <ul>{item.modules.map(([hours, title]) => <li key={hours + title.en}>{hours} · {title[language]}</li>)}</ul>}</details>)}</div>
-        <div className="qualification-block" id="qualifications"><p className="section-kicker">{copy.qualificationsKicker}</p><h3>{language === 'de' ? 'Zertifikate anfragen' : 'Request certificates'}</h3><p>{language === 'de' ? 'Schreiben Sie mir, wenn Sie meine Zertifikate einsehen möchten.' : 'Get in touch if you would like to review my certificates.'}</p><a className="certificate-request-button" href="#contact" onClick={(event) => { event.preventDefault(); const message = document.querySelector<HTMLTextAreaElement>('#message'); if (message) message.value = certificateRequest; document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '#contact'); }}><Mail size={16} /> {language === 'de' ? 'Zertifikate anfragen' : 'Request certificates'} <ArrowUpRight size={16} /></a></div>
+        <div className="qualification-block" id="qualifications"><p className="section-kicker">{copy.qualificationsKicker}</p><h3>{copy.qualificationsTitle}</h3><p>{language === 'de' ? 'Meine abgeschlossenen Zertifikate und Weiterbildungen:' : 'Certificates and qualifications I have completed:'}</p><ul className="qualification-names">{qualifications.map((item) => <li key={item.title}><span>{language === 'de' ? item.titleDe ?? item.title : item.titleEn ?? item.title}</span><small>{item.institution}</small></li>)}</ul><a className="certificate-request-button" href="#contact" onClick={(event) => { event.preventDefault(); const message = document.querySelector<HTMLTextAreaElement>('#message'); if (message) message.value = certificateRequest; document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '#contact'); }}><Mail size={16} /> {language === 'de' ? 'Zertifikate anfragen' : 'Request certificates'} <ArrowUpRight size={16} /></a></div>
       </section>
 
 

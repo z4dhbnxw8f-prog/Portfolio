@@ -283,3 +283,5 @@ body:has(.cinematic) > footer { margin-top: 0; }
   .cinematic .practice-map ol { grid-template-columns: minmax(0, 1fr); }
 }
 .certificate-request-button{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:13px 18px;border:1px solid #d1f66f;color:#d1f66f;text-decoration:none;font-size:13px;transition:background .2s,color .2s}.certificate-request-button:hover{background:#d1f66f;color:#171c12}
+.qualification-names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;list-style:none;padding:0;margin:24px 0 12px}.qualification-names li{display:grid;gap:7px;padding:16px 0;border-bottom:1px solid #373a32;font-size:13px}.qualification-names small{color:#a8b298;font-size:11px}
+@media(max-width:700px){.qualification-names{grid-template-columns:1fr}}
