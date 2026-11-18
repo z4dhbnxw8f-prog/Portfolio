@@ -32,30 +32,28 @@ export function RandomStuff({ language }: { language: Language }) {
 
 export function PlayfulCursor() {
   const cursor = useRef<HTMLDivElement>(null);
-  const trail = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const media = matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)');
-    let lastGlyphAt = 0;
+    let lastAfterimageAt = 0;
     const move = (event: PointerEvent) => {
-      if (!cursor.current || !trail.current || !media.matches) return;
+      if (!cursor.current || !media.matches) return;
       cursor.current.style.transform = `translate3d(${event.clientX}px,${event.clientY}px,0)`;
       cursor.current.dataset.hover = String(event.target instanceof Element && !!event.target.closest('a, button'));
       cursor.current.style.opacity = '1';
 
       const now = performance.now();
-      if (now - lastGlyphAt < 42) return;
-      lastGlyphAt = now;
-      const glyph = document.createElement('span');
-      glyph.className = 'matrix-glyph';
-      glyph.textContent = Array.from({ length: 3 }, () => Math.random() < .5 ? '0' : '1').join('\n');
-      glyph.style.left = `${event.clientX + (Math.random() * 14 - 7)}px`;
-      glyph.style.top = `${event.clientY + 6}px`;
-      trail.current.appendChild(glyph);
-      glyph.animate([{ opacity: .9, transform: 'translateY(-4px)' }, { opacity: 0, transform: 'translateY(34px)' }], { duration: 580, easing: 'ease-out' }).onfinish = () => glyph.remove();
+      if (now - lastAfterimageAt < 70) return;
+      lastAfterimageAt = now;
+      const afterimage = document.createElement('span');
+      afterimage.className = 'cursor-afterimage';
+      afterimage.style.left = `${event.clientX}px`;
+      afterimage.style.top = `${event.clientY}px`;
+      document.body.appendChild(afterimage);
+      afterimage.animate([{ opacity: .68, transform: 'translate(-50%,-50%) scale(1)' }, { opacity: 0, transform: 'translate(-50%,-50%) scale(.35)' }], { duration: 420, easing: 'ease-out' }).onfinish = () => afterimage.remove();
     };
     const hide = () => { if (cursor.current) cursor.current.style.opacity = '0'; };
     window.addEventListener('pointermove', move); document.addEventListener('pointerleave', hide);
     return () => { window.removeEventListener('pointermove', move); document.removeEventListener('pointerleave', hide); };
   }, []);
-  return <><div className="matrix-trail" ref={trail} aria-hidden="true" /><div className="playful-cursor" ref={cursor} aria-hidden="true"><span /></div></>;
+  return <div className="playful-cursor" ref={cursor} aria-hidden="true"><span /></div>;
 }
