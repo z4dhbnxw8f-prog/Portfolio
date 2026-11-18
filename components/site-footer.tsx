@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Download, ShieldCheck } from 'lucide-react';
+import { ArrowUp, Download, Github, Linkedin, ShieldCheck } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
 const githubUrl = 'https://github.com/z4dhbnxw8f-prog';
@@ -17,11 +17,11 @@ export function SiteFooter() {
     <footer>
       <div><strong>Yasser Akanni</strong><span>{isEnglish ? 'Frontend Developer' : 'Frontend-Entwickler'} · React · Next.js · TypeScript</span><span>© {new Date().getFullYear()} XXL Designs</span></div>
       <div className="footer-links">
-        <a href={githubUrl} target="_blank" rel="noreferrer">GitHub </a>
-        <a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn </a>
+        <a href={githubUrl} target="_blank" rel="noreferrer"><Github /> GitHub</a>
+        <a href={linkedInUrl} target="_blank" rel="noreferrer"><Linkedin /> LinkedIn</a>
         <a href={cvHref} download>{isEnglish ? 'CV' : 'Lebenslauf'} <Download /></a>
         <a href={`/datenschutz?lang=${language}`}>{isEnglish ? 'Privacy' : 'Datenschutz'} <ShieldCheck /></a>
-        <a href={`/?lang=${language}#top`}>{isEnglish ? 'Back to home' : 'Zur Startseite'} </a>
+        <a href={`/?lang=${language}#top`}><ArrowUp /> {isEnglish ? 'Back to top' : 'Zurück nach oben'}</a>
       </div>
     </footer>
   );
