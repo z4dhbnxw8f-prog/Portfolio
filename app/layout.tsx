@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Space_Grotesk, Caveat, Fraunces } from 'next/font/google';
+import { Geist, Geist_Mono, Space_Grotesk, Caveat } from 'next/font/google';
 import { PortfolioModesPicker } from '@/components/portfolio-modes';
 import { ProjectTransitions } from '@/components/motion/project-transitions';
 import { SiteFooter } from '@/components/site-footer';
@@ -7,14 +7,10 @@ import './globals.css';
 import './cinematic.css';
 import './scrapbook.css';
 import '@/components/retro-desktop.css';
-import './cozy.css';
 import './cyberpunk.css';
-import './social.css';
-import './y2k.css';
 import './pirate.css';
 import './tactical.css';
 
-const cozySerif = Fraunces({ variable: '--font-cozy', subsets: ['latin'] });
 
 const display = Space_Grotesk({ variable: '--font-display', subsets: ['latin'] });
 const handwriting = Caveat({ variable: '--font-hand', subsets: ['latin'] });
@@ -68,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${handwriting.variable} ${cozySerif.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${handwriting.variable} antialiased`}
       >
         <ProjectTransitions>{children}<SiteFooter /><PortfolioModesPicker /></ProjectTransitions>
       </body>

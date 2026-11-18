@@ -5,10 +5,7 @@ import { createPortal } from 'react-dom';
 import { useSearchParams } from 'next/navigation';
 import { X } from 'lucide-react';
 import { RetroLauncher } from '@/components/retro-launcher';
-import { CozyLauncher } from '@/components/cozy-launcher';
 import { CyberpunkLauncher } from '@/components/cyberpunk-launcher';
-import { SocialLauncher } from '@/components/social-launcher';
-import { Y2KLauncher } from '@/components/y2k-launcher';
 import { MatrixLauncher } from '@/components/matrix-launcher';
 import { PirateLauncher } from '@/components/pirate-launcher';
 import { TacticalLauncher } from '@/components/tactical-launcher';
@@ -55,6 +52,6 @@ export function PortfolioModesPicker() {
   return createPortal(<dialog ref={dialog} className="portfolio-mode-picker scrapbook" style={{ top: position.top, right: position.right }} aria-labelledby="mode-picker-title" aria-describedby="mode-picker-description" onCancel={(event) => { event.preventDefault(); setOpen(false); }}>
     <div className="mode-picker-top"><button type="button" onClick={() => setOpen(false)} aria-label={language === 'de' ? 'Auswahl schließen' : 'Close mode picker'}><X size={19} /></button></div>
     <h2 id="mode-picker-title">{language === 'de' ? 'gleiches portfolio. andere welten.' : 'same portfolio. different worlds.'}</h2><p id="mode-picker-description">{language === 'de' ? 'Wähle einen Look, um meine Arbeit zu entdecken.' : 'Choose a look to explore my work.'}</p>
-    <div className="mode-picker-grid"><RetroLauncher language={language} /><CozyLauncher language={language} /><CyberpunkLauncher language={language} /><SocialLauncher language={language} /><div className="mode-picker-bonus"><span>{language === 'de' ? 'BONUS-WELT' : 'BONUS WORLD'}</span><Y2KLauncher language={language} /></div><MatrixLauncher language={language} /><PirateLauncher language={language} /><TacticalLauncher language={language} /></div>
+    <div className="mode-picker-grid"><RetroLauncher language={language} /><CyberpunkLauncher language={language} /><MatrixLauncher language={language} /><PirateLauncher language={language} /><TacticalLauncher language={language} /></div>
   </dialog>, document.body);
 }
