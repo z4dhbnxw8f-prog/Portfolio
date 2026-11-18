@@ -1,6 +1,9 @@
 /* Scrapbook redesign; factual content and routes stay in their existing modules. */
 :root { --paper: #fff8ee; --ink: #171319; --panel: #fffdf8; --soft-ink: #514957; --lime: #c6ff3d; --pink: #ff4d9d; --blue: #3d5afe; --yellow: #ffe45e; }
 html[data-scrapbook-theme=dark] { --paper: #191221; --ink: #f5edf9; --panel: #291f33; --soft-ink: #c6bbce; }
+html[data-scrapbook-mood="2"] { --lime: #a9e86f; --pink: #ffad82; --blue: #3154bd; --yellow: #f3d76e; }
+html[data-scrapbook-mood="3"] { --lime: #d2ed7c; --pink: #e98bcf; --blue: #6748b5; --yellow: #f6c879; }
+html[data-scrapbook-mood="4"] { --lime: #91d9ce; --pink: #ff91a4; --blue: #08758a; --yellow: #f2d477; }
 body:has(.scrapbook) { background: var(--paper); color: var(--ink); background-image: none; }
 body:has(.scrapbook)::before { content: none; }
 .cinematic.scrapbook { --background: var(--paper); --foreground: var(--ink); --primary: var(--lime); --primary-foreground: #171319; --accent: var(--blue); --accent-foreground: #fff; --border: var(--ink); --cool-blue: var(--blue); color: var(--ink); background: var(--paper); }
