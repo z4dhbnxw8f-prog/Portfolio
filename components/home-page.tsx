@@ -83,21 +83,30 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visibleSection) setActiveSection(visibleSection.target.id);
-      },
-      { rootMargin: '-18% 0px -68% 0px', threshold: 0 },
-    );
+    let frame = 0;
+    const updateActiveSection = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const activationLine = window.innerHeight * 0.3;
+        let current = sectionIds[0];
+        for (const id of sectionIds) {
+          const section = document.getElementById(id);
+          if (!section || section.getBoundingClientRect().top > activationLine) break;
+          current = id;
+        }
+        const atPageBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+        setActiveSection(atPageBottom ? 'contact' : current);
+      });
+    };
 
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
   }, []);
 
   return (
@@ -173,23 +182,6 @@ export default function Home() {
         <a className="scroll-cue" href="#projects"><span>{language === 'de' ? 'WEITER ENTDECKEN' : 'SCROLL TO EXPLORE'}</span><span aria-hidden="true">↓</span></a>
       </section>
 
-      <section className="section about-section" id="about" data-section="04">
-        <div className="about-title">
-          <p className="section-kicker">{copy.aboutKicker}</p>
-          <h2>{copy.aboutTitle[0]}<br /><em>{copy.aboutTitle[1]}</em></h2>
-        </div>
-        <div className="about-copy">
-          <p className="about-lead">{copy.aboutLead}</p>
-          <p>{copy.aboutBody}</p>
-          <p>{copy.aboutTraining}</p>
-          <div className="about-principle"><ShieldCheck /><p><strong>{copy.perspective}</strong><br />{copy.perspectiveBody}</p></div>
-          <div className="currently-into"><span className="hand-note">{language === 'de' ? 'aktuell im fokus ↴' : 'currently into ↴'}</span><ul><li>UI/UX &amp; React</li><li>{language === 'de' ? 'Verständliche Nutzerabläufe' : 'Thoughtful user flows'}</li><li>{language === 'de' ? 'Interfaces mit Liebe zum Detail' : 'Interfaces with attention to detail'}</li></ul></div>
-          <div className="strengths" aria-label={language === 'de' ? 'Stärken' : 'Strengths'}>
-            {strengths[language].map((strength) => <span key={strength}>{strength}</span>)}
-          </div>
-        </div>
-      </section>
-
       <section className="section projects-section" id="projects" data-section="02">
         <div className="section-heading">
           <p className="section-kicker">{copy.projectsKicker}</p>
@@ -221,6 +213,23 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section className="section about-section" id="about" data-section="04">
+        <div className="about-title">
+          <p className="section-kicker">{copy.aboutKicker}</p>
+          <h2>{copy.aboutTitle[0]}<br /><em>{copy.aboutTitle[1]}</em></h2>
+        </div>
+        <div className="about-copy">
+          <p className="about-lead">{copy.aboutLead}</p>
+          <p>{copy.aboutBody}</p>
+          <p>{copy.aboutTraining}</p>
+          <div className="about-principle"><ShieldCheck /><p><strong>{copy.perspective}</strong><br />{copy.perspectiveBody}</p></div>
+          <div className="currently-into"><span className="hand-note">{language === 'de' ? 'aktuell im fokus ↴' : 'currently into ↴'}</span><ul><li>UI/UX &amp; React</li><li>{language === 'de' ? 'Verständliche Nutzerabläufe' : 'Thoughtful user flows'}</li><li>{language === 'de' ? 'Interfaces mit Liebe zum Detail' : 'Interfaces with attention to detail'}</li></ul></div>
+          <div className="strengths" aria-label={language === 'de' ? 'Stärken' : 'Strengths'}>
+            {strengths[language].map((strength) => <span key={strength}>{strength}</span>)}
+          </div>
         </div>
       </section>
 
