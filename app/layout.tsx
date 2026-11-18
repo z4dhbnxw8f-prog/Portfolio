@@ -11,6 +11,7 @@ import './cozy.css';
 import './cyberpunk.css';
 import './social.css';
 import './y2k.css';
+import './pirate.css';
 
 const cozySerif = Fraunces({ variable: '--font-cozy', subsets: ['latin'] });
 
