@@ -1,3 +1,4 @@
+from cv_photo import Portrait
 from pathlib import Path
 import json
 import shutil
@@ -27,6 +28,8 @@ PROFILE_IMAGE = next(
     (
         ROOT / "public" / filename
         for filename in (
+            "yasser-akanni-profile-20261012.png",
+            "yasser-akanni-profile-20260917.png",
             "yasser-akanni-profile.jpg",
             "yasser-akanni-profile.jpeg",
             "yasser-akanni-profile.png",
@@ -168,7 +171,7 @@ def bullet(text):
 def profile_image():
     if PROFILE_IMAGE is None:
         return Spacer(1, 1)
-    image = Image(str(PROFILE_IMAGE), width=27 * mm, height=34 * mm)
+    image = Portrait(PROFILE_IMAGE, width=27 * mm, height=34 * mm)
     image.hAlign = "RIGHT"
     return image
 
@@ -210,10 +213,11 @@ story += [
         [[
             [
                 para("Yasser Akanni", name_style),
-                para("Qualified Junior Frontend Developer · React · Next.js · TypeScript", title_style),
+                para("Frontend Developer · React · Next.js · TypeScript", title_style),
                 para(
                     "Essen, Germany · NRW &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; "
                     "<link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/>"
+                    "<link href='https://yasser-akanni.vercel.app' color='#565D58'>yasser-akanni.vercel.app</link> &nbsp;&nbsp;|&nbsp;&nbsp; "
                     "<link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; "
                     "<link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>",
                     contact_style,
@@ -229,7 +233,14 @@ story += [
 story += section_title("Professional Profile")
 story.append(
     para(
-        "Junior Frontend Developer focused on React, Next.js and TypeScript, with UI/UX skills and a practical full-stack foundation. Builds responsive web applications from interface design through development and deployment, with project experience in authentication, CRUD, API integration and database-backed interfaces. Successfully completed the 2,300-unit, 46-week web-development qualification at Syntax Institut in September 2026. Available immediately for junior frontend, React, Next.js and web-development opportunities. Brings reliability, organization and process awareness from an earlier career in purchasing management, international procurement and logistics operations.",
+        "Frontend Developer focused on React, Next.js and TypeScript. After a career in international procurement and logistics, I deliberately transitioned into web development to combine structured problem-solving and business awareness with hands-on product building. I completed a 2,300-unit IT qualification and now build responsive, accessible and reliable web applications from interface design through deployment.",
+        body_style,
+    )
+)
+story += section_title("Career Transition")
+story.append(
+    para(
+        "My previous work developed strong ownership, coordination, negotiation and process discipline. I brought those strengths into a new technical direction through focused training, practical projects and continuous frontend development with React, Next.js and TypeScript.",
         body_style,
     )
 )
@@ -270,12 +281,29 @@ story.append(
         [
             entry_header("Cosmic Styles LLC", "LIVE", "Real-world barbershop business web application"),
             bullet("Designed and built a responsive HTML, CSS and JavaScript interface for services, pricing, business information, gallery content and appointment requests."),
-            bullet("Implemented a service-to-date/time-to-customer-details booking flow with a prefilled WhatsApp handoff and an optional Vercel serverless email-notification path."),
-            para("<link href='https://cosmic-styles-llc.vercel.app' color='#173F35'><b>cosmic-styles-llc.vercel.app</b></link>", small_style),
+            bullet("Implemented a service-to-date/time-to-customer-details booking flow with prefilled WhatsApp messages and email drafts for customers to send."),
+            para("<link href='https://cosmicstylesllc.vercel.app' color='#173F35'><b>cosmicstylesllc.vercel.app</b></link>", small_style),
         ]
     )
 )
 story.append(Spacer(1, 3))
+
+for project_name, subtitle, points, url in [
+    ("Salesbook", "Full-stack sales and stock management", [
+        "Built with Next.js, React, TypeScript, PostgreSQL and Prisma, with separate owner and worker access.",
+        "Implemented sales and stock tracking, payments, cash handovers, commission per sale and a configurable workspace currency.",
+    ], "https://salesbook-bay.vercel.app"),
+    ("Learn Yoruba with Ykay", "Language learning and tutor website", [
+        "Built a responsive Next.js, React and TypeScript website with Tailwind CSS and accessible motion.",
+        "Connected tutor information, lesson options and Yoruba cultural stories with direct email and WhatsApp enquiries.",
+    ], "https://learnyorubawithykay.vercel.app"),
+]:
+    story.append(KeepTogether([
+        entry_header(project_name, "LIVE", subtitle),
+        *[bullet(point) for point in points],
+        para(f"<link href='{url}' color='#173F35'><b>{url.removeprefix('https://')}</b></link>", small_style),
+    ]))
+    story.append(Spacer(1, 3))
 
 story.append(PageBreak())
 story += section_title("Education and IT Qualification")
@@ -327,10 +355,15 @@ story.append(
     KeepTogether(
         [
             entry_header("Qualifizierung zur IT-Fachkraft", "COMPLETED", "Syntax Institut · Final certificate · 11.09.2026"),
-            para(
-                "Final certificate: Web Development - Qualification for IT and AI-Supported Professions. Digital Product Designer IHK (issued 15.01.2026). Junior WEB-Developer (IHK) and Web Development Specialist (IHK): successfully completed - official certificates pending.",
-                small_style,
-            ),
+            para("Final certificate: Web Development - Qualification for IT and AI-Supported Professions.", small_style),
+        ]
+    )
+)
+story.append(
+    KeepTogether(
+        [
+            entry_header("IHK Certificates", "COMPLETED", "IHK Akademie München und Oberbayern gGmbH"),
+            para("Digital Product Designer IHK (15.01.2026) · JUNIOR WEB DEVELOPER IHK (17.09.2026) · Web Development Specialist IHK (15.09.2026).", small_style),
         ]
     )
 )

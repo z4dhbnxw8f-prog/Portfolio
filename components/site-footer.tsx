@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect } from 'react';
-import { ArrowUpRight, Download, ShieldCheck } from 'lucide-react';
+import { Download, ShieldCheck } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
 const githubUrl = 'https://github.com/z4dhbnxw8f-prog';
@@ -16,13 +15,13 @@ export function SiteFooter() {
 
   return (
     <footer>
-      <div><strong>Yasser Akanni</strong><span>{isEnglish ? 'Junior Frontend Developer' : 'Junior Frontend-Entwickler'} · React · Next.js · TypeScript</span><span>© {new Date().getFullYear()} XXL Designs</span></div>
+      <div><strong>Yasser Akanni</strong><span>{isEnglish ? 'Frontend Developer' : 'Frontend-Entwickler'} · React · Next.js · TypeScript</span><span>© {new Date().getFullYear()} XXL Designs</span></div>
       <div className="footer-links">
-        <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
-        <a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+        <a href={githubUrl} target="_blank" rel="noreferrer">GitHub </a>
+        <a href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn </a>
         <a href={cvHref} download>{isEnglish ? 'CV' : 'Lebenslauf'} <Download /></a>
-        <Link href={`/datenschutz?lang=${language}`}>{isEnglish ? 'Privacy' : 'Datenschutz'} <ShieldCheck /></Link>
-        <a href={`/?lang=${language}#top`}>{isEnglish ? 'Back to home' : 'Zur Startseite'} <ArrowUpRight /></a>
+        <a href={`/datenschutz?lang=${language}`}>{isEnglish ? 'Privacy' : 'Datenschutz'} <ShieldCheck /></a>
+        <a href={`/?lang=${language}#top`}>{isEnglish ? 'Back to home' : 'Zur Startseite'} </a>
       </div>
     </footer>
   );

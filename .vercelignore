@@ -1,0 +1,12 @@
+node_modules
+.git
+.wrangler
+.vinext
+dist
+.output
+tmp
+output
+Certificates
+certificates folder
+tsconfig.tsbuildinfo
+.env*

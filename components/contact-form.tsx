@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Send } from 'lucide-react';
 import { useForm } from '@formspree/react';
@@ -12,9 +11,10 @@ import { Textarea } from '@/components/ui/textarea';
 type ContactFormProps = {
   language: 'de' | 'en';
   privacyText: string;
+  idPrefix?: string;
 };
 
-export function ContactForm({ language, privacyText }: ContactFormProps) {
+export function ContactForm({ language, privacyText, idPrefix = '' }: ContactFormProps) {
   const [state, handleSubmit, reset] = useForm('xaeykgjq');
   const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => { if (state.succeeded) formRef.current?.reset(); }, [state.succeeded]);
@@ -30,7 +30,7 @@ export function ContactForm({ language, privacyText }: ContactFormProps) {
       : error.code === 'REQUIRED_FIELD_EMPTY' || error.code === 'REQUIRED_FIELD_MISSING'
         ? (language === 'de' ? 'Bitte füllen Sie dieses Feld aus.' : 'Please fill out this field.')
         : (language === 'de' ? 'Bitte prüfen Sie Ihre Eingabe.' : 'Please check your input.');
-    return <p id={`${field}-error`} role="alert">{message}</p>;
+    return <p id={`${idPrefix}${field}-error`} role="alert">{message}</p>;
   };
 
   return (
@@ -40,19 +40,19 @@ export function ContactForm({ language, privacyText }: ContactFormProps) {
     }}>
       <div className="field-row">
         <div className="field">
-          <label htmlFor="name">{labels.name}</label>
-          <Input id="name" name="name" autoComplete="name" aria-describedby="name-error" required />
+          <label htmlFor={`${idPrefix}name`}>{labels.name}</label>
+          <Input id={`${idPrefix}name`} name="name" autoComplete="name" aria-describedby={`${idPrefix}name-error`} required />
           {fieldError('name')}
         </div>
         <div className="field">
-          <label htmlFor="email">{labels.email}</label>
-          <Input id="email" name="email" type="email" autoComplete="email" aria-describedby="email-error" required />
+          <label htmlFor={`${idPrefix}email`}>{labels.email}</label>
+          <Input id={`${idPrefix}email`} name="email" type="email" autoComplete="email" aria-describedby={`${idPrefix}email-error`} required />
           {fieldError('email')}
         </div>
       </div>
       <div className="field">
-        <label htmlFor="message">{labels.message}</label>
-        <Textarea id="message" name="message" rows={5} aria-describedby="message-error" required />
+        <label htmlFor={`${idPrefix}message`}>{labels.message}</label>
+        <Textarea id={`${idPrefix}message`} name="message" rows={5} aria-describedby={`${idPrefix}message-error`} required />
         {fieldError('message')}
       </div>
       <input className="honeypot" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" />
@@ -60,7 +60,7 @@ export function ContactForm({ language, privacyText }: ContactFormProps) {
         {state.succeeded
           ? <Button type="button" size="lg" onClick={reset}>{language === 'de' ? 'Weitere Nachricht senden' : 'Send another message'} <Send /></Button>
           : <Button type="submit" size="lg" disabled={state.submitting}>{state.submitting ? labels.sending : labels.submit} <Send /></Button>}
-        <small>{privacyText} <Link href={`/datenschutz?lang=${language}`}>{labels.privacy}</Link></small>
+        <small>{privacyText} <a href={`/datenschutz?lang=${language}`}>{labels.privacy}</a></small>
       </div>
       {state.succeeded && <output className="form-status is-success">{labels.success}</output>}
       {state.errors && <p role="alert" className="form-status is-error">{labels.error}</p>}

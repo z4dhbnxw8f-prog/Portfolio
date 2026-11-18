@@ -1,7 +1,21 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Space_Grotesk, Caveat, Fraunces } from 'next/font/google';
+import { PortfolioModesPicker } from '@/components/portfolio-modes';
+import { ProjectTransitions } from '@/components/motion/project-transitions';
 import { SiteFooter } from '@/components/site-footer';
 import './globals.css';
+import './cinematic.css';
+import './scrapbook.css';
+import '@/components/retro-desktop.css';
+import './cozy.css';
+import './cyberpunk.css';
+import './social.css';
+import './y2k.css';
+
+const cozySerif = Fraunces({ variable: '--font-cozy', subsets: ['latin'] });
+
+const display = Space_Grotesk({ variable: '--font-display', subsets: ['latin'] });
+const handwriting = Caveat({ variable: '--font-hand', subsets: ['latin'] });
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -14,7 +28,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://my-jbo-cv-portfolio.vercel.app'),
+  metadataBase: new URL('https://yasser-akanni.vercel.app'),
   title: 'Yasser Akanni | Qualified Junior Frontend Developer in Essen',
   description: 'Portfolio of Yasser Akanni, a qualified junior frontend developer for React, Next.js, and TypeScript in Essen, Germany. Available in English and German.',
   authors: [{ name: 'Yasser Akanni' }],
@@ -52,10 +66,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${display.variable} ${handwriting.variable} ${cozySerif.variable} antialiased`}
       >
-        {children}
-        <SiteFooter />
+        <ProjectTransitions>{children}<SiteFooter /><PortfolioModesPicker /></ProjectTransitions>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 /* oxlint-disable next/no-img-element */
 import type { Metadata } from 'next';
-import { ArrowLeft, ArrowUpRight, Check, Code2, Layers3 } from 'lucide-react';
+import { Check, Code2, Layers3 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 import { buttonVariants } from '@/components/ui/button';
@@ -10,6 +10,26 @@ import { getProject, projects } from '@/lib/projects';
 import { portfolioCopy, projectCopy, type Language } from '@/lib/portfolio-content';
 
 type ProjectPageProps = { params: Promise<{ slug: string }>; searchParams?: Promise<{ lang?: string }> };
+
+const projectScreens = {
+  penee: [
+    { src: '/projects/screens/penee-dashboard-laptop.png', alt: { en: 'Penee dashboard shown on a laptop', de: 'Penee-Dashboard auf einem Laptop' } },
+    { src: '/projects/screens/penee-transactions-laptop.png', alt: { en: 'Penee transactions shown on a laptop', de: 'Penee-Kontoauszuege auf einem Laptop' } },
+  ],
+  itemvault: [
+    { src: '/projects/screens/itemvault-features-laptop.png', alt: { en: 'ItemVault features shown on a laptop', de: 'ItemVault-Funktionen auf einem Laptop' } },
+    { src: '/projects/screens/itemvault-inventory-laptop.png', alt: { en: 'ItemVault inventory shown on a laptop', de: 'ItemVault-Inventar auf einem Laptop' } },
+  ],
+  'cosmic-styles': [
+    { src: '/projects/screens/cosmic-current.png', alt: { en: 'Current Cosmic Styles LLC homepage', de: 'Aktuelle Startseite von Cosmic Styles LLC' } },
+  ],
+  salesbook: [
+    { src: '/projects/screens/salesbook-dashboard-redacted.png', alt: { en: 'Salesbook dashboard', de: 'Salesbook-Dashboard' } },
+  ],
+  'learn-yoruba': [
+    { src: '/projects/screens/learn-yoruba.png', alt: { en: 'Learn Yoruba with Ykay homepage', de: 'Startseite von Learn Yoruba with Ykay' } },
+  ],
+} as const;
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -52,8 +72,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  const projectOrder = ['penee', 'itemvault', 'cosmic-styles'];
-  const orderedProjects = projectOrder.map((projectSlug) => getProject(projectSlug)).filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const orderedProjects = projects;
   const projectIndex = orderedProjects.findIndex((item) => item.slug === slug);
   const previousProject = projectIndex > 0 ? orderedProjects[projectIndex - 1] : undefined;
   const nextProject = projectIndex < orderedProjects.length - 1 ? orderedProjects[projectIndex + 1] : undefined;
@@ -66,15 +85,11 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       penee: 'Full-Stack-Finanzanwendung',
       itemvault: 'React-/Firebase-Webanwendung',
       'cosmic-styles': 'Freelance-Kundenprojekt',
+      salesbook: 'Full-Stack-Verkaufs- und Lagerverwaltung',
+      'learn-yoruba': 'Sprachunterrichts- und Tutorwebsite',
     }[slug] ?? project.type)
     : project.type;
-  const localizedAlt = language === 'de'
-    ? ({
-      penee: 'Sicherer Login der persönlichen Finanzanwendung Penee',
-      itemvault: 'Responsive Startseite der persönlichen Inventaranwendung ItemVault',
-      'cosmic-styles': 'Responsive Barbershop-Website von Cosmic Styles LLC',
-    }[slug] ?? project.imageAlt)
-    : project.imageAlt;
+  const screens = projectScreens[slug as keyof typeof projectScreens];
   const labels = language === 'de'
     ? { overview: 'Überblick', problem: 'Problem', contribution: 'Mein Beitrag', decision: 'Technische Entscheidung', features: 'Umgesetzte Funktionen', architecture: 'Architektur', technologies: 'Technologien', coreFeatures: 'Kernfunktionen', projectType: 'Projekttyp', technology: 'Technologie', allProjects: 'Alle Projekte', switchLanguage: 'English', nextProject: 'Nächstes Projekt', previousProject: 'Vorheriges Projekt', exploreProjects: 'Projekte entdecken' }
     : { overview: 'Overview', problem: 'Problem', contribution: 'My contribution', decision: 'Technical decision', features: 'Implemented functionality', architecture: 'Architecture', technologies: 'Technologies', coreFeatures: 'Core features', projectType: 'Project type', technology: 'Technology', allProjects: 'All projects', switchLanguage: 'Deutsch', nextProject: 'Next project', previousProject: 'Previous project', exploreProjects: 'Explore projects' };
@@ -89,30 +104,36 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
   ];
 
   return (
-    <main className="case-study">
+    <main className="case-study cinematic scrapbook scrapbook-case" data-case-slug={slug}>
       <CaseStudyHeader language={language} slug={slug} />
 
       <section className="case-hero">
         <div>
           <p className="section-kicker">{project.status}{project.status === 'Live' && <i className="live-dot" aria-label="Online" />}</p>
           <h1>{project.name}</h1>
-          <p>{localized?.summary ?? project.summary}</p>
+          <p className="case-intro">{localized?.summary ?? project.summary}</p>
           <div className="case-links">
             {project.links.map((link) => {
               const linkLabel = link.kind === 'live' ? siteCopy.liveDemo : siteCopy.sourceCode;
-              return <a className={link.kind === 'live' ? `primary-action ${buttonVariants({ variant: 'default' })}` : buttonVariants({ variant: 'outline' })} key={link.kind} href={link.url} target="_blank" rel="noreferrer">{linkLabel}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight /></a>;
+              return <a className={link.kind === 'live' ? `primary-action ${buttonVariants({ variant: 'default' })}` : buttonVariants({ variant: 'outline' })} key={link.kind} href={link.url} target="_blank" rel="noreferrer">{linkLabel}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} </a>;
             })}
           </div>
-        </div>
+          <ul className="case-tech-tags">{project.technologies.map((tech) => <li key={tech}><TechnologyIcon name={tech} />{tech}</li>)}</ul>
         <div className="case-spec">
           <span>{labels.projectType}</span><strong>{localizedType}</strong>
           <span>{labels.technology}</span><strong>{project.technologies.slice(0, 4).join(' · ')}</strong>
         </div>
+        </div>
+        <figure className="case-featured-image" data-case-visual>
+          <img src={screens[0].src} alt={screens[0].alt[language]} width={1800} height={1200} />
+        </figure>
       </section>
 
-      <figure className="case-image">
-        <img src={project.image} alt={localizedAlt} width={1440} height={900} />
-      </figure>
+      <section className="case-screens" aria-label={language === 'de' ? `${project.name} Ansichten` : `${project.name} screens`}>
+        {screens.map((screen) => <figure className="case-image" key={screen.src}>
+          <img src={screen.src} alt={screen.alt[language]} width={1800} height={1200} style={slug === 'salesbook' ? { objectFit: 'contain' } : undefined} />
+        </figure>)}
+      </section>
 
       <section className="case-body">
         <div className="case-narrative">
@@ -128,8 +149,8 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
         <p className="section-kicker">{previousProject && nextProject ? labels.exploreProjects : nextProject ? labels.nextProject : labels.previousProject}</p>
         <h2>{previousProject && nextProject ? labels.exploreProjects : (nextProject ?? previousProject)?.name}</h2>
         <div className="case-next-actions">
-          {previousProject && <a className={`case-back-link case-previous-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${previousProject.slug}?lang=${language}`}><ArrowLeft /> {labels.previousProject}: {previousProject.name}</a>}
-          {nextProject && <a className={`case-back-link case-next-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${nextProject.slug}?lang=${language}`}>{labels.nextProject}: {nextProject.name} <ArrowUpRight /></a>}
+          {previousProject && <a className={`case-back-link case-previous-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${previousProject.slug}?lang=${language}`}> {labels.previousProject}: {previousProject.name}</a>}
+          {nextProject && <a className={`case-back-link case-next-link ${buttonVariants({ variant: 'outline', size: 'lg' })}`} href={`/projects/${nextProject.slug}?lang=${language}`}>{labels.nextProject}: {nextProject.name} </a>}
         </div>
       </section>
     </main>

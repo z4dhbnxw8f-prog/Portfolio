@@ -4,16 +4,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
-  ArrowDownRight,
-  ArrowUpRight,
-  Award,
   BriefcaseBusiness,
   Code2,
   Database,
   Download,
   Mail,
   MapPin,
-  Menu,
   PanelsTopLeft,
   Phone,
   ServerCog,
@@ -21,43 +17,44 @@ import {
   Terminal,
   PencilRuler,
   Wrench,
-  X,
 } from 'lucide-react';
 
+import { PortfolioModesButton } from '@/components/portfolio-modes';
+import { FullscreenMenu } from '@/components/fullscreen-menu';
+import { useCinematic } from '@/components/motion/use-cinematic';
 import { ContactForm } from '@/components/contact-form';
-import { TechnologyIcon } from '@/components/technology-icon';
+import { ProjectBento } from '@/components/project-bento';
+import { ThemeToggle, HeroStickers, RandomStuff, PlayfulCursor } from '@/components/scrapbook-extras';
 import { buttonVariants } from '@/components/ui/button';
 import {
   experience,
+  qualifications,
   portfolioCopy,
   processSteps,
-  projectCopy,
-  qualifications,
   skillGroups,
   strengths,
   type Language,
 } from '@/lib/portfolio-content';
-import { projects } from '@/lib/projects';
 
-const sectionIds = ['projects', 'skills', 'about', 'experience', 'qualifications', 'contact'];
+const sectionIds = ['top', 'projects', 'skills', 'about', 'contact'];
 const contactEmail = 'ressay93@outlook.com';
 const contactPhone = '+49 176 12854755';
 const githubUrl = 'https://github.com/z4dhbnxw8f-prog';
 const linkedInUrl = 'https://www.linkedin.com/in/yasser-akanni-4b15333b3/';
 const skillIcons = [PanelsTopLeft, ServerCog, Database, ShieldCheck, Code2, PencilRuler, Wrench, Terminal];
 
+
 export default function Home() {
   const language: Language = useSearchParams().get('lang') === 'de' ? 'de' : 'en';
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const [activeSkill, setActiveSkill] = useState('All');
+  useCinematic(rootRef, language);
   const copy = portfolioCopy[language];
   const introduction = language === 'de' ? 'Hi, ich bin Yasser — Webentwickler aus Essen.' : 'Hi, I’m Yasser — a web developer based in Essen.';
   const cvHref = language === 'de' ? '/Yasser-Akanni-CV-German.pdf' : '/Yasser-Akanni-CV-English.pdf';
-  const cvDownloadLabel = language === 'de' ? copy.cvGermanShort : copy.cvLabel;
-  const navItems = sectionIds.map((id, index) => [id, copy.nav[index + 1]]);
   const changeLanguage = (nextLanguage: Language) => {
     const url = new URL(window.location.href);
     url.searchParams.set('lang', nextLanguage);
@@ -65,52 +62,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motion.matches || !('IntersectionObserver' in window)) return;
-    // Keep the server-rendered content visible; animate only on first entry.
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        if (!motion.matches) entry.target.classList.add('has-entered');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
-    const targets = document.querySelectorAll('.practice-map, .project-card');
-    targets.forEach((target) => observer.observe(target));
-    return () => {
-      observer.disconnect();
-      targets.forEach((target) => target.classList.remove('has-entered'));
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const header = headerRef.current;
-    const focusable = header?.querySelectorAll<HTMLElement>('a, button');
-    focusable?.[0]?.focus();
-    const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false);
-      if (event.key !== 'Tab' || !focusable?.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [menuOpen]);
-
-  useEffect(() => {
     document.documentElement.lang = language;
     document.title = language === 'de'
-      ? 'Yasser Akanni | Qualifizierter Junior Frontend-Entwickler in Essen'
-      : 'Yasser Akanni | Qualified Junior Frontend Developer in Essen';
+      ? 'Yasser Akanni | Frontend-Entwickler in Essen'
+      : 'Yasser Akanni | Frontend Developer in Essen';
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     description?.setAttribute(
       'content',
       language === 'de'
-        ? 'Portfolio von Yasser Akanni, Junior Frontend-Entwickler für React, Next.js und TypeScript in Essen, NRW.'
-        : 'Portfolio of Yasser Akanni, a junior frontend developer focused on React, Next.js, and TypeScript in Essen, Germany.',
+        ? 'Portfolio von Yasser Akanni, Frontend-Entwickler für React, Next.js und TypeScript in Essen, NRW.'
+        : 'Portfolio of Yasser Akanni, a frontend developer focused on React, Next.js, and TypeScript in Essen, Germany.',
     );
   }, [language]);
 
@@ -140,22 +101,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main id="top">
-      <header ref={headerRef} className={`site-header${isScrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
+    <main className="cinematic scrapbook" ref={rootRef}>
+      <PlayfulCursor />
+      <a className="skip-link" href="#projects">{language === 'de' ? 'Zum Inhalt' : 'Skip to content'}</a>
+      <div className="scroll-progress" aria-hidden="true" />
+      <header className={`site-header cinematic-header${isScrolled ? ' is-scrolled' : ''}`}>
         <a className="wordmark" href="#top" aria-label={copy.homeLabel}>
           <span>YA</span>
           <span className="wordmark-name">Yasser Akanni</span>
         </a>
-        <button className="nav-toggle" type="button" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen((open) => !open)}>
-          <span className="sr-only">{language === 'de' ? 'Menü' : 'Menu'}</span>{menuOpen ? <X /> : <Menu />}
-        </button>
-        <nav id="main-navigation" aria-label={copy.navLabel}>
-          {navItems.map(([sectionId, label]) => (
-            <a className={activeSection === sectionId ? 'is-active' : undefined} href={`#${sectionId}`} key={sectionId} aria-current={activeSection === sectionId ? 'location' : undefined} onClick={() => { setActiveSection(sectionId); setMenuOpen(false); }}>{label}</a>
-          ))}
-        </nav>
+        <nav className="scrapbook-nav" aria-label={copy.navLabel}>{sectionIds.map((id, index) => <a href={`#${id}`} aria-current={activeSection === id ? 'location' : undefined} key={id}>{copy.nav[index]}</a>)}</nav>
+        <FullscreenMenu language={language} activeSection={activeSection} onLanguageChange={changeLanguage} />
         <div className="header-tools">
-          <a className="header-cv" href={cvHref} download aria-label={cvDownloadLabel}><Download size={14} /> {language === 'de' ? 'Lebenslauf' : 'CV'}</a>
+          <PortfolioModesButton language={language} />
+          <ThemeToggle language={language} />
           <fieldset className="language-switcher">
             <legend className="sr-only">{language === 'de' ? 'Sprache wählen' : 'Choose language'}</legend>
             <button type="button" aria-pressed={language === 'de'} onClick={() => changeLanguage('de')}>DE</button>
@@ -165,19 +124,24 @@ export default function Home() {
         </div>
       </header>
 
+
+
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="hero-name">Yasser Akanni</p>
+          <p className="hero-edition">PORTFOLIO / 2026 <span>DESIGN × DEVELOPMENT</span></p>
+          <p className="hero-name" aria-label="Yasser Akanni"><span className="name-mask"><span className="hero-name-word">YASSER</span></span><span className="name-mask"><span className="hero-name-word">AKANNI<span className="name-period">.</span></span></span></p>
           <div className="eyebrow"><MapPin size={14} /> {copy.location}</div>
-          <p className="role-line">{copy.role}</p>
+          <p className="role-line"><span className="role-mask"><span className="role-text">{copy.role}</span></span></p>
           <p className="stack-line">{copy.stack}</p>
           <h1>{copy.headline[0]}<br /><em>{copy.headline[1]}</em></h1>
           <p className="hero-lead">{copy.hero}</p>
           <div className="hero-actions">
-            <a className={`primary-action ${buttonVariants({ size: 'lg' })}`} href="#projects">{copy.viewWork} <ArrowDownRight /></a>
-            <a className="hero-github" href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub <ArrowUpRight /></a>
-            <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href={cvHref} download>{copy.downloadCv} <Download /></a>
+            <a className={`primary-action ${buttonVariants({ size: 'lg' })}`} href="#projects">{language === 'de' ? 'Projekte entdecken' : 'Explore my work'} <span aria-hidden="true">↗</span></a>
+            <a className="hero-github" href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub </a>
+            <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href={cvHref} download><Download /> {copy.downloadCv}</a>
+            <a className="hero-credential" href="/certificates/junior-web-developer-ihk-web.pdf" target="_blank" rel="noreferrer"><ShieldCheck size={14} /> Junior Web Developer IHK</a>
           </div>
+          <div className="hero-modes-invite"><PortfolioModesButton language={language} placement="hero" /><span className="hand-note">{language === 'de' ? 'Anderes Fenster. Gleiche Person. ↖' : 'Different window. Same human. ↖'}</span></div>
           <div className="hero-availability">
             <p className="section-kicker">{copy.lookingFor}</p>
             <p>{copy.roles}</p>
@@ -186,14 +150,14 @@ export default function Home() {
           <div className="social-links">
             <a href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub</a>
             <a href={linkedInUrl} target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn</a>
-            <a href={cvHref} download><Download /> {cvDownloadLabel}</a>
           </div>
         </div>
 
         <aside className="hero-aside">
+          <HeroStickers language={language} />
+          <p className="portrait-caption">{introduction}</p>
           <figure className="profile-photo">
-            <img src="/yasser-akanni-profile.png" alt="Yasser Akanni" width={1462} height={1436} />
-            <figcaption className="speech-bubble"><span>{introduction}</span></figcaption>
+            <img src="/yasser-akanni-profile-20261012.png" alt="Yasser Akanni" width={856} height={1836} />
           </figure>
           <div className="practice-map" id="process" aria-label={copy.processTitle}>
           <div className="map-header"><span>{copy.processTitle}</span></div>
@@ -205,85 +169,11 @@ export default function Home() {
           <div className="map-footer"><span>{copy.primaryFocus}</span><strong>{copy.frontendDevelopment}</strong></div>
           </div>
         </aside>
-        <a className="scroll-indicator" href="#projects"><span />{language === 'de' ? 'Scrollen' : 'Scroll'}</a>
+        <div className="skills-marquee" aria-label="React · Next.js · TypeScript · Figma · PostgreSQL"><div aria-hidden="true">{[0, 1].map((n) => <span key={n}>REACT ✦ NEXT.JS ✦ TYPESCRIPT ✦ FIGMA ✦ POSTGRESQL ✦ CSS ✦ </span>)}</div></div>
+        <a className="scroll-cue" href="#projects"><span>{language === 'de' ? 'WEITER ENTDECKEN' : 'SCROLL TO EXPLORE'}</span><span aria-hidden="true">↓</span></a>
       </section>
 
-      <section className="section projects-section" id="projects" data-section="01">
-        <div className="section-heading">
-          <p className="section-kicker">{copy.projectsKicker}</p>
-          <h2>{copy.projectsTitle[0]}<br />{copy.projectsTitle[1]}</h2>
-          <p>{copy.projectsIntro}</p>
-        </div>
-
-        <div className="project-list">
-          {projects.map((project) => {
-            const content = projectCopy[project.slug][language];
-            return (
-              <article className={`project-card${project.slug === 'penee' ? ' featured-project' : ''}`} id={`project-${project.slug}`} key={project.slug}>
-                <div className="project-number">{content.label.slice(0, 2)}</div>
-                <div className="project-copy">
-                  <div className="project-meta">
-                    <span>{project.status}{project.status === 'Live' && <i className="live-dot" aria-label="Online" />}</span>
-                    {(project.slug === 'cosmic-styles' || project.slug === 'penee') && <span>{content.label.replace(/^0[13] · /, '')}</span>}
-                  </div>
-                  <h3>{project.name}</h3>
-                  <p>{content.summary}</p>
-                  <div className="outcome-badges" aria-label={language === 'de' ? 'Projektergebnisse' : 'Project outcomes'}>
-                    {content.outcomes.map((outcome) => <span key={outcome}>{outcome}</span>)}
-                  </div>
-                  <ul className="project-highlights" aria-label={`${project.name} ${language === 'de' ? 'Kernfunktionen' : 'highlights'}`}>
-                    {content.features.slice(0, 3).map((feature) => <li key={feature}>{feature}</li>)}
-                  </ul>
-                  <ul className="tech-list" aria-label={`${project.name} ${language === 'de' ? 'Technologien' : 'technologies'}`}>
-                    {project.technologies.slice(0, 6).map((tech) => <li key={tech}><TechnologyIcon name={tech} />{language === 'de' && tech === 'Responsive Design' ? 'Responsives Design' : tech}</li>)}
-                  </ul>
-                  <div className="project-links">
-                    {project.links.map((link) => (
-                      <a
-                        className={link.kind === 'live' ? `primary-action ${buttonVariants({ variant: 'default' })}` : 'text-link'}
-                        href={link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        key={link.kind}
-                      >
-                        {link.kind === 'live' ? copy.liveDemo : copy.sourceCode}{link.kind === 'live' && <i className="live-dot" aria-label="Online" />} <ArrowUpRight />
-                      </a>
-                    ))}
-                    <a className="text-link case-study-link" href={`/projects/${project.slug}?lang=${language}`}>
-                      {copy.caseStudy} <ArrowUpRight />
-                    </a>
-                  </div>
-                </div>
-                <figure className="project-preview">
-                  <img src={project.image} alt={content.imageAlt} width={1440} height={900} loading="lazy" />
-                </figure>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="section skills-section" id="skills" data-section="02">
-        <div className="section-heading compact">
-          <p className="section-kicker">{copy.skillsKicker}</p>
-          <h2>{copy.skillsTitle}</h2>
-          <p>{copy.skillsIntro}</p>
-        </div>
-        <div className="skills-grid">
-          {skillGroups.map((group, index) => {
-            const Icon = skillIcons[index];
-            return (
-              <article className="skill-group" key={group.title.en}>
-                <div className="skill-title"><Icon /><h3>{group.title[language]}</h3></div>
-                <p>{group.skills[language].join(' · ')}</p>
-                {group.evidence && <small><strong>{copy.evidence}:</strong> {group.evidence[language]}</small>}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="section about-section" id="about" data-section="03">
+      <section className="section about-section" id="about" data-section="04">
         <div className="about-title">
           <p className="section-kicker">{copy.aboutKicker}</p>
           <h2>{copy.aboutTitle[0]}<br /><em>{copy.aboutTitle[1]}</em></h2>
@@ -293,75 +183,61 @@ export default function Home() {
           <p>{copy.aboutBody}</p>
           <p>{copy.aboutTraining}</p>
           <div className="about-principle"><ShieldCheck /><p><strong>{copy.perspective}</strong><br />{copy.perspectiveBody}</p></div>
+          <div className="currently-into"><span className="hand-note">{language === 'de' ? 'aktuell im fokus ↴' : 'currently into ↴'}</span><ul><li>UI/UX &amp; React</li><li>{language === 'de' ? 'Verständliche Nutzerabläufe' : 'Thoughtful user flows'}</li><li>{language === 'de' ? 'Interfaces mit Liebe zum Detail' : 'Interfaces with attention to detail'}</li></ul></div>
           <div className="strengths" aria-label={language === 'de' ? 'Stärken' : 'Strengths'}>
             {strengths[language].map((strength) => <span key={strength}>{strength}</span>)}
           </div>
         </div>
       </section>
 
-      <section className="section experience-section" id="experience" data-section="04">
-        <div className="experience-heading">
-          <p className="section-kicker">{copy.experienceKicker}</p>
-          <h2>{copy.experienceTitle[0]}<br /><em>{copy.experienceTitle[1]}</em></h2>
-          <p>{copy.experienceIntro}</p>
+      <section className="section projects-section" id="projects" data-section="02">
+        <div className="section-heading">
+          <p className="section-kicker">{copy.projectsKicker}</p>
+          <h2>{copy.projectsTitle[0]}<br />{copy.projectsTitle[1]}</h2>
+          <p>{copy.projectsIntro}</p>
         </div>
-        <div className="timeline">
-          {experience.map((item, index) => (
-            <article className={`timeline-item${index === 0 ? ' featured' : ''}`} key={index}>
-              <div className="timeline-date">{item.date[language]}</div>
-              <div>
-                <p className="timeline-kind">{item.kind[language]}</p>
-                <h3>{typeof item.title === 'string' ? item.title : item.title[language]}</h3>
-                {item.org && <p className="timeline-org">{item.org}</p>}
-                <p>{item.body[language]}</p>
-                {item.modules && (
-                  <ul className="module-list">
-                    {item.modules.map(([units, module]) => <li key={`${units}-${module.en}`}><span>{language === 'de' ? units : units.replace('UE', 'teaching units')}</span>{module[language]}</li>)}
-                  </ul>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
+
+        <ProjectBento language={language} />
       </section>
 
-      <section className="section certificates-section" id="qualifications" data-section="05">
+      <section className="section skills-section" id="skills" data-section="03">
         <div className="section-heading compact">
-          <p className="section-kicker">{copy.qualificationsKicker}</p>
-          <h2>{copy.qualificationsTitle}</h2>
-          <p>{copy.qualificationsIntro}</p>
+          <p className="section-kicker">{copy.skillsKicker}</p>
+          <h2>{copy.skillsTitle}</h2>
+          <p>{copy.skillsIntro}</p>
         </div>
-        <div className="certificate-list">
-          {qualifications.map((qualification) => (
-            <article className={`certificate-card${qualification.status === 'final' ? ' final-qualification' : ''}`} key={qualification.title}>
-              <div className="certificate-header">
-                <div className="certificate-badge"><Award aria-hidden="true" /></div>
-                <div><p className={`certificate-kind${qualification.status === 'pending' ? ' certificate-pending' : ''}`}>{qualification.status === 'final' ? (language === 'de' ? 'Abschlussqualifikation' : 'Final Qualification') : qualification.status === 'pending' ? (language === 'de' ? 'Zertifikat ausstehend' : 'Certificate pending') : qualification.module ? `${copy.certificate} · ${language === 'de' ? 'Modul' : 'Module'} ${qualification.module}` : copy.certificate}</p><h3>{language === 'de' ? qualification.titleDe ?? qualification.title : qualification.titleEn ?? qualification.title}</h3></div>
-              </div>
-              <div className="certificate-meta"><span>{qualification.institution}</span><span>{qualification.date && new Intl.DateTimeFormat(language === 'de' ? 'de-DE' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(qualification.date.split('.').reverse().join('-')))}</span></div>
-              <p>{qualification.subject[language]}</p>
-              {qualification.href && <a className="certificate-link" href={qualification.href} target="_blank" rel="noreferrer">{copy.viewCertificate} <ArrowUpRight /></a>}
-            </article>
-          ))}
+        <div className="core-stack" aria-label={language === 'de' ? 'Frontend-Schwerpunkt' : 'Core frontend stack'}>{['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((tech) => <span key={tech}>{tech}</span>)}</div>
+        <div className="skill-filters" aria-label={language === 'de' ? 'Kompetenzen filtern' : 'Filter skills'}>
+          {['All', ...skillGroups.map((group) => group.title.en)].map((category) => <button type="button" key={category} aria-pressed={activeSkill === category} onClick={() => setActiveSkill(category)}>{category === 'All' ? (language === 'de' ? 'Alle' : 'All expertise') : skillGroups.find((group) => group.title.en === category)?.title[language]}</button>)}
+        </div>
+        <div className="skills-grid">
+          {skillGroups.map((group) => {
+            const Icon = skillIcons[skillGroups.indexOf(group)];
+            return (
+              <article className="skill-group" key={group.title.en} hidden={activeSkill !== 'All' && activeSkill !== group.title.en}>
+                <div className="skill-title"><Icon /><h3>{group.title[language]}</h3></div>
+                <ul className="skill-technologies">{group.skills[language].map((skill) => <li key={skill}>{skill}</li>)}</ul>
+                {group.evidence && <small><strong>{copy.evidence}:</strong> {group.evidence[language]}</small>}
+              </article>
+            );
+          })}
         </div>
       </section>
 
-      <section className="section application-section" aria-labelledby="application-title" data-section="06">
-        <div>
-          <p className="section-kicker">{copy.applicationKicker}</p>
-          <h2 id="application-title">{copy.applicationTitle}</h2>
-        </div>
-        <dl>
-          {copy.applicationLabels.map((label, index) => (
-            <div key={label}><dt>{label}</dt><dd>{copy.applicationValues[index]}</dd></div>
-          ))}
-        </dl>
+      <section className="section career-section" id="experience">
+        <div className="section-heading"><p className="section-kicker">{copy.experienceKicker}</p><h2>{copy.experienceTitle.join(' ')}</h2><p>{copy.experienceIntro}</p></div>
+        <div className="career-list">{experience.map((item) => <details className="career-detail" key={item.date.en}><summary><span>{item.date[language]}</span><strong>{typeof item.title === 'string' ? item.title : item.title[language]}</strong><span aria-hidden="true">↗</span></summary><p>{item.kind[language]}{item.org ? ` · ${item.org}` : ''}</p><p>{item.body[language]}</p>{item.modules && <ul>{item.modules.map(([hours, title]) => <li key={hours + title.en}>{hours} · {title[language]}</li>)}</ul>}</details>)}</div>
+        <div className="qualification-block" id="qualifications"><p className="section-kicker">{copy.qualificationsKicker}</p><h3>{copy.qualificationsTitle}</h3><p>{copy.qualificationsIntro}</p><div className="qualification-links">{qualifications.map((item) => <a href={item.href} key={item.title} target="_blank" rel="noreferrer"><span>{language === 'de' ? item.titleDe ?? item.title : item.titleEn ?? item.title}</span><small>{item.institution} · {item.date}</small><span aria-hidden="true">↗</span></a>)}</div></div>
       </section>
+
+
+
+      <RandomStuff language={language} />
 
       <section className="contact-section" id="contact">
         <div className="contact-copy">
           <p className="section-kicker">{copy.contactKicker}</p>
-          <h2>{copy.contactTitle}</h2>
+          <h2>{language === 'de' ? copy.contactTitle : "LET’S BUILD SOMETHING USEFUL."}</h2>
           <p>{copy.contactBody}</p>
           <address>
             <a href={`mailto:${contactEmail}`}><Mail /> {contactEmail}</a>
@@ -369,9 +245,8 @@ export default function Home() {
             <span><MapPin /> Essen · NRW</span>
           </address>
           <div className="contact-links">
-            <a href={linkedInUrl} target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn <ArrowUpRight /></a>
-            <a href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub <ArrowUpRight /></a>
-            <a href={cvHref} download><Download /> {cvDownloadLabel}</a>
+            <a href={linkedInUrl} target="_blank" rel="noreferrer"><BriefcaseBusiness /> LinkedIn </a>
+            <a href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub </a>
           </div>
           <p className="work-status"><i aria-hidden="true" />{language === 'de' ? 'Bereit für neue Aufgaben' : 'Ready to work'}</p>
         </div>

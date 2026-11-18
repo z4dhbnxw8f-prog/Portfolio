@@ -1,3 +1,4 @@
+from cv_photo import Portrait
 from pathlib import Path
 import json
 import shutil
@@ -7,12 +8,12 @@ from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
-from reportlab.platypus import BaseDocTemplate, Frame, Image, PageBreak, PageTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import BaseDocTemplate, Frame, Image, KeepTogether, PageBreak, PageTemplate, Paragraph, Spacer, Table, TableStyle
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output" / "pdf" / "Yasser-Akanni-CV-German.pdf"
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-PROFILE = ROOT / "public" / "yasser-akanni-profile.png"
+PROFILE = ROOT / "public" / "yasser-akanni-profile-20261012.png"
 PAGE_W, PAGE_H = A4
 INK = colors.HexColor("#151816")
 MUTED = colors.HexColor("#565D58")
@@ -46,20 +47,38 @@ class GermanCV(BaseDocTemplate):
         canvas.saveState(); canvas.setFillColor(GREEN); canvas.rect(0, PAGE_H - 5 * mm, PAGE_W, 5 * mm, stroke=0, fill=1); canvas.setFillColor(LIME); canvas.rect(0, PAGE_H - 5 * mm, 35 * mm, 5 * mm, stroke=0, fill=1)
         canvas.setFont("Helvetica", 7.5); canvas.setFillColor(MUTED); canvas.drawString(20 * mm, 9 * mm, "YASSER AKANNI"); canvas.drawRightString(PAGE_W - 20 * mm, 9 * mm, f"SEITE {doc.page} / 3"); canvas.restoreState()
 
-story = [Table([[[p("Yasser Akanni", name), p("Qualifizierter Junior Frontend-Entwickler · React · Next.js · TypeScript", title), p("Essen, Deutschland · NRW &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; <link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/><link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; <link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>", contact)], Image(str(PROFILE), width=27 * mm, height=34 * mm)]], colWidths=[140 * mm, 30 * mm]), Spacer(1, 5)]
-story += heading("Profil") + [p("Junior Frontend-Entwickler mit Schwerpunkt auf React, Next.js und TypeScript sowie Fähigkeiten in UI/UX und praktischer Full-Stack-Entwicklung. Ich entwickle responsive Webanwendungen von der Gestaltung bis zum Deployment und bringe Erfahrung mit Authentifizierung, CRUD, API-Integration und datenbankgestützten Oberflächen mit. Im September 2026 habe ich die IT-Weiterbildung am Syntax Institut mit 2.300 Unterrichtseinheiten in 46 Wochen erfolgreich abgeschlossen. Ab sofort verfügbar für Junior-Positionen in den Bereichen Frontend-, React-, Next.js- und Webentwicklung.", body)]
+story = [Table([[[p("Yasser Akanni", name), p("Frontend-Entwickler · React · Next.js · TypeScript", title), p("Essen, Deutschland · NRW &nbsp;&nbsp;|&nbsp;&nbsp; +49 176 12854755 &nbsp;&nbsp;|&nbsp;&nbsp; <link href='mailto:ressay93@outlook.com' color='#565D58'>ressay93@outlook.com</link><br/><link href='https://yasser-akanni.vercel.app' color='#565D58'>yasser-akanni.vercel.app</link> &nbsp;&nbsp;|&nbsp;&nbsp; <link href='https://github.com/z4dhbnxw8f-prog' color='#565D58'>github.com/z4dhbnxw8f-prog</link> &nbsp;&nbsp;|&nbsp;&nbsp; <link href='https://www.linkedin.com/in/yasser-akanni-4b15333b3/' color='#565D58'>linkedin.com/in/yasser-akanni-4b15333b3/</link>", contact)], Portrait(PROFILE, width=27 * mm, height=34 * mm)]], colWidths=[140 * mm, 30 * mm]), Spacer(1, 5)]
+story += heading("Profil") + [p("Frontend-Entwickler mit Schwerpunkt auf React, Next.js und TypeScript. Nach meiner beruflichen Erfahrung in internationaler Beschaffung und Logistik habe ich mich bewusst in Richtung Webentwicklung weiterentwickelt, um strukturiertes Problemlösen und Geschäftsverständnis mit praktischer Produktentwicklung zu verbinden. Ich habe eine IT-Qualifizierung mit 2.300 Unterrichtseinheiten abgeschlossen und entwickle heute responsive, barrierefreie und zuverlässige Webanwendungen von der Gestaltung bis zum Deployment.", body)]
+story += heading("Beruflicher Wechsel") + [p("Meine frühere Arbeit hat Verantwortungsbewusstsein, Koordination, Verhandlung und Prozessdisziplin geprägt. Diese Stärken bringe ich in meine technische Entwicklung ein – durch gezielte Weiterbildung, praktische Projekte und kontinuierliche Arbeit mit React, Next.js und TypeScript.", body)]
 story += heading("Technische Kompetenzen")
 for group in json.loads((ROOT / "scripts/cv_skills.json").read_text()):
     story.append(p(f"<b>{group['title']['de']}:</b> {', '.join(group['skills']['de'])}", small))
 story.append(PageBreak())
 story += heading("Ausgewählte Projekte")
 story += [entry_header("Penee", "ABSCHLUSSPROJEKT", "Abschlussprojekt · Full-Stack-Ausgabentracker"), bullet("Entwickelt mit Next.js, React, TypeScript, PostgreSQL, Prisma, Server Actions und Vercel."), bullet("Sichere Sessions, bcrypt, geschützte Routen und nutzereigene Daten; Konten, Einnahmen, Ausgaben, Budgets und mehrere Währungen. Responsiv und live auf Vercel; Android-Version mit Capacitor."), bullet("Historische Finanzdaten bleiben durch Decimal-Beträge, Korrekturtransaktionen und gespeicherte Originalwährungen geschützt."), p("<link href='https://xpense-trvcker.vercel.app' color='#173F35'><b>xpense-trvcker.vercel.app</b></link>", small), Spacer(1, 3), entry_header("ItemVault", "LIVE", "Private Inventaranwendung"), bullet("Responsive React-/Vite-Anwendung mit Firebase Authentication und Firestore-Echtzeitdaten."), bullet("Private Inventare, Gegenstände, Kategorien, Orte, Status, Suche, Filter, geschützte Routen und Firestore Security Rules."), p("<link href='https://item-vault.vercel.app' color='#173F35'><b>item-vault.vercel.app</b></link>", small)]
-story += heading("Ausgewählte Projekte – Fortsetzung") + [entry_header("Cosmic Styles LLC", "LIVE", "Webanwendung für einen realen Barbershop"), bullet("Responsive HTML-, CSS- und JavaScript-Oberfläche für Leistungen, Preise, Geschäftsinformationen und Galerie."), bullet("Buchungsablauf von Leistung über Datum und Uhrzeit bis zu Kundendaten mit vorausgefüllter WhatsApp-Übergabe."), p("<link href='https://cosmic-styles-llc.vercel.app' color='#173F35'><b>cosmic-styles-llc.vercel.app</b></link>", small)]
+story += heading("Ausgewählte Projekte – Fortsetzung") + [entry_header("Cosmic Styles LLC", "LIVE", "Webanwendung für einen realen Barbershop"), bullet("Responsive HTML-, CSS- und JavaScript-Oberfläche für Leistungen, Preise, Geschäftsinformationen und Galerie."), bullet("Buchungsablauf von Leistung über Datum und Uhrzeit bis zu Kundendaten mit vorausgefüllten WhatsApp-Nachrichten und E-Mail-Entwürfen zum Versenden durch den Kunden."), p("<link href='https://cosmicstylesllc.vercel.app' color='#173F35'><b>cosmicstylesllc.vercel.app</b></link>", small)]
+for project_name, subtitle, points, url in [
+    ("Salesbook", "Full-Stack-Verkaufs- und Lagerverwaltung", [
+        "Entwickelt mit Next.js, React, TypeScript, PostgreSQL und Prisma; getrennte Inhaber- und Mitarbeiterzugänge.",
+        "Verkäufe, Lagerbestände, Zahlungen, Bargeldübergaben und Provision je Verkauf in einer wählbaren Währung.",
+    ], "https://salesbook-bay.vercel.app"),
+    ("Learn Yoruba with Ykay", "Sprachunterrichts- und Tutorwebsite", [
+        "Responsive Website mit Next.js, React, TypeScript, Tailwind CSS und barrierearmen Animationen.",
+        "Vorstellung der Lehrerin, Lernangebote und Yoruba-Kulturgeschichten mit direkten E-Mail- und WhatsApp-Anfragen.",
+    ], "https://learnyorubawithykay.vercel.app"),
+]:
+    story.append(KeepTogether([
+        entry_header(project_name, "LIVE", subtitle),
+        *[bullet(point) for point in points],
+        p(f"<link href='{url}' color='#173F35'><b>{url.removeprefix('https://')}</b></link>", small),
+    ]))
+    story.append(Spacer(1, 3))
+
 story.append(PageBreak())
 story += heading("Ausbildung und IT-Qualifizierung") + [entry_header("Qualifizierung zur IT-Fachkraft", "09/2025 – 09/2026", "Syntax Institut · Erfolgreich abgeschlossen · 2.300 Unterrichtseinheiten · 46 Wochen"), p("Am 11.09.2026 erfolgreich abgeschlossene Weiterbildung nach §81 ff. SGB III in Produkt- und UI/UX-Design, Software- und Webentwicklung, Frontend, Backend-Grundlagen, Datenbanken, Authentifizierung, APIs, Git/GitHub, Deployment, Scrum, Debugging und technischer Dokumentation.", body)]
 for module in ["Produktdesign & -entwicklung in der IT - 09.01.2026 - 700 UE", "Einführung Software- und Webentwicklung - 02.04.2026 - 600 UE", "Vertiefung: Frontend Entwicklung - 26.06.2026 - 500 UE", "Spezialisierung & Arbeitsmarktvorbereitung - 11.09.2026 - 500 UE"]: story.append(bullet(module))
 story += heading("Berufserfahrung") + [entry_header("Preymesser", "2023 – 2025", "Mitarbeiter Logistikbetrieb"), p("Unterstützung von Lager- und Transportabläufen durch Be- und Entladen sowie Materialhandling. Sicherstellung verlässlicher und sicherer täglicher Arbeitsabläufe im Team.", body), Spacer(1, 3), entry_header("Haeger & Schmidt", "2022 – 2023", "Mitarbeiter Industrielogistik"), p("Be- und Entladen von Lkw und Schiffen, kranunterstütztes Materialhandling, Schneidarbeiten und Pflege des Arbeitsbereichs in einem sicherheitsorientierten Industrieumfeld.", body), Spacer(1, 3), entry_header("SIB Enterprises", "2007 – 2021", "Einkaufsmanager – internationale Beschaffung & SAP"), p("Verantwortung für Einkauf und Beschaffung, internationale Lieferantensuche, SAP-gestützte Bestellungen und Lieferantenverwaltung sowie Import- und Exportkoordination. Entwicklung von Organisation, Verhandlung und interkultureller Kommunikation.", body)]
-story += heading("Zertifikate") + [entry_header("Qualifizierung zur IT-Fachkraft", "ABGESCHLOSSEN", "Syntax Institut · Abschlusszertifikat · 11.09.2026"), p("Abschlusszertifikat: Webentwicklung - Qualifizierung für IT- und KI-gestützte Berufe. Digital Product Designer IHK (ausgestellt am 15.01.2026). Junior WEB-Developer (IHK) und Web Development Specialist (IHK): erfolgreich abgeschlossen - offizielle Zertifikate werden noch ausgestellt.", small)]
+story += heading("Zertifikate") + [entry_header("Qualifizierung zur IT-Fachkraft", "ABGESCHLOSSEN", "Syntax Institut · Abschlusszertifikat · 11.09.2026"), p("Abschlusszertifikat: Webentwicklung - Qualifizierung für IT- und KI-gestützte Berufe.", small), Spacer(1, 3), entry_header("IHK-Zertifikate", "ABGESCHLOSSEN", "IHK Akademie München und Oberbayern gGmbH"), p("Digital Product Designer IHK (15.01.2026) · JUNIOR WEB DEVELOPER IHK (17.09.2026) · Web Development Specialist IHK (15.09.2026).", small)]
 story += heading("Sprachen") + [p("<b>Englisch</b> – fließend &nbsp;&nbsp;&nbsp; <b>Französisch</b> – fließend &nbsp;&nbsp;&nbsp; <b>Deutsch</b> – B1 (GER)", body)]
 GermanCV(str(OUTPUT)).build(story)
 print(OUTPUT)
