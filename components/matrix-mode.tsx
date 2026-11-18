@@ -39,9 +39,12 @@ export default function MatrixMode({ language, onExit }: { language: Language; o
     if (reduced) { setBoot(lines); return; }
     let line = 0; let char = 0;
     const timer = window.setInterval(() => {
+      if (line >= lines.length) { window.clearInterval(timer); return; }
       char += 1;
-      setBoot((current) => { const next = [...current]; next[line] = lines[line].slice(0, char); return next; });
-      if (char >= lines[line].length) { line += 1; char = 0; if (line >= lines.length) window.clearInterval(timer); }
+      const currentLine = line;
+      const typedText = lines[currentLine].slice(0, char);
+      setBoot((current) => { const next = [...current]; next[currentLine] = typedText; return next; });
+      if (char >= lines[currentLine].length) { line += 1; char = 0; if (line >= lines.length) window.clearInterval(timer); }
     }, 38);
     return () => window.clearInterval(timer);
   }, [view, de, reduced]);
