@@ -282,3 +282,4 @@ body:has(.cinematic) > footer { margin-top: 0; }
 @media (max-width: 1000px) and (min-width: 701px), (max-width: 380px) {
   .cinematic .practice-map ol { grid-template-columns: minmax(0, 1fr); }
 }
+.certificate-request-button{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:13px 18px;border:1px solid #d1f66f;color:#d1f66f;text-decoration:none;font-size:13px;transition:background .2s,color .2s}.certificate-request-button:hover{background:#d1f66f;color:#171c12}

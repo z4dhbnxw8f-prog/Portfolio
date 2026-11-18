@@ -9,6 +9,7 @@ import {
   Database,
   Download,
   Mail,
+  ArrowUpRight,
   MapPin,
   PanelsTopLeft,
   Phone,
@@ -28,7 +29,6 @@ import { ThemeToggle, HeroStickers, RandomStuff, PlayfulCursor } from '@/compone
 import { buttonVariants } from '@/components/ui/button';
 import {
   experience,
-  qualifications,
   portfolioCopy,
   processSteps,
   skillGroups,
@@ -41,6 +41,7 @@ const contactEmail = 'ressay93@outlook.com';
 const contactPhone = '+49 176 12854755';
 const githubUrl = 'https://github.com/z4dhbnxw8f-prog';
 const linkedInUrl = 'https://www.linkedin.com/in/yasser-akanni-4b15333b3/';
+const certificateRequest = 'Hello Yasser, I would like to request access to your certificates.';
 const skillIcons = [PanelsTopLeft, ServerCog, Database, ShieldCheck, Code2, PencilRuler, Wrench, Terminal];
 
 
@@ -236,7 +237,7 @@ export default function Home() {
       <section className="section career-section" id="experience">
         <div className="section-heading"><p className="section-kicker">{copy.experienceKicker}</p><h2>{copy.experienceTitle.join(' ')}</h2><p>{copy.experienceIntro}</p></div>
         <div className="career-list">{experience.map((item) => <details className="career-detail" key={item.date.en}><summary><span>{item.date[language]}</span><strong>{typeof item.title === 'string' ? item.title : item.title[language]}</strong><span aria-hidden="true">↗</span></summary><p>{item.kind[language]}{item.org ? ` · ${item.org}` : ''}</p><p>{item.body[language]}</p>{item.modules && <ul>{item.modules.map(([hours, title]) => <li key={hours + title.en}>{hours} · {title[language]}</li>)}</ul>}</details>)}</div>
-        <div className="qualification-block" id="qualifications"><p className="section-kicker">{copy.qualificationsKicker}</p><h3>{copy.qualificationsTitle}</h3><p>{copy.qualificationsIntro}</p><div className="qualification-links">{qualifications.map((item) => <a href={item.href} key={item.title} target="_blank" rel="noreferrer"><span>{language === 'de' ? item.titleDe ?? item.title : item.titleEn ?? item.title}</span><small>{item.institution} · {item.date} · Yasser Adebayo Akanni</small><span aria-hidden="true">↗</span></a>)}</div></div>
+        <div className="qualification-block" id="qualifications"><p className="section-kicker">{copy.qualificationsKicker}</p><h3>{language === 'de' ? 'Zertifikate anfragen' : 'Request certificates'}</h3><p>{language === 'de' ? 'Schreiben Sie mir, wenn Sie meine Zertifikate einsehen möchten.' : 'Get in touch if you would like to review my certificates.'}</p><a className="certificate-request-button" href="#contact" onClick={(event) => { event.preventDefault(); const message = document.querySelector<HTMLTextAreaElement>('#message'); if (message) message.value = certificateRequest; document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '#contact'); }}><Mail size={16} /> {language === 'de' ? 'Zertifikate anfragen' : 'Request certificates'} <ArrowUpRight size={16} /></a></div>
       </section>
 
 
