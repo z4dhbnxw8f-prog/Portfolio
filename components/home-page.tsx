@@ -139,7 +139,7 @@ export default function Home() {
             <a className={`primary-action ${buttonVariants({ size: 'lg' })}`} href="#projects">{language === 'de' ? 'Projekte entdecken' : 'Explore my work'} <span aria-hidden="true">↗</span></a>
             <a className="hero-github" href={githubUrl} target="_blank" rel="noreferrer"><Code2 /> GitHub </a>
             <a className={buttonVariants({ variant: 'outline', size: 'lg' })} href={cvHref} download><Download /> {copy.downloadCv}</a>
-            <a className="hero-credential" href="/certificates/junior-web-developer-ihk-web.pdf" target="_blank" rel="noreferrer"><ShieldCheck size={14} /> Junior Web Developer IHK</a>
+            <a className="hero-credential" href="/credentials/junior-web-developer-ihk-web.pdf" target="_blank" rel="noreferrer"><ShieldCheck size={14} /> Junior Web Developer IHK</a>
           </div>
           <div className="hero-modes-invite"><PortfolioModesButton language={language} placement="hero" /><span className="hand-note">{language === 'de' ? 'Anderes Fenster. Gleiche Person. ↖' : 'Different window. Same human. ↖'}</span></div>
           <div className="hero-availability">
